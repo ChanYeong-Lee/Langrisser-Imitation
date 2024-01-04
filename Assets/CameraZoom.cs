@@ -13,12 +13,16 @@ public class CameraZoom : MonoBehaviour
     public Vector2 maxVector;
 
     public Transform player;
+
     void Update()
     {
         Zoom();
         MouseMove();
         KeyboardMove();
-        CheckNode();
+        if (false == player.GetComponent<Player>().movable)
+        {
+            Follow(player.position);
+        }
     }
 
     private void Zoom()
@@ -80,17 +84,7 @@ public class CameraZoom : MonoBehaviour
         transform.Translate(new Vector3(dir.x, 0, dir.y), Space.World);
     }
 
-    private void CheckNode()
-    {
-        if (Input.GetMouseButtonUp(0))
-        {
-            RaycastHit hit = ClickHitInfo();
-            if (hit.transform.GetComponent<Node>())
-            {
-                print("You Click Node");
-            }
-        }
-    }
+    
 
     private void Follow(Vector3 pos)
     {
@@ -109,10 +103,5 @@ public class CameraZoom : MonoBehaviour
             return Vector3.zero;
     }
 
-    private RaycastHit ClickHitInfo()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Physics.Raycast(ray, out RaycastHit hit);
-        return hit;
-    }
+    
 }

@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Node : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public enum NodeType
     {
-        
+        Road,
+        Object
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public NodeType type;
+    public bool somethingHere = false;
+
+    public INodeEvent nodeEvent = null;
+
+    public List<Node> nodes;
 }
