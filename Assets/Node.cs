@@ -15,5 +15,5 @@ public class Node : MonoBehaviour
 
     public INodeEvent nodeEvent = null;
 
-    public List<Node> nodes;
+    public List<Node> adjNodes;
 }
