@@ -51,7 +51,7 @@ public class CameraZoom : MonoBehaviour
             Vector3 delta = (mouseOrigin - target);
             delta.z = delta.y * 9/16;
             delta.y = 0;
-            Follow(delta * 5 * (transform.position.y - 1) + offset);
+            Follow(delta * 5 * (transform.position.y / 2) + offset);
         }
         if (Input.GetMouseButtonUp(0))
         {
