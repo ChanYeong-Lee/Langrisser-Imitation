@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
         dir.Normalize();
         while (true)
         {
-            if (Vector3.SqrMagnitude(transform.position - node.transform.position) < 0.003f)
+            if (Vector3.SqrMagnitude(transform.position - node.transform.position) < 0.0001f)
             {
                 break;
             }

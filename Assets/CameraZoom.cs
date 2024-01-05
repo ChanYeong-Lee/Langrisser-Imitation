@@ -12,16 +12,17 @@ public class CameraZoom : MonoBehaviour
     public Vector2 minVector;
     public Vector2 maxVector;
 
-    public Transform player;
-
+    public Player player;
+    public bool canMove = true;
     void Update()
     {
         Zoom();
         MouseMove();
         KeyboardMove();
-        if (false == player.GetComponent<Player>().movable)
+        CheckNode();
+        if (false == player.movable)
         {
-            Follow(player.position);
+            Follow(player.transform.position);
         }
     }
 
@@ -43,7 +44,7 @@ public class CameraZoom : MonoBehaviour
 
     private void MouseMove()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && canMove)
         {
             isDragging = true;
             mouseOrigin = Camera.main.ScreenToViewportPoint(Input.mousePosition);
@@ -102,6 +103,43 @@ public class CameraZoom : MonoBehaviour
         else
             return Vector3.zero;
     }
+    private void CheckNode()
+    {
+        if (Input.GetMouseButtonUp(0) && canMove)
+        {
+            if (ClickHitInfo(out RaycastHit hit))
+            {
+                if (hit.transform.TryGetComponent(out Node node))
+                {
+                    print("You Click Node");
+                    if (AStarAlgorithm.PathFinding(player.currentNode, node, out List<Node> path))
+                    {
+                        if (path.Count > 0)
+                        {
+                            player.Move(path);
+                        }
+                    }
+                    else
+                    {
+                        print("Can't Reach");
+                    }
+                }
+            }
+        }
+    }
+    private bool ClickHitInfo(out RaycastHit hit)
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hitInfo))
+        {
+            hit = hitInfo;
+            return true;
+        }
+        else
+        {
+            hit = default(RaycastHit);
+            return false;
+        }
+    }
 
-    
 }
