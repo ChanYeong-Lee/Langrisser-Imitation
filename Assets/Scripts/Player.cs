@@ -38,13 +38,14 @@ public class Player : MonoBehaviour
         dir.Normalize();
         while (true)
         {
-            if (Vector3.SqrMagnitude(transform.position - node.transform.position) < 0.0001f)
+            if (Vector3.SqrMagnitude(transform.position - node.transform.position) < 0.001f)
             {
                 break;
             }
             transform.position = transform.position + (dir * Time.deltaTime);
             yield return null;
         }
+        Debug.Log("moveEnd");
         movable = true;
     }
     IEnumerator MoveCoroutine(List<Node> path)

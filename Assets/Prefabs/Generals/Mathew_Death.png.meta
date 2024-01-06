@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -42,12 +42,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -125,9 +125,1176 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Mathew_Death_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 496
+        width: 18
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 978324165f014ac4b9957bf6ba399a7e
+      internalID: -346416604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_1
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 487
+        width: 36
+        height: 25
+      alignment: 9
+      pivot: {x: 0.23693615, y: 0.5349658}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9758e2ca0fce3047b45c07a21505503
+      internalID: 1530653373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_2
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 468
+        width: 19
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7ba5387e0a5e234790f2b67b20373b8
+      internalID: 1857583197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_3
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 481
+        width: 44
+        height: 31
+      alignment: 9
+      pivot: {x: 0.83112925, y: 0.65979594}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b524c3268758a8343af214ba9444555e
+      internalID: -486398095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_4
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 432
+        width: 51
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e429ca3db8b67a54daba363c44f27f65
+      internalID: -1022491744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_5
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 432
+        width: 19
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68ed3cae82c800e47bc5be5129fca807
+      internalID: -990390185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_6
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 434
+        width: 40
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62293c05bda570242a35417d4a19e96d
+      internalID: 1286882131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_7
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 434
+        width: 18
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f519fd72c5ce534da46e54e4469cc2a
+      internalID: -2000544038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 337
+        width: 116
+        height: 94
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7f45e37e3a5c5749a650101a5ac1ddb
+      internalID: 1463031403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_9
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 400
+        width: 48
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a8a134addddcff46b692c4288594a4e
+      internalID: 1342448014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_10
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 388
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27fea98b6ffb42043bf09bfc3585ffa7
+      internalID: 1920982624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_11
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 388
+        width: 27
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87503b177b8ab7d40ab86cde1af3e498
+      internalID: 1759455430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_12
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 392
+        width: 26
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fad88adc17b38324b87c6d9142135604
+      internalID: 767551049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_13
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 337
+        width: 47
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 156cd6db940584b4fb0b852447e58991
+      internalID: 1912600523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_14
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 359
+        width: 21
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1f45bdf53b9f9f4f83431be73480e60
+      internalID: -1144853963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_15
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 359
+        width: 28
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b6abb42bcbd4f342beb1f2fea8059e5
+      internalID: 1503476914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_16
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 292
+        width: 28
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b7d8ccbbcf5cb54684a20947944ab21
+      internalID: -1268839673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_17
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 336
+        width: 21
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ad6bac4dc14bde4b88f3a0a3e7a299d
+      internalID: 2106161507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_18
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 336
+        width: 29
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eef4958c7d36e7b4bb8ccc6b431a9645
+      internalID: -1501158838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_19
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 171
+        width: 182
+        height: 164
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a71bc8e180c64f449bb088bc86af6148
+      internalID: -1762199001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_20
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 297
+        width: 43
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: feba917a935018f4f84eeab4e072e936
+      internalID: 549378359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_21
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 251
+        width: 44
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0de91c19715150049b1af81bb36bf8d5
+      internalID: 181746497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_22
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 251
+        width: 28
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e6ea6c524a3a5a498cdd8823b30a2d0
+      internalID: -1192658116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_23
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 207
+        width: 45
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bbdf07b599ac9248b22edd1caabe534
+      internalID: 2009758748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_24
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 216
+        width: 27
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f6c77e5252544546b12ab9fad2fb9cc
+      internalID: -1788344509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_25
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 216
+        width: 34
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79ea9cdb660ba3b41b98f54f135ae1b8
+      internalID: -248151607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_26
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 207
+        width: 27
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73010bb6a9eb4354d9d61fb729efd480
+      internalID: -1766669806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_27
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 213
+        width: 40
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0151b95dfc667bf4398513f85804afc6
+      internalID: -270207739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_28
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 180
+        width: 24
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88cc689b83b2b9145b7aad30e8babbc9
+      internalID: -1113708817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_29
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 180
+        width: 35
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28aafa16d7977c0469c6bbf83aa7af8b
+      internalID: 1822581482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_30
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 180
+        width: 74
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 193d6977fc7ddeb4894a439f94bdbf41
+      internalID: 194672771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_31
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 176
+        width: 47
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac7cc6e8fc4058b479b6c6499edf0d8c
+      internalID: -1656745777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_32
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 90
+        width: 61
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d91849fde6200c4aa5b2437cb6417a4
+      internalID: 1588381199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_33
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 156
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b05be1a3e31f1142a3bd66f9aca394a
+      internalID: -956275115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_34
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 2
+        width: 188
+        height: 167
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71fd25023c4057d4294ec4fc9f9828e9
+      internalID: 1484725483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_35
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 84
+        width: 186
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89af7f1ff889c2d40bd1a7968869f42c
+      internalID: 1535902391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_36
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 123
+        width: 16
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0354a3f0c02ac61479baf60be2dc1668
+      internalID: 1156461745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_37
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 124
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57072489b86a9bf4bae87a5e0b0edd84
+      internalID: 1467472501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_38
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 89
+        width: 14
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7a88b3114e8ceb48972064f30f0e734
+      internalID: -431000962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_39
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 89
+        width: 10
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a97ef52004797e94cb88d13312b2842c
+      internalID: -158179073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_40
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 96
+        width: 28
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53eb102daaa03d64d8b8e0c424e6bcc2
+      internalID: 112897256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_41
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 3
+        width: 251
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4c57c3937827d04e8f67085f465b927
+      internalID: 932789717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_42
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 2
+        width: 54
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee5ed67b6c8649842bef097da76d328a
+      internalID: -1890099008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_43
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 433
+        width: 37
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 562a6cf6280d8844ab79cebc4375cee2
+      internalID: -918771603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_44
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 376
+        width: 21
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57fc475a01e6e304cb4656d85b48953c
+      internalID: -297168728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_45
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 376
+        width: 27
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9c20b2ba533d164b9cfa3678fd027d1
+      internalID: -1005742925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_46
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 289
+        width: 31
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d544c71b99c6eb642823a73b74953f97
+      internalID: -661480323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_47
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 248
+        width: 31
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70c3eea39a4d7cc45bb046a8da5cd8d2
+      internalID: -1569450914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_48
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 249
+        width: 6
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bb15488ba1feba48b4ff7a1541b597a
+      internalID: 2096739751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_49
+      rect:
+        serializedVersion: 2
+        x: 501
+        y: 32
+        width: 9
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21c6238ce94a2ff4dae7ec6f83c97b9a
+      internalID: -174585587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_50
+      rect:
+        serializedVersion: 2
+        x: 501
+        y: 2
+        width: 9
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d834f0d37e357c4ebf40f7490aaff62
+      internalID: -532350602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_51
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 66
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a61ca096de3fdb49b679393b0297b81
+      internalID: 816821580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_52
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 67
+        width: 21
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78a88b92d88912147b835dbb94d60461
+      internalID: -1438338660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_53
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 336
+        width: 28
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5c2606061ecb63498fa844ce315eb73
+      internalID: -945759140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mathew_Death_54
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 373
+        width: 26
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1608edd26d67a644964613b13c256e6
+      internalID: 413578289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -138,7 +1305,62 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Mathew_Death_0: -346416604
+      Mathew_Death_1: 1530653373
+      Mathew_Death_10: 1920982624
+      Mathew_Death_11: 1759455430
+      Mathew_Death_12: 767551049
+      Mathew_Death_13: 1912600523
+      Mathew_Death_14: -1144853963
+      Mathew_Death_15: 1503476914
+      Mathew_Death_16: -1268839673
+      Mathew_Death_17: 2106161507
+      Mathew_Death_18: -1501158838
+      Mathew_Death_19: -1762199001
+      Mathew_Death_2: 1857583197
+      Mathew_Death_20: 549378359
+      Mathew_Death_21: 181746497
+      Mathew_Death_22: -1192658116
+      Mathew_Death_23: 2009758748
+      Mathew_Death_24: -1788344509
+      Mathew_Death_25: -248151607
+      Mathew_Death_26: -1766669806
+      Mathew_Death_27: -270207739
+      Mathew_Death_28: -1113708817
+      Mathew_Death_29: 1822581482
+      Mathew_Death_3: -486398095
+      Mathew_Death_30: 194672771
+      Mathew_Death_31: -1656745777
+      Mathew_Death_32: 1588381199
+      Mathew_Death_33: -956275115
+      Mathew_Death_34: 1484725483
+      Mathew_Death_35: 1535902391
+      Mathew_Death_36: 1156461745
+      Mathew_Death_37: 1467472501
+      Mathew_Death_38: -431000962
+      Mathew_Death_39: -158179073
+      Mathew_Death_4: -1022491744
+      Mathew_Death_40: 112897256
+      Mathew_Death_41: 932789717
+      Mathew_Death_42: -1890099008
+      Mathew_Death_43: -918771603
+      Mathew_Death_44: -297168728
+      Mathew_Death_45: -1005742925
+      Mathew_Death_46: -661480323
+      Mathew_Death_47: -1569450914
+      Mathew_Death_48: 2096739751
+      Mathew_Death_49: -174585587
+      Mathew_Death_5: -990390185
+      Mathew_Death_50: -532350602
+      Mathew_Death_51: 816821580
+      Mathew_Death_52: -1438338660
+      Mathew_Death_53: -945759140
+      Mathew_Death_54: 413578289
+      Mathew_Death_6: 1286882131
+      Mathew_Death_7: -2000544038
+      Mathew_Death_8: 1463031403
+      Mathew_Death_9: 1342448014
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
