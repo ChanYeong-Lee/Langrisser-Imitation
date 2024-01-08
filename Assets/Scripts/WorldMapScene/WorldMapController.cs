@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 
-public class CameraZoom : MonoBehaviour
+public class WorldMapController : MonoBehaviour
 {
     public float zoomSpeed = 3;
     public float moveSpeed = 3;
@@ -12,18 +12,20 @@ public class CameraZoom : MonoBehaviour
     public Vector2 minVector;
     public Vector2 maxVector;
 
-    public Player player;
+    [HideInInspector] public WorldMapPlayer player;
     public bool canMove = true;
+    private bool following = false;
+    private void Start()
+    {
+        player = FindObjectOfType<WorldMapPlayer>(); 
+        player.OnMove.AddListener(FollowPlayer);
+    }
     void Update()
     {
         Zoom();
         MouseMove();
         KeyboardMove();
         CheckNode();
-        if (false == player.movable)
-        {
-            Follow(player.transform.position);
-        }
     }
 
     private void Zoom()
@@ -47,6 +49,7 @@ public class CameraZoom : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && canMove)
         {
             isDragging = true;
+            following = false;
             mouseOrigin = Camera.main.ScreenToViewportPoint(Input.mousePosition);
             offset = GetTarget();
         }
@@ -85,8 +88,6 @@ public class CameraZoom : MonoBehaviour
         transform.Translate(new Vector3(dir.x, 0, dir.y), Space.World);
     }
 
-    
-
     private void Follow(Vector3 pos)
     {
         float x = pos.x;
@@ -96,6 +97,22 @@ public class CameraZoom : MonoBehaviour
         transform.position = new Vector3(x, transform.position.y, z);
     }
 
+    private IEnumerator FollowPlayerCoroutine()
+    {
+        following = true;
+        while (following && player.isMoving)
+        {
+            Follow(player.transform.position);
+            yield return null;
+        }
+        following = false;
+    }
+
+    private void FollowPlayer()
+    {
+        StartCoroutine(FollowPlayerCoroutine());
+    }
+
     private Vector3 GetTarget()
     {
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit))
@@ -103,6 +120,7 @@ public class CameraZoom : MonoBehaviour
         else
             return Vector3.zero;
     }
+
     private void CheckNode()
     {
         if (Input.GetMouseButtonUp(0) && canMove)

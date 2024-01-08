@@ -11,20 +11,31 @@ public enum CellType
     Rock = 4
 }
 
-public class Cell : MonoBehaviour
+public class BattleMapCell : MonoBehaviour
 {
     public CellType cellType;
-    public int moveCost;
+    [HideInInspector] public int moveCost;
+    [HideInInspector] public bool onObject;
 
-    [HideInInspector] public Vector2Int cellcood;
+    /*[HideInInspector]*/ public Vector2Int cellcood;
 
-    private void Start()
+    private void Awake()
     {
-        cellcood = new Vector2Int((int)transform.localPosition.x, (int)transform.localPosition.y);
-        CalculateMoveCost();
+        Init();
     }
 
-    private void CalculateMoveCost()
+    private void Init()
+    {
+        SetCellCood();
+        SetMoveCost();
+    }
+
+    private void SetCellCood()
+    {
+        cellcood = new Vector2Int((int)transform.localPosition.x, (int)transform.localPosition.y);
+    }
+
+    private void SetMoveCost()
     {
         switch (cellType)
         {

@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Player : MonoBehaviour
+public class WorldMapPlayer : MonoBehaviour
 {
-    public Node currentNode;
-    public bool movable = true;
+    [HideInInspector] public Node currentNode;
+    [HideInInspector] public bool isMoving = false;
+    [HideInInspector] public UnityEvent OnMove;
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<Node>(out Node node))
@@ -13,27 +15,33 @@ public class Player : MonoBehaviour
             currentNode = node;
             print("You Reach New Node");
         }
+        if (other.TryGetComponent<INodeEvent>(out INodeEvent INodeEvent))
+        {
+            INodeEvent.Execute();
+        }
     }
 
     public void Move(Node node)
     {
-        if (movable)
+        if (false == isMoving)
         {
             StartCoroutine(MoveCoroutine(node));
+            OnMove?.Invoke();
         }
     }
 
     public void Move(List<Node> path)
     {
-        if (movable)
+        if (false == isMoving)
         {
             StartCoroutine(MoveCoroutine(path));
+            OnMove?.Invoke();
         }
     }
 
     IEnumerator MoveCoroutine(Node node)
     {
-        movable = false;
+        isMoving = true;
         Vector3 dir = node.transform.position - transform.position;
         dir.Normalize();
         while (true)
@@ -46,14 +54,15 @@ public class Player : MonoBehaviour
             yield return null;
         }
         Debug.Log("moveEnd");
-        movable = true;
+        isMoving = false;
     }
+
     IEnumerator MoveCoroutine(List<Node> path)
     {
         foreach (Node node in path)
         {
             StartCoroutine(MoveCoroutine(node));
-            yield return new WaitUntil(() => movable);
+            yield return new WaitWhile(() => isMoving);
         }
     }
 }

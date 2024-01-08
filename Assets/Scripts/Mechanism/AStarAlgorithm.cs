@@ -75,6 +75,4 @@ public class AStarAlgorithm
         path = null;
         return false;
     }
-
-
 }

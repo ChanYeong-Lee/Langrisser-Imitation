@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SnowGenerator : MonoBehaviour
+public class TitleSnowGenerator : MonoBehaviour
 {
     public GameObject prefab;
     public float initX;

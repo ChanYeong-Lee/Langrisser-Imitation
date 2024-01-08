@@ -8,12 +8,12 @@ public class PointerHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     public void OnPointerDown(PointerEventData eventData)
     {
         Debug.Log(name + "GameObject Click in Progress");
-        Camera.main.GetComponent<CameraZoom>().canMove = false;
+        Camera.main.GetComponent<WorldMapController>().canMove = false;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         Debug.Log(name + "No longer being clicked");
-        Camera.main.GetComponent<CameraZoom>().canMove = true;
+        Camera.main.GetComponent<WorldMapController>().canMove = true;
     }
 }

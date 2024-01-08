@@ -9,27 +9,35 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4372001362077439977, guid: 242a764376e51b44a890c44e24489232, type: 3}
       propertyPath: maxHP
-      value: 200
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 4372001362077439977, guid: 242a764376e51b44a890c44e24489232, type: 3}
       propertyPath: range
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4372001362077439977, guid: 242a764376e51b44a890c44e24489232, type: 3}
       propertyPath: damage
-      value: 40
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4372001362077439977, guid: 242a764376e51b44a890c44e24489232, type: 3}
       propertyPath: defense
-      value: 40
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4372001362077439977, guid: 242a764376e51b44a890c44e24489232, type: 3}
       propertyPath: soldier
       value: 
-      objectReference: {fileID: 3712853679370929863, guid: 0096fec8656344443afa760df101bcbf, type: 3}
+      objectReference: {fileID: 3712853679370929863, guid: f0f9e71ec95807c49a7d8815c1f72284, type: 3}
     - target: {fileID: 4372001362077439977, guid: 242a764376e51b44a890c44e24489232, type: 3}
       propertyPath: moveCost
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4372001362077439977, guid: 242a764376e51b44a890c44e24489232, type: 3}
+      propertyPath: classType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4372001362077439977, guid: 242a764376e51b44a890c44e24489232, type: 3}
+      propertyPath: generalType
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4372001362077439977, guid: 242a764376e51b44a890c44e24489232, type: 3}
       propertyPath: rairityType
@@ -85,7 +93,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8170298691495641968, guid: 242a764376e51b44a890c44e24489232, type: 3}
       propertyPath: m_Name
-      value: Mathew
+      value: Aimeeda
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 242a764376e51b44a890c44e24489232, type: 3}
