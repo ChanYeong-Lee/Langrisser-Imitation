@@ -6,7 +6,7 @@ public enum SoldierType
 {
     SwordMan,
     PikeMan,
-    Knight,
+    SwordHorse,
     Clergy,
 }
 public class Soldier : Character

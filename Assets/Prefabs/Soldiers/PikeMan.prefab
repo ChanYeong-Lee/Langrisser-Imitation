@@ -11,6 +11,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PikeMan
       objectReference: {fileID: 0}
+    - target: {fileID: 2456190997804940166, guid: fc4b515ba752af54b90be82e690840c9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3999182df04e67b4fa579677ea737696, type: 3}
+    - target: {fileID: 4426203060834899000, guid: fc4b515ba752af54b90be82e690840c9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3999182df04e67b4fa579677ea737696, type: 3}
     - target: {fileID: 5384453972123913314, guid: fc4b515ba752af54b90be82e690840c9, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -78,6 +86,10 @@ PrefabInstance:
     - target: {fileID: 7664810001468023511, guid: fc4b515ba752af54b90be82e690840c9, type: 3}
       propertyPath: moveCost
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664810001468023511, guid: fc4b515ba752af54b90be82e690840c9, type: 3}
+      propertyPath: classType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7664810001468023511, guid: fc4b515ba752af54b90be82e690840c9, type: 3}
       propertyPath: soldierType

@@ -11,6 +11,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SwordMan
       objectReference: {fileID: 0}
+    - target: {fileID: 2456190997804940166, guid: fc4b515ba752af54b90be82e690840c9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d0a6cb856646d194bb86c9652e5039b3, type: 3}
+    - target: {fileID: 4426203060834899000, guid: fc4b515ba752af54b90be82e690840c9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d0a6cb856646d194bb86c9652e5039b3, type: 3}
     - target: {fileID: 5384453972123913314, guid: fc4b515ba752af54b90be82e690840c9, type: 3}
       propertyPath: m_RootOrder
       value: 0

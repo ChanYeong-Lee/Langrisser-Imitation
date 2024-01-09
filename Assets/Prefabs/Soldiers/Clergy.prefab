@@ -11,6 +11,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Clergy
       objectReference: {fileID: 0}
+    - target: {fileID: 2384870475255425569, guid: fc4b515ba752af54b90be82e690840c9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2456190997804940166, guid: fc4b515ba752af54b90be82e690840c9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 07aa06b763af931409d83db3efe3b392, type: 3}
+    - target: {fileID: 4426203060834899000, guid: fc4b515ba752af54b90be82e690840c9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 07aa06b763af931409d83db3efe3b392, type: 3}
     - target: {fileID: 5384453972123913314, guid: fc4b515ba752af54b90be82e690840c9, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -80,8 +92,16 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7664810001468023511, guid: fc4b515ba752af54b90be82e690840c9, type: 3}
+      propertyPath: classType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664810001468023511, guid: fc4b515ba752af54b90be82e690840c9, type: 3}
       propertyPath: soldierType
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9079609517805685441, guid: fc4b515ba752af54b90be82e690840c9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc4b515ba752af54b90be82e690840c9, type: 3}

@@ -1495,7 +1495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a35766b71eaaf6b4497b21a1363d95d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageID: 0
+  stageID: 1
 --- !u!65 &312908730
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6692,7 +6692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d748682e4553fef40aa9005a5dc0ff51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentStageID: 0
+  currentStageID: 1
 --- !u!1 &1670816369
 GameObject:
   m_ObjectHideFlags: 0

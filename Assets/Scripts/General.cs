@@ -7,7 +7,7 @@ public enum GeneralType
     Mathew,
     Grenier,
     Aimeeda,
-    GeneralKnight,
+    GeneralSwordHorse,
     GeneralSwordMan,
     GeneralPikeMan
 }

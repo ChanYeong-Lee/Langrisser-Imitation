@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     public void EnterBattle(int stageID)

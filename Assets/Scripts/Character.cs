@@ -8,7 +8,7 @@ public enum ClassType
 {
     SwordMan,
     PikeMan,
-    Knight,
+    SwordHorse,
     Clergy,
 }
 
