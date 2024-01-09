@@ -3958,6 +3958,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2dd83eae2f62dc478fa9a281f5972df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  generalsParent: {fileID: 57605477}
+  soldiersParent: {fileID: 1605360357}
   generals:
   - {fileID: 913507447}
   - {fileID: 1473754871}
@@ -5179,7 +5181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomSpeed: 3
-  moveSpeed: 3
+  moveSpeed: 5
   minVector: {x: -15, y: -20}
   maxVector: {x: 15, y: 12}
   player: {fileID: 266141410}

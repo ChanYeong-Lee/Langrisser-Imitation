@@ -13,11 +13,10 @@ public enum CellType
 
 public class BattleMapCell : MonoBehaviour
 {
-    public CellType cellType;
-    [HideInInspector] public int moveCost;
-    [HideInInspector] public bool onObject;
-
-    /*[HideInInspector]*/ public Vector2Int cellcood;
+    public CellType cellType;                       // 타입
+    public int moveCost;          // 이동비용
+    [HideInInspector] public bool onObject;         // 오브젝트가 위에 있는지 판단
+    [HideInInspector] public Vector2Int cellcood;   // 위치
 
     private void Awake()
     {

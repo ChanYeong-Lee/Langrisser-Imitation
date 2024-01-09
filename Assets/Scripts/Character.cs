@@ -38,7 +38,8 @@ public class Character : MonoBehaviour
         }
     }
     
-    [HideInInspector] public bool alive;
+    private bool alive;
+    [HideInInspector] public bool Alive { get { return alive; } set { alive = value; if (alive) CurrentHP = maxHP; } }
 
     public float maxHP;
     public float damage;
@@ -47,14 +48,9 @@ public class Character : MonoBehaviour
     public int range;
     public int moveCost;
 
-    protected void OnEnable()
-    {
-        alive = true;
-        CurrentHP = maxHP;
-    }
-
     private void Die()
     {
-        alive = true;
+        alive = false;
+        OnDie?.Invoke();
     }
 }

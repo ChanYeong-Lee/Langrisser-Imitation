@@ -7,10 +7,14 @@ public class EnemyObject : MovingObject
     [SerializeField] private int level;
     [SerializeField] private GeneralType generalType;
     [SerializeField] private SoldierType soldierType;
-    
-    private void OnEnable()
+
+    private void Awake()
     {
         identity = IdentityType.Enemy;
+    }
+
+    private void Start()
+    {
         SetGeneral();
         SetSoldier();
         Init();
@@ -18,18 +22,16 @@ public class EnemyObject : MovingObject
 
     public void SetGeneral()
     {
-        general = Instantiate(DataManager.Instance.GetGeneral(generalType), transform.position, Quaternion.identity);
+        general = Instantiate(DataManager.Instance.GetGeneral(generalType));
         while (general.Level == level)
         {
             general.LevelUp();
         }
-        general.transform.parent = this.transform;
     }
 
     public void SetSoldier()
     {
-        soldier = Instantiate(DataManager.Instance.GetSoldier(soldierType), transform.position, Quaternion.identity);
-        soldier.transform.parent = this.transform;
+        soldier = Instantiate(DataManager.Instance.GetSoldier(soldierType));
     }
 
 

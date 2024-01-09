@@ -22,7 +22,8 @@ public class BattleSceneCameraMove : MonoBehaviour
         if (prepared)
         {
             Zoom();
-            Move();
+            KeyboardMove();
+            MouseMove();
             Limit();
         }
     }
@@ -32,13 +33,13 @@ public class BattleSceneCameraMove : MonoBehaviour
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         camera.orthographicSize = camera.orthographicSize - scroll * zoomSpeed;
     }
-    private void Move()
+    private void KeyboardMove()
     {
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
         Vector3 dir = new Vector3(x, y, 0);
         dir.Normalize();
-        transform.position = transform.position + dir * Time.deltaTime * moveSpeed;
+        transform.Translate(dir * Time.deltaTime * moveSpeed);
     }
 
     private void Limit()
@@ -60,5 +61,28 @@ public class BattleSceneCameraMove : MonoBehaviour
         transform.position = battleMap.transform.position;
         transform.Translate(new Vector3(0, 0, -10));
         prepared = true;
+    }
+
+    bool isDragging;
+    Vector3 clickPos;
+
+    private void MouseMove()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            isDragging = true;
+            clickPos = camera.ScreenToWorldPoint(Input.mousePosition);
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            isDragging = false;
+        }
+        if (isDragging)
+        {
+            Vector3 curMousePos = camera.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 dir = clickPos - curMousePos;
+            dir.z = 0;
+            transform.Translate(dir);
+        }
     }
 }

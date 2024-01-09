@@ -25,6 +25,7 @@ public class WorldMapController : MonoBehaviour
         Zoom();
         MouseMove();
         KeyboardMove();
+        Limit();
         CheckNode();
     }
 
@@ -32,34 +33,41 @@ public class WorldMapController : MonoBehaviour
     {
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         Vector3 Dest = transform.position + transform.forward * scroll * zoomSpeed;
-        Dest.z = Mathf.Clamp(Dest.z, minVector.y, maxVector.y);
-        if (Dest.y < 6 && 2 < Dest.y)
+        if (Dest.y < 2 || 8 < Dest.y)
         {
-            transform.position = Dest;
+            return;
         }
+        transform.position = Dest;
     }
 
     private bool isDragging = false;
-    private Vector3 offset = Vector3.zero;
-    private Vector3 mouseOrigin = Vector3.zero;
-    private Vector3 target = Vector3.zero;
+    private Vector3 mouseOrigin;
+    private Vector3 target;
 
     private void MouseMove()
     {
         if (Input.GetMouseButtonDown(0) && canMove)
         {
-            isDragging = true;
-            following = false;
-            mouseOrigin = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-            offset = GetTarget();
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                mouseOrigin = hit.point;
+                isDragging = true;
+                following = false;
+            }
         }
         if (isDragging)
         {
-            target = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                target = hit.point;
             Vector3 delta = (mouseOrigin - target);
-            delta.z = delta.y * 9/16;
-            delta.y = 0;
-            Follow(delta * 5 * (transform.position.y / 2) + offset);
+                delta.y = 0;
+                transform.position = transform.position + delta;
+            }
         }
         if (Input.GetMouseButtonUp(0))
         {
@@ -79,15 +87,14 @@ public class WorldMapController : MonoBehaviour
 
     private void Move(Vector2 dir)
     {
-        float nextX = transform.position.x + dir.x;
-        float nextZ = transform.position.z + dir.y;
-        if (nextX < minVector.x || nextZ < minVector.y)
-            return;
-        if (maxVector.x < nextX || maxVector.y < nextZ)
-            return;
         transform.Translate(new Vector3(dir.x, 0, dir.y), Space.World);
     }
-
+    private void Limit()
+    {
+        float x = Mathf.Clamp(transform.position.x, minVector.x, maxVector.y);
+        float z = Mathf.Clamp(transform.position.z, minVector.y, maxVector.y);  
+        transform.position = new Vector3(x, transform.position.y, z);
+    }
     private void Follow(Vector3 pos)
     {
         float x = pos.x;
@@ -111,14 +118,6 @@ public class WorldMapController : MonoBehaviour
     private void FollowPlayer()
     {
         StartCoroutine(FollowPlayerCoroutine());
-    }
-
-    private Vector3 GetTarget()
-    {
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit))
-            return hit.point;
-        else
-            return Vector3.zero;
     }
 
     private void CheckNode()

@@ -15,15 +15,12 @@ public class BattleMap : MonoBehaviour
 
     public List<MovingObject> movingObjects;
 
-    private void Start()
-    {
-        Init();
-    }
-
-    private void Init()
+    private void Awake()
     {
         CalculateBounds();
-        SetCells();
+    }
+    private void Start()
+    {
         SetDictionary();
     }
 
@@ -34,13 +31,6 @@ public class BattleMap : MonoBehaviour
         mapMaxBounds.x = transform.position.x + mapImage.bounds.extents.x + mapImage.transform.localPosition.x;
         mapMaxBounds.y = transform.position.y + mapImage.bounds.extents.y + mapImage.transform.localPosition.y;
     }
-    private void SetCells()
-    {
-        foreach (BattleMapCell cell in cellList)
-        {
-            cell.gameObject.SetActive(true);
-        }
-    }
 
     private void SetDictionary()
     {
@@ -49,5 +39,4 @@ public class BattleMap : MonoBehaviour
             cellDictionary.Add(cell.cellcood, cell);
         }
     }
-
 }

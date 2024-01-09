@@ -8,9 +8,29 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4372001362077439977, guid: 242a764376e51b44a890c44e24489232, type: 3}
+      propertyPath: maxHP
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 4372001362077439977, guid: 242a764376e51b44a890c44e24489232, type: 3}
+      propertyPath: range
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4372001362077439977, guid: 242a764376e51b44a890c44e24489232, type: 3}
+      propertyPath: damage
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4372001362077439977, guid: 242a764376e51b44a890c44e24489232, type: 3}
+      propertyPath: defense
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4372001362077439977, guid: 242a764376e51b44a890c44e24489232, type: 3}
       propertyPath: soldier
       value: 
       objectReference: {fileID: 3712853679370929863, guid: e0ef288411ecfde4791a522884f75983, type: 3}
+    - target: {fileID: 4372001362077439977, guid: 242a764376e51b44a890c44e24489232, type: 3}
+      propertyPath: moveCost
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4372001362077439977, guid: 242a764376e51b44a890c44e24489232, type: 3}
       propertyPath: generalType
       value: 3
