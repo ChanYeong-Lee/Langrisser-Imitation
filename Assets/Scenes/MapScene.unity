@@ -3914,6 +3914,28 @@ MonoBehaviour:
   - {fileID: 3712853679370929863, guid: 8549377a4598dc0448d49e14afd66fe1, type: 3}
   - {fileID: 3712853679370929863, guid: e0ef288411ecfde4791a522884f75983, type: 3}
   - {fileID: 3712853679370929863, guid: 0096fec8656344443afa760df101bcbf, type: 3}
+  generalIconSprites:
+  - generalType: 0
+    rairityType: 1
+    generalIcon: {fileID: 21300000, guid: bc1f52ab7f700d148bcc38a39cfc44fd, type: 3}
+  - generalType: 1
+    rairityType: 1
+    generalIcon: {fileID: 21300000, guid: efa4efe14938c3c46ad67684cda6257f, type: 3}
+  - generalType: 2
+    rairityType: 1
+    generalIcon: {fileID: 21300000, guid: efa4efe14938c3c46ad67684cda6257f, type: 3}
+  - generalType: 3
+    rairityType: 1
+    generalIcon: {fileID: 21300000, guid: c9c882c326f639343bef7152ad4384cb, type: 3}
+  classIconSprites:
+  - classType: 0
+    classIcon: {fileID: 21300000, guid: c791db278c0b56140ba06ca74fb0aa1d, type: 3}
+  - classType: 1
+    classIcon: {fileID: 21300000, guid: c64f673ef340ea041bc990a26c8c248d, type: 3}
+  - classType: 2
+    classIcon: {fileID: 21300000, guid: 25c627f9aae539d49887ead724b62f64, type: 3}
+  - classType: 3
+    classIcon: {fileID: 21300000, guid: 9c3d7a8d737f45146bc1a808233fdc80, type: 3}
 --- !u!4 &967871857
 Transform:
   m_ObjectHideFlags: 0

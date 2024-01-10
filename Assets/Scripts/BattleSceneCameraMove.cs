@@ -11,7 +11,7 @@ public class BattleSceneCameraMove : MonoBehaviour
     private BattleMap currentBattleMap;
     private new Camera camera;
     private bool prepared = false;
-
+    public bool canMove = true;
     private void Awake()
     {
         camera = GetComponent<Camera>();
@@ -19,7 +19,7 @@ public class BattleSceneCameraMove : MonoBehaviour
 
     private void Update()
     {
-        if (prepared)
+        if (prepared && canMove)
         {
             Zoom();
             KeyboardMove();

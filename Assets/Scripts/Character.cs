@@ -16,8 +16,8 @@ public class Character : MonoBehaviour
 {
     [HideInInspector] public UnityEvent OnDie; 
     [HideInInspector] public UnityEvent OnHPChange; 
-    [HideInInspector] public UnityEvent OnExpChange; 
-
+    [HideInInspector] public UnityEvent OnExpChange;
+    
     public ClassType classType;
     protected float currentHP;
     public float CurrentHP

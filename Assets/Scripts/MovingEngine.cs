@@ -65,5 +65,40 @@ public class MovingEngine : MonoBehaviour
         }
         return movableArea;
     }
+    public List<BattleMapCell> CheckAttackableArea()
+    {
+        BattleMap currentMap = movingObject.currentMap;
+        List<BattleMapCell> attackableArea = new List<BattleMapCell>();
+        List<BattleMapCell> movableArea = movingObject.movableArea;
+        foreach (BattleMapCell cell in movableArea)
+        {
+            attackableArea.Add(cell);
+            foreach (Vector2Int newPos in CellArea(cell.cellcood, movingObject.range))
+            {
+                if (currentMap.cellDictionary.TryGetValue(newPos, out BattleMapCell newCell))
+                {
+                    if (attackableArea.Contains(newCell)) continue;
+                    else attackableArea.Add(newCell);
+                }
+            }
+        }
+        return attackableArea;
+    }
 
+    private List<Vector2Int> CellArea(Vector2Int centerCell, int range)
+    {
+        List<Vector2Int> cellArea = new List<Vector2Int>();
+        for (int x = -range; x <= range; x++)
+        {
+            for (int y = -range; y <= range; y++)
+            {
+                if (Mathf.Abs(x) + Mathf.Abs(y) <= range)
+                {
+                    Vector2Int newPos = new Vector2Int(centerCell.x + x, centerCell.y + y);
+                    cellArea.Add(newPos);
+                }
+            }
+        }
+        return cellArea;
+    }
 }

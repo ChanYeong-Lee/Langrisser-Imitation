@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum GeneralType
@@ -7,6 +8,7 @@ public enum GeneralType
     Mathew,
     Grenier,
     Aimeeda,
+    Skot,
     GeneralSwordHorse,
     GeneralSwordMan,
     GeneralPikeMan
@@ -35,6 +37,7 @@ public class General : Character
 
     private int currentExp;
     public int CurrentExp { get { return currentExp; } set { currentExp = value; if (currentExp >= maxExp) { currentExp -= maxExp; LevelUp(); } } }
+
     private int maxExp;
     public int MaxExp { get { return maxExp; } }
 

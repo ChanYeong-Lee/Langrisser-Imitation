@@ -125,7 +125,8 @@ MonoBehaviour:
   currentCell: {fileID: 0}
   currentMap: {fileID: 0}
   engine: {fileID: 0}
-  areaPrefab: {fileID: 397515474975506286, guid: fc8a78f41f294de469a2e09a210e21ba, type: 3}
+  movableAreaPrefab: {fileID: 397515474975506286, guid: fc8a78f41f294de469a2e09a210e21ba, type: 3}
+  attackableAreaPrefab: {fileID: 5881619331755718649, guid: acc9046bc8ea885488a166adbd288f34, type: 3}
   generalPos: {fileID: 2423631414662043806}
   soldierPos: {fileID: 3696635135322566378}
   areaParent: {fileID: 5234498736400557482}

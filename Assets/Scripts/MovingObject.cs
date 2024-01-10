@@ -38,7 +38,8 @@ public class MovingObject : MonoBehaviour
 
     public BattleMap currentMap;
     public MovingEngine engine;
-    public GameObject areaPrefab;
+    public GameObject movableAreaPrefab;
+    public GameObject attackableAreaPrefab;
     public Transform generalPos;
     public Transform soldierPos;
     public Transform areaParent;
@@ -69,6 +70,7 @@ public class MovingObject : MonoBehaviour
         soldier.OnDie.AddListener(CheckAlive);
         range = biggerRange;
         moveCost = smallerMoveCost;
+        CheckMovableArea();
     }
 
     private void UpdateCurrentCell()
@@ -85,7 +87,21 @@ public class MovingObject : MonoBehaviour
     {
         foreach (BattleMapCell cell in movableArea)
         {
-            GameObject area = Instantiate(areaPrefab, cell.transform.position, Quaternion.identity);
+            GameObject area = Instantiate(movableAreaPrefab, cell.transform.position, Quaternion.identity);
+            area.transform.parent = areaParent;
+            activeArea.Add(area);
+        }
+    }
+    public void CheckAttackableArea()
+    {
+        UpdateCurrentCell();
+        attackableArea = engine.CheckAttackableArea();
+    }
+    public void DrawAttackableArea()
+    {
+        foreach (BattleMapCell cell in attackableArea)
+        {
+            GameObject area = Instantiate(attackableAreaPrefab, cell.transform.position, Quaternion.identity);
             area.transform.parent = areaParent;
             activeArea.Add(area);
         }

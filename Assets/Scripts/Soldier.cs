@@ -12,5 +12,4 @@ public enum SoldierType
 public class Soldier : Character
 {
     public SoldierType soldierType;
-
 }

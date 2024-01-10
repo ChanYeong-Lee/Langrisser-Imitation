@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class TurnManager : MonoBehaviour
 {
@@ -17,6 +17,7 @@ public class TurnManager : MonoBehaviour
     public State TurnState { get { return state; } }    
     public static TurnManager Instance { get; private set; }
     public List<MovingObject> aliveObjects = new List<MovingObject>();
+    public UnityEvent onPlayerTurnEnd;
     private int currentTurn;
     public int CurrentTurn { get { return currentTurn; } }
     private void Awake()
@@ -113,6 +114,7 @@ public class TurnManager : MonoBehaviour
         foreach (MovingObject movingObject in aliveObjects)
         {
             movingObject.CheckMovableArea();
+            movingObject.CheckAttackableArea();
         }
     }
     private void OpenTurnEnd()
@@ -126,7 +128,7 @@ public class TurnManager : MonoBehaviour
     }
     public void PlayerTurnEnd()
     {
-        BattleManager.Instance.PlayerTurnEnd();
+        onPlayerTurnEnd?.Invoke();
         state = State.EnemyTurn;
         print("EnemyTurn");
     }

@@ -6,6 +6,8 @@ using UnityEngine.Events;
 
 public class BattleManager : MonoBehaviour
 {
+    public enum State { Ready, Battle }
+    public State state;
     public UnityEvent onFight;
     public static BattleManager Instance { get; private set; }
     [HideInInspector] public BattleMap currentBattleMap;
@@ -19,6 +21,12 @@ public class BattleManager : MonoBehaviour
     {
         Instance = this;
     }
+    private void Start()
+    {
+        state = State.Ready;
+        TurnManager.Instance.onPlayerTurnEnd.AddListener(PlayerTurnEnd);
+    }
+
     public void TestBattle()
     {
         for (int i = 0; i < allyObjects.Count; i++)
@@ -28,10 +36,20 @@ public class BattleManager : MonoBehaviour
     }
     private void Update()
     {
-        if (TurnManager.Instance.TurnState == TurnManager.State.PlayerTurn)
+        switch (state)
         {
-            SelectCharacter();
+            case State.Ready:
+                break;
+            case State.Battle:
+                break;
         }
+        SelectCharacter();
+    }
+    
+    public void StartBattle()
+    {
+        state = State.Battle;
+        TurnManager.Instance.StartBattle();
     }
     private void SelectCharacter()
     {
@@ -48,6 +66,7 @@ public class BattleManager : MonoBehaviour
                 }
                 currentObject = nextObject;
                 currentObject.DrawMovableArea();
+                currentObject.DrawAttackableArea();
             }
         }
     }
