@@ -36,4 +36,11 @@ public class PlayerData : MonoBehaviour
         generals.Add(newGeneral);
         return true;
     }
+
+    public void ReturnGeneral(General general)
+    {
+        general.transform.parent = generalsParent;
+        general.transform.position = Vector2.zero;
+        general.gameObject.SetActive(false);
+    }
 }

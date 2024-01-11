@@ -17,6 +17,7 @@ public class BattleMapCell : MonoBehaviour
     public int moveCost;          // 이동비용
     [HideInInspector] public bool onObject;         // 오브젝트가 위에 있는지 판단
     [HideInInspector] public Vector2Int cellcood;   // 위치
+    public MovingObject movingObject;
 
     private void Awake()
     {

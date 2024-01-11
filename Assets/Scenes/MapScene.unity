@@ -3918,10 +3918,10 @@ MonoBehaviour:
   - generalType: 0
     rairityType: 1
     generalIcon: {fileID: 21300000, guid: bc1f52ab7f700d148bcc38a39cfc44fd, type: 3}
-  - generalType: 1
-    rairityType: 1
-    generalIcon: {fileID: 21300000, guid: efa4efe14938c3c46ad67684cda6257f, type: 3}
   - generalType: 2
+    rairityType: 1
+    generalIcon: {fileID: 21300000, guid: c45cc854878a774458412a4bd6d84994, type: 3}
+  - generalType: 1
     rairityType: 1
     generalIcon: {fileID: 21300000, guid: efa4efe14938c3c46ad67684cda6257f, type: 3}
   - generalType: 3

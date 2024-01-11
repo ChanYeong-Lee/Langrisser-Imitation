@@ -34,6 +34,7 @@ public class MovingObject : MonoBehaviour
     public List<BattleMapCell> movableArea;
     [HideInInspector] public List<BattleMapCell> attackableArea;
     private List<GameObject> activeArea = new List<GameObject>();
+    public BattleMapCell prevCell;
     public BattleMapCell currentCell;
 
     public BattleMap currentMap;
@@ -43,6 +44,9 @@ public class MovingObject : MonoBehaviour
     public Transform generalPos;
     public Transform soldierPos;
     public Transform areaParent;
+
+    public bool isMoving;
+    public bool canMove;
 
     [HideInInspector] public Vector2Int[] directions = new Vector2Int[]
     {
@@ -70,19 +74,43 @@ public class MovingObject : MonoBehaviour
         soldier.OnDie.AddListener(CheckAlive);
         range = biggerRange;
         moveCost = smallerMoveCost;
-        CheckMovableArea();
+        currentMoveCost = moveCost;
+        UpdateCurrentCell();
+    }
+    protected void Release()
+    {
+        general.OnDie.RemoveAllListeners();
+        soldier.OnDie.RemoveAllListeners();
     }
 
-    private void UpdateCurrentCell()
+    public void UpdateCurrentCell()
     {
+        if (prevCell != null)
+        {
+            prevCell.movingObject = null;
+        }
         currentCell = currentMap.cellDictionary[Vector2Int.RoundToInt(transform.localPosition)];
+        currentCell.movingObject = this;
+        prevCell = currentCell;
+        CheckAreas();
+    }
+
+    public void CheckAreas()
+    {
+        CheckMovableArea();
+        CheckAttackableArea();
     }
 
     public void CheckMovableArea()
     {
-        UpdateCurrentCell();
         movableArea = engine.CheckMovableArea();
     }
+    public void DrawAreas()
+    {
+        DrawMovableArea();
+        DrawAttackableArea();
+    }
+
     public void DrawMovableArea()
     {
         foreach (BattleMapCell cell in movableArea)
@@ -94,19 +122,20 @@ public class MovingObject : MonoBehaviour
     }
     public void CheckAttackableArea()
     {
-        UpdateCurrentCell();
         attackableArea = engine.CheckAttackableArea();
     }
     public void DrawAttackableArea()
     {
         foreach (BattleMapCell cell in attackableArea)
         {
+            if (movableArea.Exists((a) => a.cellcood == cell.cellcood)) continue;
+
             GameObject area = Instantiate(attackableAreaPrefab, cell.transform.position, Quaternion.identity);
             area.transform.parent = areaParent;
             activeArea.Add(area);
         }
     }
-    public void UnDrawMovableArea()
+    public void UnDrawAreas()
     {
         foreach (GameObject area in activeArea)
         {
@@ -114,11 +143,12 @@ public class MovingObject : MonoBehaviour
         }
         activeArea.Clear();
     }
+
     public void TestMovableArea()
     {
         UpdateCurrentCell();
         CheckMovableArea();
-        DrawMovableArea();
+        DrawAreas();
     }
     private void CheckAlive()
     {
@@ -127,5 +157,12 @@ public class MovingObject : MonoBehaviour
             alive = false;
             OnDie?.Invoke(this);
         }
+    }
+
+    public bool TryMove(BattleMapCell destination)
+    {
+        if (canMove)
+            return engine.TryMove(destination);
+        else return false;
     }
 }

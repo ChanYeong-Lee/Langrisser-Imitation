@@ -16,6 +16,7 @@ public class BattleManager : MonoBehaviour
     public List<EnemyObject> enemyObjects;
 
     private MovingObject currentObject;
+    public BattleMapCell currentCell;
 
     private void Awake()
     {
@@ -41,6 +42,8 @@ public class BattleManager : MonoBehaviour
             case State.Ready:
                 break;
             case State.Battle:
+                if (TurnManager.Instance.TurnState == TurnManager.State.PlayerTurn)
+                    CharacterMove();
                 break;
         }
         SelectCharacter();
@@ -51,9 +54,10 @@ public class BattleManager : MonoBehaviour
         state = State.Battle;
         TurnManager.Instance.StartBattle();
     }
+
     private void SelectCharacter()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonUp(0))
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
@@ -62,18 +66,48 @@ public class BattleManager : MonoBehaviour
             {
                 if (currentObject != null)
                 {
-                    currentObject.UnDrawMovableArea();
+                    currentObject.UnDrawAreas();
                 }
                 currentObject = nextObject;
-                currentObject.DrawMovableArea();
-                currentObject.DrawAttackableArea();
+                currentObject.DrawAreas();
+            }
+            if (hit.collider.TryGetComponent(out BattleMapCell cell))
+            {
+                if (currentObject != null)
+                {
+                    currentObject.UnDrawAreas();
+                }
+                currentCell = cell;
+                currentObject = null;
+            }
+        }
+    }
+
+    private void CharacterMove()
+    {
+        if (currentObject != null && currentObject.identity == IdentityType.Ally)
+        {
+            if (Input.GetMouseButtonUp(0))
+            {
+                print("GGOODD");
+                Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+                if (hit == false) return;
+                if (hit.collider.TryGetComponent(out BattleMapCell cell))
+                {
+                    currentObject.TryMove(cell);
+                }
             }
         }
     }
     public void PlayerTurnEnd()
     {
-        currentObject.UnDrawMovableArea();
+        if (currentObject != null)
+        {
+            currentObject.UnDrawAreas();
+        }
     }
+
     public void SetBattleMap(BattleMap battleMap)
     {
         currentBattleMap = battleMap;

@@ -70,8 +70,13 @@ public class BattleSceneCameraMove : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            isDragging = true;
-            clickPos = camera.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+            if (hit.collider != null && hit.collider.TryGetComponent(out MovingObject movingObject)) { }
+            else
+            {
+                isDragging = true;
+                clickPos = camera.ScreenToWorldPoint(Input.mousePosition);
+            }
         }
         if (Input.GetMouseButtonUp(0))
         {

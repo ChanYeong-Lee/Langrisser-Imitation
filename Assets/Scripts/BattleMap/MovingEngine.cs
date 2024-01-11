@@ -33,7 +33,7 @@ public class MovingEngine : MonoBehaviour
     {
         BattleMap currentMap = movingObject.currentMap;
         BattleMapCell currentCell = movingObject.currentCell;
-        int moveCost = movingObject.moveCost;
+        int moveCost = movingObject.currentMoveCost;
 
         List<MovingCell> movings = new List<MovingCell>();
         Queue<MovingCell> queue = new Queue<MovingCell>();
@@ -100,5 +100,61 @@ public class MovingEngine : MonoBehaviour
             }
         }
         return cellArea;
+    }
+
+    public bool TryMove(BattleMapCell destination)
+    {
+        BattleMap currentMap = movingObject.currentMap;
+        BattleMapCell currentCell = movingObject.currentCell;
+        int moveCost = movingObject.currentMoveCost;
+        if (BattleMapAStartAlgorithm.PathFinding(currentMap, currentCell, destination, out List<BattleMapCell> path, out int distance))
+        {
+            if (moveCost < distance) return false;
+            movingObject.canMove = false;
+            Move(path);
+            movingObject.currentMoveCost = 0;
+            return true;
+        }
+        else return false;
+    }
+
+    private void Move(BattleMapCell destination)
+    {
+        BattleMap currentMap = movingObject.currentMap;
+        BattleMapCell currentCell = movingObject.currentCell;
+        movingObject.currentMoveCost -= destination.moveCost;
+        StartCoroutine(MoveCoroutine(destination));
+    }
+    private void Move(List<BattleMapCell> path)
+    {
+        StartCoroutine(MoveCoroutine(path));
+    }
+    private IEnumerator MoveCoroutine(BattleMapCell destination)
+    {
+        movingObject.isMoving = true;
+        while (true)
+        {
+            if (Vector2.Distance((Vector2)movingObject.transform.localPosition, new Vector2(destination.cellcood.x, destination.cellcood.y)) < 0.05f)
+            {
+                print("µµÂø");
+                movingObject.UpdateCurrentCell();
+                break;
+            }
+            Vector2 dir = destination.cellcood - movingObject.currentCell.cellcood;
+            dir.Normalize();
+            movingObject.transform.localPosition = (Vector2)movingObject.transform.localPosition + dir * Time.deltaTime;
+            yield return null;
+        }
+        movingObject.isMoving = false;
+    }
+
+    private IEnumerator MoveCoroutine(List<BattleMapCell> path)
+    {
+        foreach (BattleMapCell cell in path)
+        {
+            yield return new WaitWhile(() => movingObject.isMoving);
+            StartCoroutine(MoveCoroutine(cell));
+            yield return null;
+        }
     }
 }

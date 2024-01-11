@@ -129,7 +129,7 @@ public class WorldMapController : MonoBehaviour
                 if (hit.transform.TryGetComponent(out Node node))
                 {
                     print("You Click Node");
-                    if (AStarAlgorithm.PathFinding(player.currentNode, node, out List<Node> path))
+                    if (WorldMapAStartAlgorithm.PathFinding(player.currentNode, node, out List<Node> path))
                     {
                         if (path.Count > 0)
                         {

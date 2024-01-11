@@ -28,7 +28,7 @@ public class DragEventHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, 
         OnEndDragEvent?.Invoke();
         if (fixedPos)
         {
-            rectTransform.anchoredPosition = prevPos;
+            rectTransform.anchoredPosition = GetComponentInParent<RectTransform>().anchoredPosition;
         }
         print("NotGOod");
     }

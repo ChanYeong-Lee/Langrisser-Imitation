@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AStarAlgorithm
+public class WorldMapAStartAlgorithm
 {
     private class ASNode
     {
@@ -65,10 +65,18 @@ public class AStarAlgorithm
                     if (findNodes.Exists((a) => a.node == node))
                     {
                         ASNode existNode = findNodes.Find((a) => a.node == node);
-                        if (newNode.f < existNode.f) heapQueue.Enqueue(newNode, newNode.f);
+                        if (newNode.f < existNode.f)
+                        {
+                            existNode = newNode;
+                            heapQueue.Enqueue(newNode, newNode.f);
+                        }
                         else continue;
                     }
-                    else heapQueue.Enqueue(newNode, newNode.f);
+                    else
+                    {
+                        findNodes.Add(newNode);
+                        heapQueue.Enqueue(newNode, newNode.f);
+                    }
                 }
             }
         }

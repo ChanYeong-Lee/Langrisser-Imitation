@@ -11,8 +11,17 @@ public class AllyObject : MovingObject
 
     public void SetGeneral(General general)
     {
+        if (this.general != null)
+        {
+            Release();
+            PlayerData.Instance.ReturnGeneral(this.general);
+            Destroy(soldier.gameObject);
+        }
         this.general = general;
         this.soldier = Instantiate(general.Soldier);
+        general.gameObject.SetActive(true);
+        general.Alive = true;
+        soldier.Alive = true;
         Init();
     }
 }

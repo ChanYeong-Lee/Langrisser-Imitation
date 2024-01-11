@@ -13,7 +13,7 @@ public class TurnManager : MonoBehaviour
         EnemyTurn,
         CloseTurn,
     }
-    private State state = State.None;
+    [SerializeField] private State state = State.None;
     public State TurnState { get { return state; } }    
     public static TurnManager Instance { get; private set; }
     public List<MovingObject> aliveObjects = new List<MovingObject>();
@@ -106,6 +106,7 @@ public class TurnManager : MonoBehaviour
         foreach (MovingObject movingObject in aliveObjects)
         {
             movingObject.currentMoveCost = movingObject.moveCost;
+            movingObject.canMove = true;
         }
     }
 
