@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class MovingEngine : MonoBehaviour
 {
-    [HideInInspector] public MovingObject movingObject;
+    public MovingObject movingObject;
     private void Awake()
     {
         movingObject = GetComponent<MovingObject>();
@@ -70,10 +70,22 @@ public class MovingEngine : MonoBehaviour
         BattleMap currentMap = movingObject.currentMap;
         List<BattleMapCell> attackableArea = new List<BattleMapCell>();
         List<BattleMapCell> movableArea = movingObject.movableArea;
+       
         foreach (BattleMapCell cell in movableArea)
         {
             attackableArea.Add(cell);
             foreach (Vector2Int newPos in CellArea(cell.cellcood, movingObject.range))
+            {
+                if (currentMap.cellDictionary.TryGetValue(newPos, out BattleMapCell newCell))
+                {
+                    if (attackableArea.Contains(newCell)) continue;
+                    else attackableArea.Add(newCell);
+                }
+            }
+        }
+        if (movableArea.Count == 0)
+        {
+            foreach (Vector2Int newPos in CellArea(movingObject.currentCell.cellcood, movingObject.range))
             {
                 if (currentMap.cellDictionary.TryGetValue(newPos, out BattleMapCell newCell))
                 {
@@ -104,6 +116,8 @@ public class MovingEngine : MonoBehaviour
 
     public bool TryMove(BattleMapCell destination)
     {
+        if (destination == movingObject.currentCell) return true;
+        if (destination.movingObject != null) return false;
         BattleMap currentMap = movingObject.currentMap;
         BattleMapCell currentCell = movingObject.currentCell;
         int moveCost = movingObject.currentMoveCost;
@@ -117,7 +131,30 @@ public class MovingEngine : MonoBehaviour
         }
         else return false;
     }
-
+    public bool TryAttack(BattleMapCell destination)
+    {
+        BattleMap currentMap = movingObject.currentMap;
+        foreach (Vector2Int pos in CellArea(destination.cellcood, movingObject.range))
+        {
+            print($"Check{pos}");
+            if (currentMap[pos] == null) continue;
+            print($"{pos} not null");
+            if (pos == destination.cellcood) continue;
+            print($"{pos} not destination pos");
+            if (TryMove(currentMap[pos]))
+            {
+                print("Hello");
+                Attack(destination.movingObject);
+                movingObject.canAttack = false;
+                return true;
+            }
+        }
+        return false;
+    }
+    private void Attack(MovingObject target)
+    {
+        BattleManager.Instance.StartFight(this.movingObject, target);
+    }
     private void Move(BattleMapCell destination)
     {
         BattleMap currentMap = movingObject.currentMap;

@@ -18,18 +18,18 @@ public class BattleMapCell : MonoBehaviour
     [HideInInspector] public bool onObject;         // 오브젝트가 위에 있는지 판단
     [HideInInspector] public Vector2Int cellcood;   // 위치
     public MovingObject movingObject;
-
-    private void Awake()
+    public SpriteRenderer spriteRenderer;
+    public void InitCell()
     {
-        Init();
-    }
-
-    private void Init()
-    {
+        RemoveSprite();
         SetCellCood();
         SetMoveCost();
     }
 
+    private void RemoveSprite()
+    {
+        spriteRenderer.gameObject.SetActive(false);
+    }
     private void SetCellCood()
     {
         cellcood = new Vector2Int((int)transform.localPosition.x, (int)transform.localPosition.y);

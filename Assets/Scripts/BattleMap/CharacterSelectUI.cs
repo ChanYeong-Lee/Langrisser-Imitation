@@ -18,7 +18,7 @@ public class CharacterSelectUI : MonoBehaviour, IDragHandler, IBeginDragHandler,
         scrollRect = GetComponent<ScrollRect>();
     }
 
-    private void Start()
+    private void OnEnable()
     {
         foreach (General general in PlayerData.Instance.generals)
         {
@@ -75,14 +75,18 @@ public class CharacterSelectUI : MonoBehaviour, IDragHandler, IBeginDragHandler,
         if (onMoveElement)
         {
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-            if (hit.collider != null && hit.collider.TryGetComponent(out AllyObject ally))
+            if (hit.collider != null && hit.collider.TryGetComponent(out BattleMapCell cell))
             {
-                if (ally.general != null)
+                if (cell.movingObject != null && cell.movingObject is AllyObject)
                 {
-                    GenerateElement(ally.general, transform.position);
+                    if (cell.movingObject.general != null)
+                    {
+                        GenerateElement(cell.movingObject.general, transform.position);
+                    }
+
+                    cell.movingObject.GetComponent<AllyObject>().SetGeneral(currentElement.general);
+                    Destroy(currentElement.gameObject);
                 }
-                ally.SetGeneral(currentElement.general);
-                Destroy(currentElement.gameObject);
             }
             currentElement.rectTransform.anchoredPosition = currentElement.prevPos;
         }

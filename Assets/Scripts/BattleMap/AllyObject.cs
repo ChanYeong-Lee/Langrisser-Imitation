@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class AllyObject : MovingObject
 {
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         identity = IdentityType.Ally;
     }
 
@@ -22,6 +23,6 @@ public class AllyObject : MovingObject
         general.gameObject.SetActive(true);
         general.Alive = true;
         soldier.Alive = true;
-        Init();
+        InitMovingObject();
     }
 }

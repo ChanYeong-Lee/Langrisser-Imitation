@@ -6,20 +6,19 @@ using UnityEngine.Events;
 
 public enum ClassType
 {
-    SwordMan,
-    PikeMan,
-    SwordHorse,
-    Clergy,
+    SwordMan    = 0,
+    PikeMan     = 1,
+    SwordHorse  = 2,
+    Clergy      = 3,
 }
 
 public class Character : MonoBehaviour
 {
     [HideInInspector] public UnityEvent OnDie; 
     [HideInInspector] public UnityEvent OnHPChange; 
-    [HideInInspector] public UnityEvent OnExpChange;
     
     public ClassType classType;
-    protected float currentHP;
+    public float currentHP;
     public float CurrentHP
     {
         get { return currentHP; }
@@ -39,7 +38,7 @@ public class Character : MonoBehaviour
     }
     
     private bool alive;
-    [HideInInspector] public bool Alive { get { return alive; } set { alive = value; if (alive) CurrentHP = maxHP; } }
+    [HideInInspector] public bool Alive { get { return alive; } set { alive = value; if (alive) CurrentHP = maxHP; OnHPChange?.Invoke(); } }
 
     public float maxHP;
     public float damage;
@@ -52,5 +51,17 @@ public class Character : MonoBehaviour
     {
         alive = false;
         OnDie?.Invoke();
+    }
+
+    public float TakeHit(float damage)
+    {
+        print($"{gameObject.name} is Take Hit");
+        float remainDamage = 0;
+        if (damage > currentHP)
+        {
+            remainDamage = damage - currentHP;
+        }
+        CurrentHP -= damage;
+        return remainDamage;
     }
 }

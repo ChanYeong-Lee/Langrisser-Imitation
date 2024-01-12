@@ -14,10 +14,10 @@ public class TurnManager : MonoBehaviour
         CloseTurn,
     }
     [SerializeField] private State state = State.None;
-    public State TurnState { get { return state; } }    
+    public State TurnState { get { return state; } set { state = value; onTurnChange?.Invoke(); } }
     public static TurnManager Instance { get; private set; }
     public List<MovingObject> aliveObjects = new List<MovingObject>();
-    public UnityEvent onPlayerTurnEnd;
+    public UnityEvent onTurnChange;
     private int currentTurn;
     public int CurrentTurn { get { return currentTurn; } }
     private void Awake()
@@ -54,7 +54,7 @@ public class TurnManager : MonoBehaviour
 
     public void StartBattle()
     {
-        state = State.OpenTurn;
+        TurnState = State.OpenTurn;
         print("TurnStart");
         currentTurn = 0;
         WakeUpObjects();
@@ -76,6 +76,7 @@ public class TurnManager : MonoBehaviour
     private void ObjectDie(MovingObject deadObject)
     {
         aliveObjects.Remove(deadObject);
+        Destroy(deadObject.gameObject);
         CheckStates();
     }
     private void CheckStates()
@@ -121,7 +122,7 @@ public class TurnManager : MonoBehaviour
     private void OpenTurnEnd()
     {
         print("PlayerTurn");
-        state = State.PlayerTurn;
+        TurnState = State.PlayerTurn;
     }
 
     private void PlayerTurn()
@@ -129,8 +130,7 @@ public class TurnManager : MonoBehaviour
     }
     public void PlayerTurnEnd()
     {
-        onPlayerTurnEnd?.Invoke();
-        state = State.EnemyTurn;
+        TurnState = State.EnemyTurn;
         print("EnemyTurn");
     }
 
@@ -148,11 +148,11 @@ public class TurnManager : MonoBehaviour
     }
     private void EndTurnEnd()
     {
-        state = State.OpenTurn;
+        TurnState = State.OpenTurn;
     }
     public void EndBattle()
     {
-        state = State.None;
+        TurnState = State.None;
         SceneLoader.Instance.LoadScene("MapScene");
     }
 }

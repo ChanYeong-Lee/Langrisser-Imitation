@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public enum GeneralType
 {
@@ -27,6 +28,7 @@ public class General : Character
     [SerializeField] private Soldier soldier;
     [SerializeField] private GeneralType generalType;
     [SerializeField] private RairityType rairityType;
+    [HideInInspector] public UnityEvent OnExpChange;
 
     public Soldier Soldier { get { return soldier; } }
     public GeneralType GeneralType { get { return generalType; } }
@@ -36,7 +38,7 @@ public class General : Character
     public int Level { get { return level; } set { level = value; } }
 
     private int currentExp;
-    public int CurrentExp { get { return currentExp; } set { currentExp = value; if (currentExp >= maxExp) { currentExp -= maxExp; LevelUp(); } } }
+    public int CurrentExp { get { return currentExp; } set { currentExp = value; if (currentExp >= maxExp) { currentExp -= maxExp; LevelUp(); } OnExpChange?.Invoke(); } }
 
     private int maxExp;
     public int MaxExp { get { return maxExp; } }

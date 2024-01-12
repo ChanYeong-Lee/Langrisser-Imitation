@@ -24,17 +24,12 @@ public class BattleManager : MonoBehaviour
     }
     private void Start()
     {
+        BattleMapManager.Instance.LoadMap(GameManager.Instance.currentStageID);
+        TurnManager.Instance.onTurnChange.AddListener(TurnChange);
+        BattleUIManager.Instance.ReadyBattle();
         state = State.Ready;
-        TurnManager.Instance.onPlayerTurnEnd.AddListener(PlayerTurnEnd);
     }
 
-    public void TestBattle()
-    {
-        for (int i = 0; i < allyObjects.Count; i++)
-        {
-            allyObjects[i].SetGeneral(PlayerData.Instance.generals[i]);
-        }
-    }
     private void Update()
     {
         switch (state)
@@ -43,34 +38,40 @@ public class BattleManager : MonoBehaviour
                 break;
             case State.Battle:
                 if (TurnManager.Instance.TurnState == TurnManager.State.PlayerTurn)
+                {
+                    CharacterAttack();
                     CharacterMove();
+                }
                 break;
         }
-        SelectCharacter();
+        SelectCell();
     }
     
     public void StartBattle()
     {
         state = State.Battle;
+        List<MovingObject> deadList = new List<MovingObject>();
+        foreach (MovingObject movingObject in allyObjects)
+        {
+            if (movingObject.general == null)
+                deadList.Add(movingObject);
+        }
+        foreach (MovingObject deadObject in deadList)
+        {
+            allyObjects.Remove(deadObject as AllyObject);
+            movingObjects.Remove(deadObject);
+            Destroy(deadObject.gameObject);
+        }
         TurnManager.Instance.StartBattle();
     }
 
-    private void SelectCharacter()
+    private void SelectCell()
     {
         if (Input.GetMouseButtonUp(0))
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
             if (hit == false) return;
-            if (hit.collider.TryGetComponent(out MovingObject nextObject))
-            {
-                if (currentObject != null)
-                {
-                    currentObject.UnDrawAreas();
-                }
-                currentObject = nextObject;
-                currentObject.DrawAreas();
-            }
             if (hit.collider.TryGetComponent(out BattleMapCell cell))
             {
                 if (currentObject != null)
@@ -79,7 +80,16 @@ public class BattleManager : MonoBehaviour
                 }
                 currentCell = cell;
                 currentObject = null;
+                CheckCharacter();
             }
+        }
+    }
+    private void CheckCharacter()
+    {
+        if (currentCell.movingObject != null)
+        {
+            currentObject = currentCell.movingObject;
+            currentObject.DrawAreas();
         }
     }
 
@@ -100,29 +110,66 @@ public class BattleManager : MonoBehaviour
             }
         }
     }
-    public void PlayerTurnEnd()
+    private void CharacterAttack()
+    {
+        if (currentObject != null && currentObject.identity == IdentityType.Ally)
+        {
+            if (Input.GetMouseButtonUp(0))
+            {
+                print("GGOODD");
+                Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+                if (hit == false) return;
+                if (hit.collider.TryGetComponent(out BattleMapCell cell))
+                {
+                    if (cell.movingObject != null && cell.movingObject.identity == IdentityType.Enemy) 
+                        currentObject.TryAttack(cell);
+                }
+            }
+        }
+    }
+    private void TurnChange()
     {
         if (currentObject != null)
         {
             currentObject.UnDrawAreas();
         }
+        if (currentCell != null)
+        {
+            currentCell = null;
+        }
     }
 
+    public void StartFight(MovingObject attacker, MovingObject target)
+    {
+        int distance = BattleMapAStartAlgorithm.Distance(attacker.currentCell, target.currentCell);
+        print(distance);
+        if (attacker.range >= distance)
+        {
+            target.TakeHit(attacker);
+        }
+        if (target.range >= distance)
+        {
+            attacker.TakeHit(target);
+        }
+    }
     public void SetBattleMap(BattleMap battleMap)
     {
         currentBattleMap = battleMap;
         movingObjects = currentBattleMap.movingObjects;
         foreach (MovingObject movingObject in movingObjects)
         {
+            movingObject.currentMap = this.currentBattleMap;
             if (movingObject.identity == IdentityType.Ally)
             {
                 allyObjects.Add(movingObject as AllyObject);
+                movingObject.UpdateCurrentCell();
             }
             else if (movingObject.identity == IdentityType.Enemy)
             {
                 enemyObjects.Add(movingObject as EnemyObject);
+                movingObject.GetComponent<EnemyObject>().InitEnemyObject();
             }
-            movingObject.currentMap = this.currentBattleMap;
         }
     }
 

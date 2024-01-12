@@ -30,7 +30,7 @@ public class BattleMapAStartAlgorithm : MonoBehaviour
             this.f = g + h;
         }
     }
-    private static int Distance(BattleMapCell start, BattleMapCell end)
+    public static int Distance(BattleMapCell start, BattleMapCell end)
     {
         return Mathf.Abs(start.cellcood.x - end.cellcood.x) + Mathf.Abs(start.cellcood.y - end.cellcood.y);
     }

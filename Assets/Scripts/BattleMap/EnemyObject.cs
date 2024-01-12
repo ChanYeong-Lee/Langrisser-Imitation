@@ -8,16 +8,17 @@ public class EnemyObject : MovingObject
     [SerializeField] private GeneralType generalType;
     [SerializeField] private SoldierType soldierType;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         identity = IdentityType.Enemy;
     }
 
-    private void Start()
+    public void InitEnemyObject()
     {
         SetGeneral();
         SetSoldier();
-        Init();
+        InitMovingObject();
     }
 
     public void SetGeneral()

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -32,7 +33,7 @@ public class MovingObject : MonoBehaviour
     private bool alive;
     [HideInInspector] public bool Alive { get { return alive; } set { alive = value; if (alive) { general.Alive = true; soldier.Alive = true; } } }
     public List<BattleMapCell> movableArea;
-    [HideInInspector] public List<BattleMapCell> attackableArea;
+    public List<BattleMapCell> attackableArea;
     private List<GameObject> activeArea = new List<GameObject>();
     public BattleMapCell prevCell;
     public BattleMapCell currentCell;
@@ -44,9 +45,11 @@ public class MovingObject : MonoBehaviour
     public Transform generalPos;
     public Transform soldierPos;
     public Transform areaParent;
+    public SpriteRenderer spriteRenderer;
 
     public bool isMoving;
     public bool canMove;
+    public bool canAttack;
 
     [HideInInspector] public Vector2Int[] directions = new Vector2Int[]
     {
@@ -56,25 +59,19 @@ public class MovingObject : MonoBehaviour
         new Vector2Int(-1,  0),     // ¿ì
     };
 
-    private void OnEnable()
+    protected virtual void Awake()
     {
         engine = GetComponent<MovingEngine>();
+        spriteRenderer.gameObject.SetActive(false);
     }
 
-    protected void Init()
+    protected void InitMovingObject()
     {
-        int biggerRange = general.range >= soldier.range ? general.range : soldier.range;
-        int smallerMoveCost = general.moveCost > soldier.moveCost ? soldier.moveCost : general.moveCost;
-
-        general.transform.parent = generalPos;
-        general.transform.position = generalPos.position; 
-        soldier.transform.parent = soldierPos;
-        soldier.transform.position = soldierPos.position;
+        SetStats();
+        SetPositions();
         general.OnDie.AddListener(CheckAlive);
         soldier.OnDie.AddListener(CheckAlive);
-        range = biggerRange;
-        moveCost = smallerMoveCost;
-        currentMoveCost = moveCost;
+        RestoreCosts();
         UpdateCurrentCell();
     }
     protected void Release()
@@ -83,6 +80,26 @@ public class MovingObject : MonoBehaviour
         soldier.OnDie.RemoveAllListeners();
     }
 
+    private void SetStats()
+    {
+        int biggerRange = general.range >= soldier.range ? general.range : soldier.range;
+        int smallerMoveCost = general.moveCost > soldier.moveCost ? soldier.moveCost : general.moveCost;
+        range = biggerRange;
+        moveCost = smallerMoveCost;
+    }
+    private void SetPositions()
+    {
+        general.transform.parent = generalPos;
+        general.transform.position = generalPos.position;
+        soldier.transform.parent = soldierPos;
+        soldier.transform.position = soldierPos.position;
+    }
+    public void RestoreCosts()
+    {
+        currentMoveCost = moveCost;
+        canMove = true;
+        canAttack = true;
+    }
     public void UpdateCurrentCell()
     {
         if (prevCell != null)
@@ -103,7 +120,13 @@ public class MovingObject : MonoBehaviour
 
     public void CheckMovableArea()
     {
+        movableArea.Clear();
         movableArea = engine.CheckMovableArea();
+    }
+    public void CheckAttackableArea()
+    {
+        attackableArea.Clear();
+        attackableArea = engine.CheckAttackableArea();
     }
     public void DrawAreas()
     {
@@ -119,10 +142,6 @@ public class MovingObject : MonoBehaviour
             area.transform.parent = areaParent;
             activeArea.Add(area);
         }
-    }
-    public void CheckAttackableArea()
-    {
-        attackableArea = engine.CheckAttackableArea();
     }
     public void DrawAttackableArea()
     {
@@ -164,5 +183,22 @@ public class MovingObject : MonoBehaviour
         if (canMove)
             return engine.TryMove(destination);
         else return false;
+    }
+
+    public bool TryAttack(BattleMapCell destination)
+    {
+        if (canAttack)
+            return engine.TryAttack(destination);
+        else return false;
+    }
+
+    public void TakeHit(MovingObject attacker)
+    {
+        print($"{attacker.general.gameObject.name} hit {gameObject.name}");
+        float damage = attacker.general.damage;
+        float remainDamage = 0;
+        if (attacker.soldier.Alive) damage += attacker.soldier.damage;
+        if (soldier.Alive) remainDamage = soldier.TakeHit(damage);
+        general.TakeHit(remainDamage);
     }
 }

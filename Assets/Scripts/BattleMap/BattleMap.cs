@@ -13,14 +13,26 @@ public class BattleMap : MonoBehaviour
     [SerializeField] private List<BattleMapCell> cellList;
     public Dictionary<Vector2Int, BattleMapCell> cellDictionary = new();
 
+    public BattleMapCell this[Vector2Int cood] 
+    {
+        get 
+        {
+            if (cellDictionary.TryGetValue(cood, out BattleMapCell cell))
+            {
+                return cell;
+            }
+            else 
+            {
+                return null; 
+            }
+        }
+    }
+
     public List<MovingObject> movingObjects;
 
-    private void Awake()
+    public void InitBattleMap()
     {
         CalculateBounds();
-    }
-    private void Start()
-    {
         SetDictionary();
     }
 
@@ -36,6 +48,7 @@ public class BattleMap : MonoBehaviour
     {
         foreach (BattleMapCell cell in cellList)
         {
+            cell.InitCell();
             cellDictionary.Add(cell.cellcood, cell);
         }
     }

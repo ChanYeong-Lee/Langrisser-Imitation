@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class BattleMapManager : MonoBehaviour
 {
+    public static BattleMapManager Instance { get; private set; }
     [SerializeField] private BattleMapData mapData;
     [SerializeField] new private BattleSceneCameraMove camera;
     private BattleMap currentBattleMap;
-    private void Start()
+    private void Awake()
     {
-        LoadMap(GameManager.Instance.currentStageID);
+        Instance = this;
     }
     public void LoadMap(int stageID)
     {
-        currentBattleMap = mapData.battleMapDictionary[stageID];
-        currentBattleMap.gameObject.SetActive(true);
+        currentBattleMap = Instantiate(mapData.battleMapDictionary[stageID]);
+        currentBattleMap.InitBattleMap();
         camera.SetBattleMap(currentBattleMap);
         BattleManager.Instance.SetBattleMap(currentBattleMap);
     }
