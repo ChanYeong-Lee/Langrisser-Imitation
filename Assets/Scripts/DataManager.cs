@@ -22,8 +22,6 @@ public class DataManager : MonoBehaviour
 
     public List<General> generalPrefabs;
     public List<Soldier> soldierPrefabs;
-    public List<GeneralIcon> generalIconSprites;
-    public List<ClassIcon> classIconSprites;
   
     public General GetGeneral(GeneralType generalType)
     {
@@ -36,28 +34,4 @@ public class DataManager : MonoBehaviour
         Soldier soldier = soldierPrefabs.Find((a) => a.soldierType == soldierType);
         return soldier;
     }
-
-    public Sprite GetGeneralIcon(General general)
-    {
-        return generalIconSprites.Find((a) => (a.generalType == general.GeneralType && a.rairityType == general.RairtyType)).generalIcon;
-    }
-    public Sprite GetClassIcon(General general)
-    {
-        return classIconSprites.Find((a) => (a.classType == general.classType)).classIcon;
-    }
-}
-
-[Serializable]
-public class GeneralIcon
-{
-    public GeneralType generalType;
-    public RairityType rairityType;
-    public Sprite generalIcon;
-}
-
-[Serializable]
-public class ClassIcon
-{
-    public ClassType classType;
-    public Sprite classIcon;
 }

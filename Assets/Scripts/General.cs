@@ -17,7 +17,6 @@ public enum GeneralType
 
 public enum RairityType
 {
-    N,
     R,
     SR,
     SSR

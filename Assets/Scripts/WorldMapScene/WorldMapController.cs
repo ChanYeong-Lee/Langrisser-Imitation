@@ -15,18 +15,33 @@ public class WorldMapController : MonoBehaviour
     [HideInInspector] public WorldMapPlayer player;
     public bool canMove = true;
     private bool following = false;
+    Vector3 initPos;
+    Quaternion initRot;
+    private void Awake()
+    {
+        initPos = new Vector3(2, 2.5f, -1);
+        initRot = Quaternion.Euler(50, 0, 0);
+        ResetPosition();
+    }
+
+    public void ResetPosition()
+    {
+        transform.position = initPos;
+        transform.rotation = initRot;
+    }
+
     private void Start()
     {
-        player = FindObjectOfType<WorldMapPlayer>(); 
+        player = FindObjectOfType<WorldMapPlayer>();
         player.OnMove.AddListener(FollowPlayer);
     }
     void Update()
     {
-        Zoom();
-        MouseMove();
-        KeyboardMove();
-        Limit();
-        CheckNode();
+                Zoom();
+                MouseMove();
+                KeyboardMove();
+                Limit();
+                CheckNode();
     }
 
     private void Zoom()

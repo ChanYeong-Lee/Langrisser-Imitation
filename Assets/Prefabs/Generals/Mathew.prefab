@@ -37,7 +37,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4372001362077439977, guid: 242a764376e51b44a890c44e24489232, type: 3}
       propertyPath: rairityType
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5936614366794426238, guid: 242a764376e51b44a890c44e24489232, type: 3}
       propertyPath: m_RootOrder

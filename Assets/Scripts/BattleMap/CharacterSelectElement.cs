@@ -23,8 +23,8 @@ public class CharacterSelectElement : MonoBehaviour/*, IDragHandler, IBeginDragH
     public void SetGeneral(General general)
     {
         this.general = general;
-        characterIcon.sprite = DataManager.Instance.GetGeneralIcon(general);
-        classIcon.sprite = DataManager.Instance.GetClassIcon(general);
+        characterIcon.sprite = ResourceManager.Instance.GetGeneralIcon(general);
+        classIcon.sprite = ResourceManager.Instance.GetClassIcon(general);
         levelText.text = general.Level.ToString();
     }
 
