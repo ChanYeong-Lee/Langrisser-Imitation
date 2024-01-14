@@ -31,7 +31,7 @@ public class General : Character
 
     public Soldier Soldier { get { return soldier; } }
     public GeneralType GeneralType { get { return generalType; } }
-    public RairityType RairtyType { get { return rairityType; } }
+    public RairityType RairityType { get { return rairityType; } }
 
     private int level = 1;
     public int Level { get { return level; } set { level = value; } }
@@ -39,7 +39,7 @@ public class General : Character
     private int currentExp;
     public int CurrentExp { get { return currentExp; } set { currentExp = value; if (currentExp >= maxExp) { currentExp -= maxExp; LevelUp(); } OnExpChange?.Invoke(); } }
 
-    private int maxExp;
+    private int maxExp = 100;
     public int MaxExp { get { return maxExp; } }
 
     public void LevelUp()

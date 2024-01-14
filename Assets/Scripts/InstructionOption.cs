@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ToggleControl : MonoBehaviour
+public class InstructionOption : MonoBehaviour
 {
-    private Toggle toggle;
+    [HideInInspector] public Toggle toggle;
     private RectTransform rectTransform;
     private Vector2 originPos;
-    private void Awake()
+    public InstructionType InstructionType;
+    public void Init()
     {
         toggle = GetComponent<Toggle>();
         rectTransform = GetComponent<RectTransform>();

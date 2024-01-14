@@ -17,7 +17,9 @@ public class Character : MonoBehaviour
     [HideInInspector] public UnityEvent OnDie; 
     [HideInInspector] public UnityEvent OnHPChange; 
     
-    public ClassType classType;
+    [SerializeField] private ClassType classType;
+    public ClassType ClassType { get { return classType; } }
+
     public float currentHP;
     public float CurrentHP
     {

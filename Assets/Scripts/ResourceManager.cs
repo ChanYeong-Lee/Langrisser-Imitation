@@ -1,0 +1,75 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[Serializable] public class GeneralIcon
+{
+    public RairityType rairityType;
+    public Sprite generalIcon;
+}
+
+[Serializable] public class ClassResource
+{
+    public string className;
+    [TextArea(0, 3)] public string classDescription;
+    public ClassType classType;
+    public Sprite classIcon;
+    public Sprite classFlag;
+}
+
+[Serializable]
+public class RairityResource
+{
+    public RairityType rairityType;
+    public Sprite rairityIcon;
+    public Sprite rairityCard;
+}
+
+[Serializable] public class GeneralResource
+{
+    public string generalName;
+    public GeneralType generalType;
+    public List<GeneralIcon> generalIcons;
+    public Sprite generalPaint;
+    public Sprite generalSD;
+    public Sprite generalCardHead;
+    
+    public Sprite GetGeneralIcon(RairityType rairtyType)
+    {
+        return generalIcons.Find((a) => a.rairityType == rairtyType).generalIcon;
+    }
+}
+public class ResourceManager : MonoBehaviour
+{
+    private static ResourceManager instance;
+    public static ResourceManager Instance { get { return instance; } }
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            DestroyImmediate(gameObject);
+            return;
+        }
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
+    public List<GeneralResource> generalResources;
+    public List<ClassResource> classIconSprites;
+    public List<RairityResource> rairityIconSprites;
+    public GeneralResource GetGeneralResource(GeneralType generalType)
+    {
+        GeneralResource generalResource = generalResources.Find((a) => (a.generalType == generalType));
+        return generalResource;
+    }
+    public ClassResource GetClassResource(ClassType classType)
+    {
+        return classIconSprites.Find((a) => a.classType == classType);
+    }
+    public RairityResource GetRairityResource(RairityType rairityType)
+    {
+        return rairityIconSprites.Find((a) => a.rairityType == rairityType);
+    }
+}
