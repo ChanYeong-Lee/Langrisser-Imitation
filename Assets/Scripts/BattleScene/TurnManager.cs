@@ -13,9 +13,9 @@ public class TurnManager : MonoBehaviour
         EnemyTurn,
         CloseTurn,
     }
-    [SerializeField] private State state = State.None;
-    public State TurnState { get { return state; } set { state = value; onTurnChange?.Invoke(); } }
     public static TurnManager Instance { get; private set; }
+    [SerializeField] private State state;
+    public State TurnState { get { return state; } set { state = value; onTurnChange?.Invoke(); } }
     public List<MovingObject> aliveObjects = new List<MovingObject>();
     public UnityEvent onTurnChange;
     private int currentTurn;
@@ -107,7 +107,7 @@ public class TurnManager : MonoBehaviour
         foreach (MovingObject movingObject in aliveObjects)
         {
             movingObject.currentMoveCost = movingObject.moveCost;
-            movingObject.canMove = true;
+            movingObject.canAction = true;
         }
     }
 

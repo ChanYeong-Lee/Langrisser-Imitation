@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class HeroesUIManager : MonoBehaviour
 {
+    public static HeroesUIManager Instance { get; private set; }
     public GameObject heroInstruction;
     public GameObject heroSelectUI;
     public GameObject instructionButton;
-    public GameObject instructionPanel;
-    public GameObject instructionOptions;
+    public InstructionPanel instructionPanel;
+    public InstructionOptionController instructionOptions;
 
     Vector2 instructionFirstPos;
     Vector2 instructionSecondPos;
@@ -19,6 +20,10 @@ public class HeroesUIManager : MonoBehaviour
     public State state;
     private void Awake()
     {
+        Instance = this;
+    }
+    public void Init()
+    {
         firstCamPos = new Vector2(800, 450);
         secondCamPos = new Vector2(1425, 450);
         instructionFirstPos = Vector2.zero;
@@ -28,14 +33,10 @@ public class HeroesUIManager : MonoBehaviour
         heroInstruction.GetComponent<RectTransform>().anchoredPosition = instructionFirstPos;
         heroSelectUI.SetActive(true);
         instructionButton.SetActive(true);
-        instructionPanel.SetActive(false);
-        instructionOptions.SetActive(false);
-    }
-
-    private void Start()
-    {
-        instructionOptions.GetComponent<InstructionOptionController>().Init();
-        instructionPanel.GetComponent<InstructionPanel>().Init();
+        instructionPanel.gameObject.SetActive(false);
+        instructionOptions.gameObject.SetActive(false);
+        instructionOptions.Init();
+        instructionPanel.Init();
     }
 
     public void ClickInstructionButton()
@@ -43,8 +44,8 @@ public class HeroesUIManager : MonoBehaviour
         StopAllCoroutines();
         heroSelectUI.SetActive(false);
         instructionButton.SetActive(false);
-        instructionPanel.SetActive(true);
-        instructionOptions.SetActive(true);
+        instructionPanel.gameObject.SetActive(true);
+        instructionOptions.gameObject.SetActive(true);
         StartCoroutine(CameraMoveCoroutine(secondCamPos));
         StartCoroutine(UIMoveCoroutine(heroInstruction, instructionSecondPos));
         state = State.Instruction;
@@ -60,8 +61,8 @@ public class HeroesUIManager : MonoBehaviour
             case State.Instruction:
                 heroSelectUI.SetActive(true);
                 instructionButton.SetActive(true);
-                instructionPanel.SetActive(false);
-                instructionOptions.SetActive(false);
+                instructionPanel.gameObject.SetActive(false);
+                instructionOptions.gameObject.SetActive(false);
                 StartCoroutine(CameraMoveCoroutine(firstCamPos));
                 StartCoroutine(UIMoveCoroutine(heroInstruction, instructionFirstPos));
                 state = State.HeroesGrid;

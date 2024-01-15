@@ -5,12 +5,12 @@ using UnityEngine.Events;
 
 public class WorldMapPlayer : MonoBehaviour
 {
-    [HideInInspector] public Node currentNode;
+    [HideInInspector] public WorldMapNode currentNode;
     [HideInInspector] public bool isMoving = false;
     [HideInInspector] public UnityEvent OnMove;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<Node>(out Node node))
+        if (other.TryGetComponent<WorldMapNode>(out WorldMapNode node))
         {
             currentNode = node;
             print("You Reach New Node");
@@ -21,7 +21,7 @@ public class WorldMapPlayer : MonoBehaviour
         }
     }
 
-    public void Move(Node node)
+    public void Move(WorldMapNode node)
     {
         if (false == isMoving)
         {
@@ -30,7 +30,7 @@ public class WorldMapPlayer : MonoBehaviour
         }
     }
 
-    public void Move(List<Node> path)
+    public void Move(List<WorldMapNode> path)
     {
         if (false == isMoving)
         {
@@ -39,7 +39,7 @@ public class WorldMapPlayer : MonoBehaviour
         }
     }
 
-    IEnumerator MoveCoroutine(Node node)
+    IEnumerator MoveCoroutine(WorldMapNode node)
     {
         isMoving = true;
         Vector3 dir = node.transform.position - transform.position;
@@ -57,9 +57,9 @@ public class WorldMapPlayer : MonoBehaviour
         isMoving = false;
     }
 
-    IEnumerator MoveCoroutine(List<Node> path)
+    IEnumerator MoveCoroutine(List<WorldMapNode> path)
     {
-        foreach (Node node in path)
+        foreach (WorldMapNode node in path)
         {
             StartCoroutine(MoveCoroutine(node));
             yield return new WaitWhile(() => isMoving);

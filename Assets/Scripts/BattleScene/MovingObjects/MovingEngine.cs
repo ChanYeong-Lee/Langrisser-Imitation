@@ -124,9 +124,8 @@ public class MovingEngine : MonoBehaviour
         if (BattleMapAStartAlgorithm.PathFinding(currentMap, currentCell, destination, out List<BattleMapCell> path, out int distance))
         {
             if (moveCost < distance) return false;
-            movingObject.canMove = false;
             Move(path);
-            movingObject.currentMoveCost = 0;
+            movingObject.CurrentCell = destination;
             return true;
         }
         else return false;
@@ -136,52 +135,33 @@ public class MovingEngine : MonoBehaviour
         BattleMap currentMap = movingObject.currentMap;
         foreach (Vector2Int pos in CellArea(destination.cellcood, movingObject.range))
         {
-            print($"Check{pos}");
             if (currentMap[pos] == null) continue;
-            print($"{pos} not null");
             if (pos == destination.cellcood) continue;
-            print($"{pos} not destination pos");
             if (TryMove(currentMap[pos]))
             {
-                print("Hello");
-                Attack(destination.movingObject);
-                movingObject.canAttack = false;
                 return true;
             }
         }
         return false;
     }
-    private void Attack(MovingObject target)
-    {
-        BattleManager.Instance.StartFight(this.movingObject, target);
-    }
-    private void Move(BattleMapCell destination)
-    {
-        BattleMap currentMap = movingObject.currentMap;
-        BattleMapCell currentCell = movingObject.currentCell;
-        movingObject.currentMoveCost -= destination.moveCost;
-        StartCoroutine(MoveCoroutine(destination));
-    }
+
     private void Move(List<BattleMapCell> path)
     {
         StartCoroutine(MoveCoroutine(path));
     }
-    private IEnumerator MoveCoroutine(BattleMapCell destination)
+
+    private IEnumerator MoveCoroutine(BattleMapCell nextCell)
     {
         movingObject.isMoving = true;
+        Vector2 dir = nextCell.cellcood - (Vector2)movingObject.transform.localPosition;
+        dir.Normalize();
         while (true)
         {
-            if (Vector2.Distance((Vector2)movingObject.transform.localPosition, new Vector2(destination.cellcood.x, destination.cellcood.y)) < 0.05f)
-            {
-                print("µµÂø");
-                movingObject.UpdateCurrentCell();
-                break;
-            }
-            Vector2 dir = destination.cellcood - movingObject.currentCell.cellcood;
-            dir.Normalize();
+            if (Vector2.SqrMagnitude((Vector2)movingObject.transform.localPosition - nextCell.cellcood) <= 0.02f) break;
             movingObject.transform.localPosition = (Vector2)movingObject.transform.localPosition + dir * Time.deltaTime;
             yield return null;
         }
+        movingObject.transform.localPosition = new Vector3(nextCell.cellcood.x, nextCell.cellcood.y, 0);
         movingObject.isMoving = false;
     }
 

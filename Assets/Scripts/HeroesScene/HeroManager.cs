@@ -13,6 +13,7 @@ public class HeroManager : MonoBehaviour
     {
         Instance = this;
         currentGeneral = PlayerData.Instance.generals[0];
+        HeroesUIManager.Instance.Init();
     }
 
     public void ChangeGeneral(General general)

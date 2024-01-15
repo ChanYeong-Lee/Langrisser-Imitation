@@ -142,10 +142,10 @@ public class WorldMapController : MonoBehaviour
         {
             if (ClickHitInfo(out RaycastHit hit))
             {
-                if (hit.transform.TryGetComponent(out Node node))
+                if (hit.transform.TryGetComponent(out WorldMapNode node))
                 {
                     print("You Click Node");
-                    if (WorldMapAStartAlgorithm.PathFinding(player.currentNode, node, out List<Node> path))
+                    if (WorldMapAStartAlgorithm.PathFinding(player.currentNode, node, out List<WorldMapNode> path))
                     {
                         if (path.Count > 0)
                         {

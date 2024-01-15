@@ -8,10 +8,12 @@ public class BattleScenePointerHandler : MonoBehaviour, IPointerDownHandler, IPo
     void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
     {
         Camera.main.GetComponent<BattleSceneCameraMove>().canMove = false;
+        BattleManager.Instance.canSelect = false;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         Camera.main.GetComponent<BattleSceneCameraMove>().canMove = true;
+        BattleManager.Instance.canSelect = true;
     }
 }

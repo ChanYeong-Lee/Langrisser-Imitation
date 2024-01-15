@@ -23,11 +23,10 @@ public class SoldierGrid : MonoBehaviour
             soldierElement.toggle.group = toggleGroup;
             elements.Add(soldierElement);
             soldierElement.toggle.onValueChanged.AddListener(ChangeSoldier);
-            //if (soldier == selectedSoldier) soldierElement.toggle.isOn = true;
+            if (soldier == selectedSoldier) soldierElement.toggle.isOn = true;
         }
         HeroManager.Instance.onChangeGeneral.AddListener(UpdateGrid);
     }
-
     public void UpdateGrid()
     {
         Debug.Log("Update Grid");
@@ -42,7 +41,10 @@ public class SoldierGrid : MonoBehaviour
             {
                 Debug.Log($"{element.soldierName.text} is now.");
                 element.toggle.isOn = true;
-                break;
+            }
+            else
+            {
+                element.toggle.isOn = false;
             }
         }
     }

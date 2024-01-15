@@ -32,11 +32,6 @@ public class SoldierInstruction : MonoBehaviour
         soldierGrid.Init();
     }
 
-    private void OnEnable()
-    {
-        UpdateInstruction();
-    }
-
     private void UpdateInstruction()
     {
         General general = HeroManager.Instance.currentGeneral;

@@ -9951,8 +9951,8 @@ MonoBehaviour:
   heroInstruction: {fileID: 1514078395}
   heroSelectUI: {fileID: 1902214826}
   instructionButton: {fileID: 1619927444}
-  instructionPanel: {fileID: 668412230}
-  instructionOptions: {fileID: 137093426}
+  instructionPanel: {fileID: 668412232}
+  instructionOptions: {fileID: 137093430}
   state: 0
 --- !u!4 &1516992773
 Transform:

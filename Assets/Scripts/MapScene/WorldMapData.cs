@@ -11,16 +11,14 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 // 진행상황에 따라 노드를 활성화시킨다.
-public class WorldMapData
-    : MonoBehaviour
+public class WorldMapData : MonoBehaviour
 {
-    public Node[] nodes;
+    public WorldMapNode[] nodes;
     public WorldMapPlayer player;
 
     private void Start()
     {
         player = FindObjectOfType<WorldMapPlayer>();
     }
-
 }
 

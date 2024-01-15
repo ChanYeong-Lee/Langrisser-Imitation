@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Node : MonoBehaviour
+public class WorldMapNode : MonoBehaviour
 {
     public enum NodeType
     {
@@ -15,5 +15,5 @@ public class Node : MonoBehaviour
 
     public INodeEvent nodeEvent = null;
 
-    public List<Node> adjNodes;
+    public List<WorldMapNode> adjNodes;
 }

@@ -11,8 +11,9 @@ public class BattleMap : MonoBehaviour
     public int StageID { get { return stageID; } }  
     [SerializeField] private SpriteRenderer mapImage;
     [SerializeField] private List<BattleMapCell> cellList;
-    public Dictionary<Vector2Int, BattleMapCell> cellDictionary = new();
+    public List<MovingObject> movingObjects;
 
+    public Dictionary<Vector2Int, BattleMapCell> cellDictionary = new();
     public BattleMapCell this[Vector2Int cood] 
     {
         get 
@@ -28,7 +29,6 @@ public class BattleMap : MonoBehaviour
         }
     }
 
-    public List<MovingObject> movingObjects;
 
     public void InitBattleMap()
     {

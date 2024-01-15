@@ -35,8 +35,8 @@ public class MovingObject : MonoBehaviour
     public List<BattleMapCell> movableArea;
     public List<BattleMapCell> attackableArea;
     private List<GameObject> activeArea = new List<GameObject>();
-    public BattleMapCell prevCell;
     public BattleMapCell currentCell;
+    public BattleMapCell CurrentCell { get { return currentCell; } set { if (currentCell != null) { currentCell.movingObject = null; } currentCell = value; currentCell.movingObject = this; } }
 
     public BattleMap currentMap;
     public MovingEngine engine;
@@ -46,10 +46,10 @@ public class MovingObject : MonoBehaviour
     public Transform soldierPos;
     public Transform areaParent;
     public SpriteRenderer spriteRenderer;
+    private MovingObject target;
 
     public bool isMoving;
-    public bool canMove;
-    public bool canAttack;
+    public bool canAction;
 
     [HideInInspector] public Vector2Int[] directions = new Vector2Int[]
     {
@@ -68,12 +68,13 @@ public class MovingObject : MonoBehaviour
     protected void InitMovingObject()
     {
         SetStats();
-        SetPositions();
+        SetTransform();
         general.OnDie.AddListener(CheckAlive);
         soldier.OnDie.AddListener(CheckAlive);
         RestoreCosts();
         UpdateCurrentCell();
     }
+
     protected void Release()
     {
         general.OnDie.RemoveAllListeners();
@@ -87,7 +88,7 @@ public class MovingObject : MonoBehaviour
         range = biggerRange;
         moveCost = smallerMoveCost;
     }
-    private void SetPositions()
+    private void SetTransform()
     {
         general.transform.parent = generalPos;
         general.transform.position = generalPos.position;
@@ -97,21 +98,20 @@ public class MovingObject : MonoBehaviour
     public void RestoreCosts()
     {
         currentMoveCost = moveCost;
-        canMove = true;
-        canAttack = true;
-    }
-    public void UpdateCurrentCell()
-    {
-        if (prevCell != null)
-        {
-            prevCell.movingObject = null;
-        }
-        currentCell = currentMap.cellDictionary[Vector2Int.RoundToInt(transform.localPosition)];
-        currentCell.movingObject = this;
-        prevCell = currentCell;
-        CheckAreas();
+        canAction = true;
+        target = null;
     }
 
+    public void UpdateCurrentCell()
+    {
+        CurrentCell = currentMap.cellDictionary[Vector2Int.RoundToInt(transform.localPosition)];
+        CheckAreas();
+    }
+    public void SetPos(BattleMapCell destination)
+    {
+        CurrentCell = destination;
+        transform.localPosition = destination.transform.localPosition;
+    }
     public void CheckAreas()
     {
         CheckMovableArea();
@@ -163,12 +163,6 @@ public class MovingObject : MonoBehaviour
         activeArea.Clear();
     }
 
-    public void TestMovableArea()
-    {
-        UpdateCurrentCell();
-        CheckMovableArea();
-        DrawAreas();
-    }
     private void CheckAlive()
     {
         if (false == general.Alive && false == soldier.Alive)
@@ -180,16 +174,35 @@ public class MovingObject : MonoBehaviour
 
     public bool TryMove(BattleMapCell destination)
     {
-        if (canMove)
-            return engine.TryMove(destination);
+        if (engine.TryMove(destination))
+        {
+            return true;
+        }
         else return false;
     }
 
+    public void Move()
+    {
+        canAction = false;
+    }
     public bool TryAttack(BattleMapCell destination)
     {
-        if (canAttack)
-            return engine.TryAttack(destination);
+        if (engine.TryAttack(destination))
+        {
+            ReadyAttack(destination.movingObject);
+            return true;
+        }
         else return false;
+    }
+    public void ReadyAttack(MovingObject target)
+    {
+        this.target = target;
+    }
+    public void Attack()
+    {
+        if (target == null) return;
+        canAction = false;
+        BattleManager.Instance.StartFight(this, target);
     }
 
     public void TakeHit(MovingObject attacker)

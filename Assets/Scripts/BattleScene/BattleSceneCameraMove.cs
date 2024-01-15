@@ -65,6 +65,7 @@ public class BattleSceneCameraMove : MonoBehaviour
 
     bool isDragging;
     Vector3 clickPos;
+    float deltaTime = 0;
 
     private void MouseMove()
     {
@@ -81,9 +82,13 @@ public class BattleSceneCameraMove : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             isDragging = false;
+            BattleManager.Instance.canSelect = true;
+            deltaTime = 0;
         }
         if (isDragging)
         {
+            deltaTime += Time.deltaTime;
+            if (deltaTime >= 0.1f) BattleManager.Instance.canSelect = false;
             Vector3 curMousePos = camera.ScreenToWorldPoint(Input.mousePosition);
             Vector3 dir = clickPos - curMousePos;
             dir.z = 0;

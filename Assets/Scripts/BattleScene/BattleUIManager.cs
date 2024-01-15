@@ -6,6 +6,8 @@ public class BattleUIManager : MonoBehaviour
 {
     public static BattleUIManager Instance { get; private set; }
     public GameObject battleReadyUI;
+    public GameObject moveReadyUI;
+    public GameObject attackReadyUI;
     public GeneralInstruction generalInstruction;
     private void Awake()
     {
@@ -34,5 +36,15 @@ public class BattleUIManager : MonoBehaviour
             battleReadyUI.SetActive(false);
             BattleManager.Instance.StartBattle();
         }
+    }
+    
+    public void ReadyMove()
+    {
+        //moveReadyUI.SetActive(true);
+    }
+
+    public void ReadyAttack()
+    {
+        //attackReadyUI.SetActive(true);
     }
 }

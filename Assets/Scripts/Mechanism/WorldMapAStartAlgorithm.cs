@@ -6,13 +6,13 @@ public class WorldMapAStartAlgorithm
 {
     private class ASNode
     {
-        public Node node;
+        public WorldMapNode node;
         public ASNode parent;
         public bool visited = false;
         public float g;
         public float h;
         public float f;
-        public ASNode(Node node, ASNode parent, bool visited, float g, float h)
+        public ASNode(WorldMapNode node, ASNode parent, bool visited, float g, float h)
         {
             this.node = node;
             this.parent = parent;
@@ -22,16 +22,16 @@ public class WorldMapAStartAlgorithm
             this.f = g + h;
         }
     }
-    private static float Distance(Node start, Node end)
+    private static float Distance(WorldMapNode start, WorldMapNode end)
     {
         float distance = Vector3.SqrMagnitude(start.transform.position - end.transform.position);
         return distance;
     }
 
-    public static bool PathFinding(Node start, Node end, out List<Node> path)
+    public static bool PathFinding(WorldMapNode start, WorldMapNode end, out List<WorldMapNode> path)
     {
         List<ASNode> findNodes = new List<ASNode>();
-        List<Node> parentList = new List<Node>();
+        List<WorldMapNode> parentList = new List<WorldMapNode>();
         HeapQueue<ASNode, float> heapQueue = new HeapQueue<ASNode, float>();
 
         ASNode startNode = new ASNode(start, null, false, 0, Distance(start, end));
@@ -57,7 +57,7 @@ public class WorldMapAStartAlgorithm
 
             if (currentNode.node.adjNodes.Count > 0)
             {
-                foreach (Node node in currentNode.node.adjNodes)
+                foreach (WorldMapNode node in currentNode.node.adjNodes)
                 {
                     float g = currentNode.g + Distance(currentNode.node, node);
                     float h = Distance(node, end);
