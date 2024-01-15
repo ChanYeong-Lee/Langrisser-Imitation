@@ -6,10 +6,11 @@ using UnityEngine.Events;
 
 public enum ClassType
 {
-    SwordMan    = 0,
-    PikeMan     = 1,
-    SwordHorse  = 2,
-    Clergy      = 3,
+    None        = -1,
+    SwordMan    =  0,
+    PikeMan     =  1,
+    SwordHorse  =  2,
+    Clergy      =  3,
 }
 
 public class Character : MonoBehaviour

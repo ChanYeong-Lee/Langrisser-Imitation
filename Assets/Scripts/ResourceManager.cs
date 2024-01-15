@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,6 +17,8 @@ using UnityEngine;
     public ClassType classType;
     public Sprite classIcon;
     public Sprite classFlag;
+    public ClassType advantage;
+    public ClassType weakness;
 }
 
 [Serializable]
@@ -26,7 +29,17 @@ public class RairityResource
     public Sprite rairityCard;
 }
 
-[Serializable] public class GeneralResource
+[Serializable]
+public class SoldierResource
+{
+    public SoldierType soldierType;
+    public string soldierName;
+    public string soldierDescription;
+    public Sprite soldierSD;
+}
+
+[Serializable]
+public class GeneralResource
 {
     public string generalName;
     public GeneralType generalType;
@@ -57,12 +70,18 @@ public class ResourceManager : MonoBehaviour
     }
 
     public List<GeneralResource> generalResources;
+    public List<SoldierResource> soldierResources;
     public List<ClassResource> classIconSprites;
     public List<RairityResource> rairityIconSprites;
     public GeneralResource GetGeneralResource(GeneralType generalType)
     {
-        GeneralResource generalResource = generalResources.Find((a) => (a.generalType == generalType));
+        GeneralResource generalResource = generalResources.Find((a) => a.generalType == generalType);
         return generalResource;
+    }
+    public SoldierResource GetSoldierResource(SoldierType soldierType)
+    {
+        SoldierResource soldierResource = soldierResources.Find((a) => a.soldierType == soldierType);
+        return soldierResource;
     }
     public ClassResource GetClassResource(ClassType classType)
     {

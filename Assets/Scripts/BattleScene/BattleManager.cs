@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 public class BattleManager : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class BattleManager : MonoBehaviour
     public List<EnemyObject> enemyObjects;
 
     private MovingObject currentObject;
+    public MovingObject CurrentObject { get { return currentObject; } set { currentObject = value; onObjectChange?.Invoke();
+        } }
+    public UnityEvent onObjectChange;
+
     public BattleMapCell currentCell;
 
     private void Awake()
@@ -74,12 +79,12 @@ public class BattleManager : MonoBehaviour
             if (hit == false) return;
             if (hit.collider.TryGetComponent(out BattleMapCell cell))
             {
-                if (currentObject != null)
+                if (CurrentObject != null)
                 {
-                    currentObject.UnDrawAreas();
+                    CurrentObject.UnDrawAreas();
                 }
                 currentCell = cell;
-                currentObject = null;
+                CurrentObject = null;
                 CheckCharacter();
             }
         }
@@ -88,14 +93,14 @@ public class BattleManager : MonoBehaviour
     {
         if (currentCell.movingObject != null)
         {
-            currentObject = currentCell.movingObject;
-            currentObject.DrawAreas();
+            CurrentObject = currentCell.movingObject;
+            CurrentObject.DrawAreas();
         }
     }
 
     private void CharacterMove()
     {
-        if (currentObject != null && currentObject.identity == IdentityType.Ally)
+        if (CurrentObject != null && CurrentObject.identity == IdentityType.Ally)
         {
             if (Input.GetMouseButtonUp(0))
             {
@@ -105,14 +110,14 @@ public class BattleManager : MonoBehaviour
                 if (hit == false) return;
                 if (hit.collider.TryGetComponent(out BattleMapCell cell))
                 {
-                    currentObject.TryMove(cell);
+                    CurrentObject.TryMove(cell);
                 }
             }
         }
     }
     private void CharacterAttack()
     {
-        if (currentObject != null && currentObject.identity == IdentityType.Ally)
+        if (CurrentObject != null && CurrentObject.identity == IdentityType.Ally)
         {
             if (Input.GetMouseButtonUp(0))
             {
@@ -123,16 +128,16 @@ public class BattleManager : MonoBehaviour
                 if (hit.collider.TryGetComponent(out BattleMapCell cell))
                 {
                     if (cell.movingObject != null && cell.movingObject.identity == IdentityType.Enemy) 
-                        currentObject.TryAttack(cell);
+                        CurrentObject.TryAttack(cell);
                 }
             }
         }
     }
     private void TurnChange()
     {
-        if (currentObject != null)
+        if (CurrentObject != null)
         {
-            currentObject.UnDrawAreas();
+            CurrentObject.UnDrawAreas();
         }
         if (currentCell != null)
         {

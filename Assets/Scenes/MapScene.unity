@@ -1085,8 +1085,8 @@ Transform:
   m_GameObject: {fileID: 234503212}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1684707731}
   m_RootOrder: 0
@@ -1132,7 +1132,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 748ae8b33df036b46a86e0387f1602cf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 198e67c2a03ac574eb3438a4770eaba7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1167,7 +1167,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 242071744}
   m_LocalRotation: {x: 0.3420201, y: 0, z: 0, w: 0.9396927}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.13, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1977,8 +1977,8 @@ Transform:
   m_GameObject: {fileID: 373774720}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.76, y: 0.76, z: 0.76}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 242071745}
   m_RootOrder: 0
@@ -2024,7 +2024,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 0ccc508108fa6ed4fa11b4a467d7f609, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5a9083576c9a1ce4fa2eaa86ec5f1cbf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2254,6 +2254,177 @@ Transform:
   m_Father: {fileID: 1841756751}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 40, y: 0, z: 0}
+--- !u!1 &476958013
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 476958015}
+  - component: {fileID: 476958014}
+  m_Layer: 0
+  m_Name: Resources
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &476958014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476958013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f70c7502c604d50498437fe0946e8427, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generalResources:
+  - generalName: "\uB9E4\uD29C"
+    generalType: 0
+    generalIcons:
+    - rairityType: 0
+      generalIcon: {fileID: 21300000, guid: bc1f52ab7f700d148bcc38a39cfc44fd, type: 3}
+    - rairityType: 1
+      generalIcon: {fileID: 21300000, guid: d0a131123edd2984b93e82720445d6ce, type: 3}
+    - rairityType: 2
+      generalIcon: {fileID: 21300000, guid: a4426fd86b2455246aa289608cb3eab8, type: 3}
+    generalPaint: {fileID: 21300000, guid: ec6be1bb1f829614587516023aea6a7f, type: 3}
+    generalSD: {fileID: 21300000, guid: 5a9083576c9a1ce4fa2eaa86ec5f1cbf, type: 3}
+    generalCardHead: {fileID: 21300000, guid: 733de0a7d1c435a41aa45f0841457910, type: 3}
+  - generalName: "\uADF8\uB808\uB2C8\uC5B4"
+    generalType: 1
+    generalIcons:
+    - rairityType: 0
+      generalIcon: {fileID: 21300000, guid: efa4efe14938c3c46ad67684cda6257f, type: 3}
+    - rairityType: 1
+      generalIcon: {fileID: 21300000, guid: 769ee216b7b8b024f8e696aec2919a3f, type: 3}
+    - rairityType: 2
+      generalIcon: {fileID: 21300000, guid: 2c0b3ec5d25e20c4eb7cc11d1f81d894, type: 3}
+    generalPaint: {fileID: 21300000, guid: a2a34df14e2b1004cb9515d3a3420178, type: 3}
+    generalSD: {fileID: 21300000, guid: dd2338f4f6cc3634bbae28a33155ffb3, type: 3}
+    generalCardHead: {fileID: 21300000, guid: 1b3cf7b464095f948999ca8a11535777, type: 3}
+  - generalName: "\uC544\uBA5C\uB2E4"
+    generalType: 2
+    generalIcons:
+    - rairityType: 0
+      generalIcon: {fileID: 21300000, guid: c45cc854878a774458412a4bd6d84994, type: 3}
+    - rairityType: 1
+      generalIcon: {fileID: 21300000, guid: 152c337c0b2018e46aa92c015b1c545c, type: 3}
+    - rairityType: 2
+      generalIcon: {fileID: 21300000, guid: 85545d10103a4234aaeed6eb4bf71cec, type: 3}
+    generalPaint: {fileID: 21300000, guid: a65690af0ff72e345b90d1d2f1971f11, type: 3}
+    generalSD: {fileID: 21300000, guid: 6256ea73aac50494f916ed7a6c28af94, type: 3}
+    generalCardHead: {fileID: 21300000, guid: a35ca5580c9e4b4458c77af274a03771, type: 3}
+  - generalName: "\uC2A4\uCF54\uD2B8"
+    generalType: 3
+    generalIcons:
+    - rairityType: 0
+      generalIcon: {fileID: 21300000, guid: c9c882c326f639343bef7152ad4384cb, type: 3}
+    generalPaint: {fileID: 21300000, guid: 38173773db96ee74da28403b06e76393, type: 3}
+    generalSD: {fileID: 21300000, guid: e8ebe44b37724bf4097a04d714e24b01, type: 3}
+    generalCardHead: {fileID: 21300000, guid: 8b4c60602b63b784eaed0b3d73a499ca, type: 3}
+  - generalName: "\uC7A5\uAD70 \uBCF4\uBCD1"
+    generalType: 5
+    generalIcons: []
+    generalPaint: {fileID: 0}
+    generalSD: {fileID: 21300000, guid: 198e67c2a03ac574eb3438a4770eaba7, type: 3}
+    generalCardHead: {fileID: 0}
+  - generalName: "\uC7A5\uAD70 \uCC3D\uBCD1"
+    generalType: 6
+    generalIcons: []
+    generalPaint: {fileID: 0}
+    generalSD: {fileID: 21300000, guid: 688a8a0af73090846a7c6cf22687f4cd, type: 3}
+    generalCardHead: {fileID: 0}
+  - generalName: "\uC7A5\uAD70 \uAE30\uBCD1"
+    generalType: 4
+    generalIcons: []
+    generalPaint: {fileID: 0}
+    generalSD: {fileID: 21300000, guid: a9c70081f2dde6645962e1966090c88c, type: 3}
+    generalCardHead: {fileID: 0}
+  soldierResources:
+  - soldierType: 0
+    soldierName: "\uBCF4\uBCD1"
+    soldierDescription: "\uBCF4\uBCD1 \uC124\uBA85"
+    soldierSD: {fileID: 21300000, guid: d0a6cb856646d194bb86c9652e5039b3, type: 3}
+  - soldierType: 1
+    soldierName: "\uCC3D\uBCD1"
+    soldierDescription: "\uCC3D\uBCD1 \uC124\uBA85"
+    soldierSD: {fileID: 21300000, guid: 3999182df04e67b4fa579677ea737696, type: 3}
+  - soldierType: 2
+    soldierName: "\uAE30\uBCD1"
+    soldierDescription: "\uAE30\uBCD1 \uC124\uBA85"
+    soldierSD: {fileID: 21300000, guid: 0ea3d76e21620b842abd943d5e00bee2, type: 3}
+  - soldierType: 3
+    soldierName: "\uC2B9\uB824"
+    soldierDescription: "\uC2B9\uB824 \uC124\uBA85"
+    soldierSD: {fileID: 21300000, guid: 07aa06b763af931409d83db3efe3b392, type: 3}
+  classIconSprites:
+  - className: "\uC5C6\uC74C"
+    classDescription: 
+    classType: -1
+    classIcon: {fileID: 0}
+    classFlag: {fileID: 0}
+    advantage: -1
+    weakness: -1
+  - className: "\uC18C\uB4DC\uB9E8"
+    classDescription: "\uAC08\uACE0 \uB2E6\uC740 \uAC80\uC220\uB85C \uB9E4\uC11C\uC6B4
+      \uACF5\uC138\uB97C \uD37C\uBD80\uC5B4 \uC801\uC758 \uBC29\uC5B4\uB97C \uBB34\uB108\uB728\uB9B0\uB2E4."
+    classType: 0
+    classIcon: {fileID: 21300000, guid: c791db278c0b56140ba06ca74fb0aa1d, type: 3}
+    classFlag: {fileID: 21300000, guid: b89288cb723cf3d4cbb4ed77adaebdd5, type: 3}
+    advantage: 1
+    weakness: 2
+  - className: "\uCC3D\uBCD1"
+    classDescription: "\uCC3D\uBCD1 \uC124\uBA85"
+    classType: 1
+    classIcon: {fileID: 21300000, guid: c64f673ef340ea041bc990a26c8c248d, type: 3}
+    classFlag: {fileID: 21300000, guid: 821a199a8c3db934496fdcf74e12d47e, type: 3}
+    advantage: 2
+    weakness: 0
+  - className: "\uAE30\uBCD1"
+    classDescription: "\uAE30\uBCD1 \uC124\uBA85"
+    classType: 2
+    classIcon: {fileID: 21300000, guid: 25c627f9aae539d49887ead724b62f64, type: 3}
+    classFlag: {fileID: 21300000, guid: bb0d2994cf8a24e4ab029a9a32335432, type: 3}
+    advantage: 0
+    weakness: 1
+  - className: "\uC2B9\uB824"
+    classDescription: "\uC2B9\uB824 \uC124\uBA85"
+    classType: 3
+    classIcon: {fileID: 21300000, guid: 9c3d7a8d737f45146bc1a808233fdc80, type: 3}
+    classFlag: {fileID: 21300000, guid: 8775e4c289fdfdb49b259035bde25573, type: 3}
+    advantage: -1
+    weakness: -1
+  rairityIconSprites:
+  - rairityType: 0
+    rairityIcon: {fileID: 21300000, guid: 9e13ff9b5ff82e74e990ff4f7bc11477, type: 3}
+    rairityCard: {fileID: 21300000, guid: 29ab6c8c8a018e4409c4e88d53c3dd8a, type: 3}
+  - rairityType: 1
+    rairityIcon: {fileID: 21300000, guid: 1189a878555b8b84fa7ef8f538247f26, type: 3}
+    rairityCard: {fileID: 21300000, guid: 0f89c9d66505bd243a34915853337e6a, type: 3}
+  - rairityType: 2
+    rairityIcon: {fileID: 21300000, guid: b5180b3891a24f84cb0bd776ae2e0fd1, type: 3}
+    rairityCard: {fileID: 21300000, guid: 6148303a3d7755d448d1d3abd959c87d, type: 3}
+--- !u!4 &476958015
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476958013}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &508668713
 GameObject:
   m_ObjectHideFlags: 0
@@ -2655,7 +2826,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 661.28766, y: -74.37529}
+  m_AnchoredPosition: {x: 661.2878, y: -74.37529}
   m_SizeDelta: {x: -782.573, y: -88.751}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &625028656
@@ -3634,7 +3805,7 @@ GameObject:
   - component: {fileID: 903748584}
   - component: {fileID: 903748586}
   m_Layer: 5
-  m_Name: IconLabel (1)
+  m_Name: BagButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4462,6 +4633,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1139681104}
   m_CullTransparentMesh: 1
+--- !u!1 &1152453463
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1152453465}
+  - component: {fileID: 1152453464}
+  m_Layer: 0
+  m_Name: SceneLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1152453464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152453463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e32c4e9c0b993334499d401a21099f4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1152453465
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152453463}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1203866344
 GameObject:
   m_ObjectHideFlags: 0
@@ -4476,7 +4691,7 @@ GameObject:
   - component: {fileID: 1203866348}
   - component: {fileID: 1203866349}
   m_Layer: 5
-  m_Name: IconLabel
+  m_Name: HeroesButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4585,7 +4800,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1203866346}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1152453464}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: HeroesScene
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1203866349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4991,110 +5218,6 @@ MonoBehaviour:
   - {fileID: 1366036335}
   - {fileID: 578213779}
   player: {fileID: 0}
---- !u!1 &1324251793
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1324251794}
-  - component: {fileID: 1324251795}
-  m_Layer: 0
-  m_Name: Resources
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1324251794
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1324251793}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1324251795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1324251793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f70c7502c604d50498437fe0946e8427, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  generalResources:
-  - generalType: 0
-    generalIcons:
-    - rairityType: 0
-      generalIcon: {fileID: 21300000, guid: bc1f52ab7f700d148bcc38a39cfc44fd, type: 3}
-    - rairityType: 1
-      generalIcon: {fileID: 21300000, guid: d0a131123edd2984b93e82720445d6ce, type: 3}
-    - rairityType: 2
-      generalIcon: {fileID: 21300000, guid: a4426fd86b2455246aa289608cb3eab8, type: 3}
-    generalPaint: {fileID: 21300000, guid: ec6be1bb1f829614587516023aea6a7f, type: 3}
-    generalCardHead: {fileID: 21300000, guid: 733de0a7d1c435a41aa45f0841457910, type: 3}
-  - generalType: 1
-    generalIcons:
-    - rairityType: 0
-      generalIcon: {fileID: 21300000, guid: efa4efe14938c3c46ad67684cda6257f, type: 3}
-    - rairityType: 1
-      generalIcon: {fileID: 21300000, guid: 769ee216b7b8b024f8e696aec2919a3f, type: 3}
-    - rairityType: 2
-      generalIcon: {fileID: 21300000, guid: 2c0b3ec5d25e20c4eb7cc11d1f81d894, type: 3}
-    generalPaint: {fileID: 21300000, guid: a2a34df14e2b1004cb9515d3a3420178, type: 3}
-    generalCardHead: {fileID: 21300000, guid: 1b3cf7b464095f948999ca8a11535777, type: 3}
-  - generalType: 2
-    generalIcons:
-    - rairityType: 0
-      generalIcon: {fileID: 21300000, guid: c45cc854878a774458412a4bd6d84994, type: 3}
-    - rairityType: 1
-      generalIcon: {fileID: 21300000, guid: 152c337c0b2018e46aa92c015b1c545c, type: 3}
-    - rairityType: 2
-      generalIcon: {fileID: 21300000, guid: 85545d10103a4234aaeed6eb4bf71cec, type: 3}
-    generalPaint: {fileID: 21300000, guid: a65690af0ff72e345b90d1d2f1971f11, type: 3}
-    generalCardHead: {fileID: 21300000, guid: a35ca5580c9e4b4458c77af274a03771, type: 3}
-  - generalType: 3
-    generalIcons:
-    - rairityType: 0
-      generalIcon: {fileID: 21300000, guid: c9c882c326f639343bef7152ad4384cb, type: 3}
-    generalPaint: {fileID: 21300000, guid: 38173773db96ee74da28403b06e76393, type: 3}
-    generalCardHead: {fileID: 21300000, guid: 8b4c60602b63b784eaed0b3d73a499ca, type: 3}
-  classIconSprites:
-  - classType: 0
-    classIcon: {fileID: 21300000, guid: c791db278c0b56140ba06ca74fb0aa1d, type: 3}
-    classFlag: {fileID: 0}
-  - classType: 1
-    classIcon: {fileID: 21300000, guid: c64f673ef340ea041bc990a26c8c248d, type: 3}
-    classFlag: {fileID: 0}
-  - classType: 2
-    classIcon: {fileID: 21300000, guid: 25c627f9aae539d49887ead724b62f64, type: 3}
-    classFlag: {fileID: 0}
-  - classType: 3
-    classIcon: {fileID: 21300000, guid: 9c3d7a8d737f45146bc1a808233fdc80, type: 3}
-    classFlag: {fileID: 0}
-  rairityIconSprites:
-  - rairityType: 0
-    rairityIcon: {fileID: 21300000, guid: 9e13ff9b5ff82e74e990ff4f7bc11477, type: 3}
-    rairityCard: {fileID: 0}
-  - rairityType: 1
-    rairityIcon: {fileID: 21300000, guid: 1189a878555b8b84fa7ef8f538247f26, type: 3}
-    rairityCard: {fileID: 0}
-  - rairityType: 2
-    rairityIcon: {fileID: 21300000, guid: b5180b3891a24f84cb0bd776ae2e0fd1, type: 3}
-    rairityCard: {fileID: 0}
 --- !u!114 &1366036335 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 932938844037397887, guid: 14677aeddd6c61846a7caffd04c6ef2e, type: 3}
@@ -7329,7 +7452,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1837083036}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

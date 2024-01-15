@@ -13,8 +13,9 @@ public class InstructionOptionController : MonoBehaviour
     public InstructionPanel panel;
     private InstructionOption[] instructionOptions;
     private ToggleGroup toggleGroup;
+    bool prepared;
 
-    private void Awake()
+    public void Init()
     {
         instructionOptions = GetComponentsInChildren<InstructionOption>();
         toggleGroup = GetComponent<ToggleGroup>();
@@ -24,6 +25,13 @@ public class InstructionOptionController : MonoBehaviour
             option.toggle.group = toggleGroup;
             option.toggle.onValueChanged.AddListener(ChangeOption);
         }
+        prepared = true;
+    }
+    
+    private void OnEnable()
+    {
+        if(prepared)
+        ChangeOption(true);
     }
 
     public void ChangeOption(bool isOn)

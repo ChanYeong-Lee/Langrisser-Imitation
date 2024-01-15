@@ -8,12 +8,10 @@ public class HeroManager : MonoBehaviour
     public static HeroManager Instance { get; private set; }
     public General currentGeneral;
     public UnityEvent onChangeGeneral;
+    public UnityEvent onChangeSoldier;
     private void Awake()
     {
         Instance = this;
-    }
-    private void Start()
-    {
         currentGeneral = PlayerData.Instance.generals[0];
     }
 
@@ -21,5 +19,11 @@ public class HeroManager : MonoBehaviour
     {
         currentGeneral = general;
         onChangeGeneral?.Invoke();
+    }
+
+    public void ChangeSoldier(Soldier soldier)
+    {
+        currentGeneral.Soldier = soldier;
+        onChangeSoldier?.Invoke();  
     }
 }

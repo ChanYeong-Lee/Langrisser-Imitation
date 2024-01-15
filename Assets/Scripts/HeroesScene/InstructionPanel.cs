@@ -6,11 +6,14 @@ using UnityEngine.UIElements;
 public class InstructionPanel : MonoBehaviour
 {
     public BasicInstruction basicInstruction;
-    public ClassInstruction classInstruction;
+    public SoldierInstruction soldierInstruction;
     private GameObject currentInstruction;
-    private void Awake()
+    public void Init()
     {
-        currentInstruction = basicInstruction.gameObject;
+        basicInstruction.gameObject.SetActive(false);
+        soldierInstruction.gameObject.SetActive(false);
+        basicInstruction.Init();
+        soldierInstruction.Init();
     }
 
     public void SetPanel(InstructionType instructionType)
@@ -21,7 +24,7 @@ public class InstructionPanel : MonoBehaviour
                 ChangePanel(basicInstruction.gameObject);
                 break;
             case InstructionType.Class:
-                ChangePanel(classInstruction.gameObject);
+                ChangePanel(soldierInstruction.gameObject);
                 break;
         }
     }

@@ -6,6 +6,7 @@ public class BattleUIManager : MonoBehaviour
 {
     public static BattleUIManager Instance { get; private set; }
     public GameObject battleReadyUI;
+    public GeneralInstruction generalInstruction;
     private void Awake()
     {
         Instance = this;
@@ -14,7 +15,9 @@ public class BattleUIManager : MonoBehaviour
     public void ReadyBattle()
     {
         battleReadyUI.SetActive(true);
+        generalInstruction.Init();
     }
+
     public void StartBattle()
     {
         bool isReady = false;

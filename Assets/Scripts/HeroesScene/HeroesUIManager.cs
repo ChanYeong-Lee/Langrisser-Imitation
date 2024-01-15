@@ -32,6 +32,12 @@ public class HeroesUIManager : MonoBehaviour
         instructionOptions.SetActive(false);
     }
 
+    private void Start()
+    {
+        instructionOptions.GetComponent<InstructionOptionController>().Init();
+        instructionPanel.GetComponent<InstructionPanel>().Init();
+    }
+
     public void ClickInstructionButton()
     {
         StopAllCoroutines();

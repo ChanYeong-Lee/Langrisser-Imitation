@@ -13,6 +13,7 @@ public class PlayerData : MonoBehaviour
     public List<General> generals;
     public List<Soldier> soldiers;
 
+
     private void Awake()
     {
         if (instance != null)

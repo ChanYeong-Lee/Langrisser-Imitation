@@ -34,6 +34,7 @@ public class WorldMapController : MonoBehaviour
     {
         player = FindObjectOfType<WorldMapPlayer>();
         player.OnMove.AddListener(FollowPlayer);
+        Follow(player.transform.position);
     }
     void Update()
     {

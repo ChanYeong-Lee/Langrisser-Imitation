@@ -25,7 +25,7 @@ public class BasicInstruction : MonoBehaviour
     public TextMeshProUGUI classRange;
     public TextMeshProUGUI classMoveCost;
 
-    private void Start()
+    public void Init()
     {
         HeroManager.Instance.onChangeGeneral.AddListener(UpdateInstruction);
     }
@@ -44,7 +44,7 @@ public class BasicInstruction : MonoBehaviour
         occupationFlag.sprite = classResource.classFlag;
         
         expBar.fillAmount = general.CurrentExp / general.MaxExp;
-        levelText.text = $"{general.Level}";
+        levelText.text = $"{general.Level:D2}";
         expText.text = $"{general.CurrentExp}/{general.MaxExp}";
 
         generalSprite.sprite = generalResource.generalSD;

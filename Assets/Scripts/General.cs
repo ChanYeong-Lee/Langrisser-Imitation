@@ -29,7 +29,7 @@ public class General : Character
     [SerializeField] private RairityType rairityType;
     [HideInInspector] public UnityEvent OnExpChange;
 
-    public Soldier Soldier { get { return soldier; } }
+    public Soldier Soldier { get { return soldier; } set { soldier = value; } }
     public GeneralType GeneralType { get { return generalType; } }
     public RairityType RairityType { get { return rairityType; } }
 
