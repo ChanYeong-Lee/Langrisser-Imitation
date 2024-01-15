@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -26,7 +27,7 @@ public class CharacterSelectUI : MonoBehaviour, IDragHandler, IBeginDragHandler,
         }
     }
 
-    private CharacterSelectElement GenerateElement(General general, Vector2 pos)
+    public CharacterSelectElement GenerateElement(General general, Vector2 pos)
     {
         CharacterSelectElement element = Instantiate(prefab, pos, Quaternion.identity);
         element.transform.localScale = Vector3.one;
@@ -35,11 +36,6 @@ public class CharacterSelectUI : MonoBehaviour, IDragHandler, IBeginDragHandler,
         return element;
     }
 
-    public void TestSelection()
-    {
-        elements[0].SetGeneral(PlayerData.Instance.generals[0]);
-    }
-    
     public void OnBeginDrag(PointerEventData eventData)
     {
    
@@ -49,7 +45,6 @@ public class CharacterSelectUI : MonoBehaviour, IDragHandler, IBeginDragHandler,
 
         foreach (RaycastResult raycastResult in result)
         {
-
             // result 변수를 통해 UI 요소에 대한 정보에 접근 가능
             if (raycastResult.gameObject != null && raycastResult.gameObject.TryGetComponent(out currentElement) && eventData.delta.y > 0)
             {
@@ -85,6 +80,7 @@ public class CharacterSelectUI : MonoBehaviour, IDragHandler, IBeginDragHandler,
                     }
 
                     cell.movingObject.GetComponent<AllyObject>().SetGeneral(currentElement.general);
+                    StartCoroutine(generateDelayCoroutine());
                     Destroy(currentElement.gameObject);
                 }
             }
@@ -93,5 +89,12 @@ public class CharacterSelectUI : MonoBehaviour, IDragHandler, IBeginDragHandler,
         scrollRect.enabled = true;
         currentElement = null;
         onMoveElement = false;
+    }
+
+    IEnumerator generateDelayCoroutine()
+    {
+        BattleManager.Instance.canSelect = false;
+        yield return null;
+        BattleManager.Instance.canSelect = true;
     }
 }

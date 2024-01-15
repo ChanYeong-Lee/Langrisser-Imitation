@@ -23,9 +23,13 @@ public class BattleManager : MonoBehaviour
     private MovingObject currentObject;
     public MovingObject CurrentObject { get { return currentObject; } set { currentObject = value; if(value != null) originCell = currentObject.currentCell; onObjectChange?.Invoke();
         } }
+    private MovingObject nextObject;
+    public MovingObject NextObject { get { return nextObject; } }
+
     public UnityEvent onObjectChange;
 
     public BattleMapCell currentCell;
+    public BattleMapCell nextCell;
     BattleMapCell originCell = null;
     public bool canSelect;
     private void Awake()
@@ -44,34 +48,58 @@ public class BattleManager : MonoBehaviour
 
     private void Update()
     {
-        if (canSelect)
+        //if (canSelect)
+        //{
+        //    switch (state)
+        //    {
+        //        case State.Ready:
+        //            SelectCell();
+        //            break;
+        //        case State.Battle:
+        //            if (TurnManager.Instance.TurnState == TurnManager.State.PlayerTurn)
+        //            {
+        //                switch (moveState)
+        //                {
+        //                    case MoveState.Ready:
+        //                        CharacterAction();
+        //                        SelectCell();
+        //                        break;
+        //                    case MoveState.Move:
+        //                        ApplyInput();
+        //                        break;
+        //                    case MoveState.End:
+        //                        break;
+        //                }
+        //            }
+        //            break;
+        //    }
+        //}
+
+        if (Input.GetMouseButtonUp(0) && canSelect)
         {
-            switch (state)
+            if (SelectCell())
             {
-                case State.Ready:
-                    SelectCell();
-                    break;
-                case State.Battle:
-                    if (TurnManager.Instance.TurnState == TurnManager.State.PlayerTurn)
-                    {
-                        switch (moveState)
-                        {
-                            case MoveState.Ready:
-                                CharacterAction();
-                                SelectCell();
-                                break;
-                            case MoveState.Move:
-                                ApplyInput();
-                                break;
-                            case MoveState.End:
-                                break;
-                        }
-                    }
-                    break;
+                if (CheckCharacter())
+                {
+
+                }
+                if (state == State.Ready)
+                { }
+                if (state == State.Battle)
+                {
+                    DrawCell();
+                }
+            }
+            else
+            {
+                UnDrawCell();
             }
         }
     }
-    
+
+    private void DragElement()
+    {
+    }
     public void StartBattle()
     {
         state = State.Battle;
@@ -90,50 +118,69 @@ public class BattleManager : MonoBehaviour
         TurnManager.Instance.StartBattle();
     }
 
-    private void SelectCell()
+    private bool SelectCell()
     {
-        if (Input.GetMouseButtonUp(0))
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+        if (hit == false) return false;
+        if (hit.collider.TryGetComponent(out BattleMapCell cell))
         {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
-            if (hit == false) return;
-            if (hit.collider.TryGetComponent(out BattleMapCell cell))
-            {
-                if (CurrentObject != null)
-                {
-                    CurrentObject.UnDrawAreas();
-                }
-                currentCell = cell;
-                CurrentObject = null;
-                CheckCharacter();
-            }
-            DrawCell();
+            if (currentCell == null) { currentCell = cell; }
+            nextCell = cell;
+            return true;
+        }
+        else
+        {
+            nextCell = null;
+            return false;
         }
     }
 
     private void DrawCell()
     {
-        if (currentCell != null)
+        if (selectCellArea.activeInHierarchy == false) { selectCellArea.SetActive(true); }
+        selectCellArea.transform.position = currentCell.transform.position;
+    }
+
+    private void UnDrawCell()
+    {
+        selectCellArea.SetActive(false);
+    }
+    private bool CheckCharacter()
+    {
+        if (nextCell.movingObject != null)
         {
-            if (selectCellArea.activeInHierarchy == false) { selectCellArea.SetActive(true); }
-            selectCellArea.transform.position = currentCell.transform.position;
+            if (nextCell.movingObject.general == null)
+            {
+                nextObject = null;
+                return false;
+            }
+            if (CurrentObject == null) { CurrentObject = currentCell.movingObject; }
+            nextObject = currentCell.movingObject;
+            return true;
         }
         else
         {
-            selectCellArea.SetActive(false);
+            nextObject = null;
+            return false;
         }
     }
 
-    private void CheckCharacter()
+    private void UpdateCharacter()
     {
-        if (currentCell.movingObject != null)
+        CurrentObject = nextObject;
+    }
+    private void DrawAreas()
+    {
+        CurrentObject.DrawAreas();
+    }
+    private void UnDrawAreas()
+    {
+        if (CurrentObject != null)
         {
-            if (currentCell.movingObject.general == null) return;
-            CurrentObject = currentCell.movingObject;
-            if(CurrentObject.canAction) CurrentObject.DrawAreas();
+            CurrentObject.UnDrawAreas();
         }
     }
-
     private void CharacterAction()
     {
         if (CurrentObject != null && CurrentObject.identity == IdentityType.Ally)

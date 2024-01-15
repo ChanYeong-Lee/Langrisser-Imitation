@@ -8,6 +8,7 @@ public class BattleUIManager : MonoBehaviour
     public GameObject battleReadyUI;
     public GameObject moveReadyUI;
     public GameObject attackReadyUI;
+    public CharacterSelectUI characterSelectUI;
     public GeneralInstruction generalInstruction;
     private void Awake()
     {
@@ -37,7 +38,10 @@ public class BattleUIManager : MonoBehaviour
             BattleManager.Instance.StartBattle();
         }
     }
-    
+    public void GenerateCharacterElement(General general, Vector2 pos)
+    {
+        characterSelectUI.GenerateElement(general, pos);
+    }
     public void ReadyMove()
     {
         //moveReadyUI.SetActive(true);

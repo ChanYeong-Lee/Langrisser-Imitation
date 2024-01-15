@@ -2092,6 +2092,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battleReadyUI: {fileID: 1655425606}
+  moveReadyUI: {fileID: 0}
+  attackReadyUI: {fileID: 0}
   generalInstruction: {fileID: 349724954}
 --- !u!1 &397222106
 GameObject:
@@ -2334,7 +2336,7 @@ GameObject:
   - component: {fileID: 436749011}
   - component: {fileID: 436749010}
   m_Layer: 0
-  m_Name: Resources (1)
+  m_Name: Resources
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5439,6 +5441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  moveState: 0
   onFight:
     m_PersistentCalls:
       m_Calls: []
@@ -5451,6 +5454,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   currentCell: {fileID: 0}
+  canSelect: 0
 --- !u!1 &1111796583
 GameObject:
   m_ObjectHideFlags: 0
