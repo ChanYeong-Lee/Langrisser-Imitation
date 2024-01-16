@@ -6,10 +6,10 @@ public class BattleUIManager : MonoBehaviour
 {
     public static BattleUIManager Instance { get; private set; }
     public GameObject battleReadyUI;
-    public GameObject moveReadyUI;
-    public GameObject attackReadyUI;
+    public MoveReadyUI moveReadyUI;
     public CharacterSelectUI characterSelectUI;
-    public GeneralInstruction generalInstruction;
+    public FieldInstruction fieldInstruction;
+    public AttackReadyUI attackReadyUI;
     private void Awake()
     {
         Instance = this;
@@ -18,7 +18,9 @@ public class BattleUIManager : MonoBehaviour
     public void ReadyBattle()
     {
         battleReadyUI.SetActive(true);
-        generalInstruction.Init();
+        fieldInstruction.Init();
+        moveReadyUI.Init();
+        attackReadyUI.Init();
     }
 
     public void StartBattle()
@@ -42,13 +44,20 @@ public class BattleUIManager : MonoBehaviour
     {
         characterSelectUI.GenerateElement(general, pos);
     }
-    public void ReadyMove()
-    {
-        //moveReadyUI.SetActive(true);
-    }
+    
 
     public void ReadyAttack()
     {
-        //attackReadyUI.SetActive(true);
+        fieldInstruction.ReadyAttack();
+        moveReadyUI.ReadyAttack();
+        attackReadyUI.gameObject.SetActive(true);
+        attackReadyUI.SetInstructions(BattleManager.Instance.CurrentObject, BattleManager.Instance.NextObject);
+    }
+
+    public void CancelAttack()
+    {
+        fieldInstruction.CancelAttack();
+        moveReadyUI.CancelAttack();
+        attackReadyUI.gameObject.SetActive(false);
     }
 }

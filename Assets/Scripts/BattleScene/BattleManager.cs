@@ -15,22 +15,26 @@ public class BattleManager : MonoBehaviour
     public static BattleManager Instance { get; private set; }
     [HideInInspector] public BattleMap currentBattleMap;
     public List<MovingObject> movingObjects;
-    public List<AllyObject> allyObjects;
-    public List<EnemyObject> enemyObjects;
+    public List<MovingObject> allyObjects;
+    public List<MovingObject> enemyObjects;
 
     public GameObject selectCellArea;
 
-    private MovingObject currentObject;
-    public MovingObject CurrentObject { get { return currentObject; } set { currentObject = value; if(value != null) originCell = currentObject.currentCell; onObjectChange?.Invoke();
-        } }
-    private MovingObject nextObject;
+    [SerializeField] private MovingObject currentObject;
+    public MovingObject CurrentObject { get { return currentObject; } set 
+        { 
+            currentObject = value;
+            onObjectChange?.Invoke(); 
+        }
+    }
+    [SerializeField] private MovingObject nextObject;
     public MovingObject NextObject { get { return nextObject; } }
 
     public UnityEvent onObjectChange;
 
     public BattleMapCell currentCell;
     public BattleMapCell nextCell;
-    BattleMapCell originCell = null;
+    public BattleMapCell originCell = null;
     public bool canSelect;
     private void Awake()
     {
@@ -48,55 +52,47 @@ public class BattleManager : MonoBehaviour
 
     private void Update()
     {
-        //if (canSelect)
-        //{
-        //    switch (state)
-        //    {
-        //        case State.Ready:
-        //            SelectCell();
-        //            break;
-        //        case State.Battle:
-        //            if (TurnManager.Instance.TurnState == TurnManager.State.PlayerTurn)
-        //            {
-        //                switch (moveState)
-        //                {
-        //                    case MoveState.Ready:
-        //                        CharacterAction();
-        //                        SelectCell();
-        //                        break;
-        //                    case MoveState.Move:
-        //                        ApplyInput();
-        //                        break;
-        //                    case MoveState.End:
-        //                        break;
-        //                }
-        //            }
-        //            break;
-        //    }
-        //}
-
         if (Input.GetMouseButtonUp(0) && canSelect)
         {
-            if (SelectCell())
+            switch (state)
             {
-                if (CheckCharacter())
-                {
-
-                }
-                if (state == State.Ready)
-                { }
-                if (state == State.Battle)
-                {
-                    DrawCell();
-                }
-            }
-            else
-            {
-                UnDrawCell();
+                case State.Ready:
+                    SelectCell();
+                    CheckCharacter();
+                    CheckRemoveCharacter();
+                    UnDrawAreas();
+                    UpdateCell();
+                    UpdateCharacter();
+                    DrawAreas();
+                    break;
+                case State.Battle:
+                    switch (moveState)
+                    {
+                        case MoveState.Ready:
+                            SelectCell();
+                            CheckCharacter();
+                            if (CharacterAction())
+                            {
+                                moveState = MoveState.Move;
+                                return;
+                            }
+                            UnDrawAreas();
+                            UpdateCell();
+                            UpdateCharacter();
+                            DrawAreas();
+                            break;
+                        case MoveState.Move:
+                            SelectCell();
+                            CheckCharacter();
+                            CheckMoveCancel();
+                            break;
+                        case MoveState.End:
+                            break;
+                    }
+                    break;
             }
         }
     }
-
     private void DragElement()
     {
     }
@@ -117,15 +113,24 @@ public class BattleManager : MonoBehaviour
         }
         TurnManager.Instance.StartBattle();
     }
-
+    private void CheckRemoveCharacter()
+    {
+        if (CurrentObject != null && nextObject != null &&
+            CurrentObject == nextObject && CurrentObject.identity == IdentityType.Ally)
+        {
+            BattleUIManager.Instance.GenerateCharacterElement(CurrentObject.general, BattleUIManager.Instance.characterSelectUI.transform.position);
+            CurrentObject.GetComponent<AllyObject>().ReleaseGeneral();
+            UnDrawAreas();
+            nextObject = null;
+        }
+        else return;
+    }
     private bool SelectCell()
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
-        if (hit == false) return false;
-        if (hit.collider.TryGetComponent(out BattleMapCell cell))
+        if (hit != false && hit.collider.TryGetComponent(out BattleMapCell cell))
         {
-            if (currentCell == null) { currentCell = cell; }
             nextCell = cell;
             return true;
         }
@@ -148,15 +153,9 @@ public class BattleManager : MonoBehaviour
     }
     private bool CheckCharacter()
     {
-        if (nextCell.movingObject != null)
+        if (nextCell != null && nextCell.movingObject != null && nextCell.movingObject.general != null)
         {
-            if (nextCell.movingObject.general == null)
-            {
-                nextObject = null;
-                return false;
-            }
-            if (CurrentObject == null) { CurrentObject = currentCell.movingObject; }
-            nextObject = currentCell.movingObject;
+            nextObject = nextCell.movingObject;
             return true;
         }
         else
@@ -166,91 +165,88 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    private void UpdateCharacter()
+    private void UpdateCell() 
+    {   
+        currentCell = nextCell;
+        nextCell = null;
+    }
+
+    private void UpdateCharacter() 
     {
         CurrentObject = nextObject;
+        if(CurrentObject != null && CurrentObject.currentCell != null) originCell = CurrentObject.currentCell;
+        else originCell = null;
+        nextObject = null;
     }
+
     private void DrawAreas()
     {
+        if (CurrentObject == null || CurrentObject.general == null) return;
+        if (false == CurrentObject.canAction) return;
         CurrentObject.DrawAreas();
     }
     private void UnDrawAreas()
     {
-        if (CurrentObject != null)
-        {
-            CurrentObject.UnDrawAreas();
-        }
+        if (CurrentObject == null) return;
+        CurrentObject.UnDrawAreas();
     }
-    private void CharacterAction()
+    private bool CharacterAction()
     {
-        if (CurrentObject != null && CurrentObject.identity == IdentityType.Ally)
+        if (CurrentObject == null) return false;
+        if (CurrentObject.identity == IdentityType.Enemy) return false;
+        if (false == CurrentObject.canAction) return false;
+
+        if (nextObject != null && nextObject.identity == IdentityType.Ally && nextObject != CurrentObject) return false;
+        if (false == CurrentObject.attackableArea.Contains(nextCell)) return false;
+        if (CurrentObject.TryMove(nextCell))
         {
-            if (Input.GetMouseButtonUp(0))
-            {
-                Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
-                if (hit == false) return;
-                if (hit.collider.TryGetComponent(out BattleMapCell cell))
-                {
-                    if (originCell != null) CurrentObject.SetPos(originCell);
-                    originCell = CurrentObject.CurrentCell;
-                    if (cell.movingObject != null && cell.movingObject.identity == IdentityType.Enemy)
-                    {
-                        if (CurrentObject.TryAttack(cell))
-                        {
-                            moveState = MoveState.Move;
-                            BattleUIManager.Instance.ReadyAttack();
-                        }
-                    }
-                    else if (CurrentObject.TryMove(cell))
-                    {
-                        moveState = MoveState.Move;
-                        BattleUIManager.Instance.ReadyMove();
-                    }
-                }
-            }
+            return true;
         }
+        if (CurrentObject.TryAttack(nextCell))
+        {
+            BattleUIManager.Instance.ReadyAttack();
+            return true;
+        }
+        return false;
+    }
+    
+    private void CheckMoveCancel()
+    {
+        if (nextCell == null) { UnDrawAreas(); MoveCancel(); AttackCancel(); return; }
+        if (false == CharacterAction()) { UnDrawAreas(); MoveCancel(); AttackCancel(); return; }
     }
 
     public void MoveCancel()
     {
         CurrentObject.SetPos(originCell);
+        CurrentObject.RestoreCosts();
         moveState = MoveState.Ready;
+        CurrentObject = null;
         originCell = null;
     }
 
     public void MoveApply()
     {
         CurrentObject.Move();
-        CurrentObject.Attack();
+        UnDrawAreas();
+        CurrentObject = null;
+        moveState = MoveState.Ready;
     }
 
-    public bool ApplyInput()
+    public void AttackApply()
     {
-        if (Input.GetMouseButtonUp(0))
-        {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
-            if (hit == false)
-            {
-                MoveCancel();
-                return false;
-            }
-            if (hit.collider.TryGetComponent(out BattleMapCell cell))
-            {
-                if (false == CurrentObject.attackableArea.Contains(cell)||
-                    cell.movingObject==null||
-                    cell.movingObject.identity == IdentityType.Ally)
-                {
-                    MoveCancel();
-                    return false;
-                }
-
-            }
-        }
-        return false;
+        CurrentObject.Attack();
+        UnDrawAreas();
+        CurrentObject = null;
+        moveState = MoveState.Ready;
+        BattleUIManager.Instance.CancelAttack();
     }
 
+    public void AttackCancel()
+    {
+        BattleUIManager.Instance.CancelAttack();
+    }
+   
     private void TurnChange()
     {
         if (CurrentObject != null)
@@ -261,6 +257,11 @@ public class BattleManager : MonoBehaviour
         {
             currentCell = null;
         }
+    }
+    public void TurnEnd()
+    {
+        moveState = MoveState.End;
+        TurnManager.Instance.PlayerTurnEnd();
     }
 
     public void StartFight(MovingObject attacker, MovingObject target)
@@ -286,12 +287,12 @@ public class BattleManager : MonoBehaviour
             movingObject.currentMap = this.currentBattleMap;
             if (movingObject.identity == IdentityType.Ally)
             {
-                allyObjects.Add(movingObject as AllyObject);
+                allyObjects.Add(movingObject);
                 movingObject.UpdateCurrentCell();
             }
             else if (movingObject.identity == IdentityType.Enemy)
             {
-                enemyObjects.Add(movingObject as EnemyObject);
+                enemyObjects.Add(movingObject);
                 movingObject.GetComponent<EnemyObject>().InitEnemyObject();
             }
         }

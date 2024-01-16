@@ -50,6 +50,7 @@ public class HeroesUIManager : MonoBehaviour
         StartCoroutine(UIMoveCoroutine(heroInstruction, instructionSecondPos));
         state = State.Instruction;
     }
+
     public void ClickReturnButton()
     {
         StopAllCoroutines();
@@ -81,6 +82,7 @@ public class HeroesUIManager : MonoBehaviour
         }
         Camera.main.transform.position = pos3;
     }
+
     IEnumerator UIMoveCoroutine(GameObject UI, Vector2 pos)
     {
         RectTransform rectTransform = UI.GetComponent<RectTransform>();

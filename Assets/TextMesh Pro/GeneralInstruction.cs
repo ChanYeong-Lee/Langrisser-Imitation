@@ -9,7 +9,6 @@ public class GeneralInstruction : MonoBehaviour
 {
     [Header("General Instruction")]
     [Header("Instruction")]
-    public Image generalSprite;
     public TextMeshProUGUI className;
     public Image generalOccupation;
     public TextMeshProUGUI generalLevel;
@@ -36,24 +35,17 @@ public class GeneralInstruction : MonoBehaviour
     public TextMeshProUGUI soldierLife;
     public TextMeshProUGUI soldierAttack;
     public TextMeshProUGUI soldierDefense;
+    
+    public List<GameObject> gameObjects;
 
-    public void Init()
+    public void SetInstruction(MovingObject movingObject)
     {
-        BattleManager.Instance.onObjectChange.AddListener(UpdateInstruction);
-        UpdateInstruction();
-    }
-
-    public void UpdateInstruction()
-    {
-        if (BattleManager.Instance.CurrentObject == null) { gameObject.SetActive(false); return; }
-        gameObject.SetActive(true);
-        General general = BattleManager.Instance.CurrentObject.general;
-        Soldier soldier = general.Soldier;
+        General general = movingObject.general;
+        Soldier soldier = movingObject.soldier;
         GeneralResource generalResource = ResourceManager.Instance.GetGeneralResource(general.GeneralType);
         ClassResource classResource = ResourceManager.Instance.GetClassResource(general.ClassType);
-        SoldierResource soldierResource = ResourceManager.Instance.GetSoldierResource(general.Soldier.soldierType);
+        SoldierResource soldierResource = ResourceManager.Instance.GetSoldierResource(soldier.soldierType);
 
-        generalSprite.sprite = generalResource.generalPaint;
         className.text = classResource.className;
         generalOccupation.sprite = classResource.classIcon;
         generalLevel.text = general.Level.ToString();
@@ -76,5 +68,13 @@ public class GeneralInstruction : MonoBehaviour
         soldierLife.text = soldier.maxHP.ToString();
         soldierAttack.text = soldier.damage.ToString();
         soldierDefense.text = soldier.defense.ToString();
+    }
+
+    public void SetParent(RectTransform parent)
+    {
+        foreach (GameObject gameObject in gameObjects)
+        {
+            gameObject.GetComponent<RectTransform>().SetParent(parent);
+        }
     }
 }

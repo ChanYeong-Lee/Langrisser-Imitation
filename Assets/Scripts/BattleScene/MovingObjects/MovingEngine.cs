@@ -118,6 +118,7 @@ public class MovingEngine : MonoBehaviour
     {
         if (destination == movingObject.currentCell) return true;
         if (destination.movingObject != null) return false;
+        if (false == movingObject.movableArea.Contains(destination)) return false;
         BattleMap currentMap = movingObject.currentMap;
         BattleMapCell currentCell = movingObject.currentCell;
         int moveCost = movingObject.currentMoveCost;
@@ -132,6 +133,7 @@ public class MovingEngine : MonoBehaviour
     }
     public bool TryAttack(BattleMapCell destination)
     {
+        if (destination.movingObject == null) return false;
         BattleMap currentMap = movingObject.currentMap;
         foreach (Vector2Int pos in CellArea(destination.cellcood, movingObject.range))
         {
@@ -147,18 +149,21 @@ public class MovingEngine : MonoBehaviour
 
     private void Move(List<BattleMapCell> path)
     {
+        StopAllCoroutines();
+        movingObject.isMoving = false;
+        movingObject.isAction = false;
         StartCoroutine(MoveCoroutine(path));
     }
 
     private IEnumerator MoveCoroutine(BattleMapCell nextCell)
     {
         movingObject.isMoving = true;
-        Vector2 dir = nextCell.cellcood - (Vector2)movingObject.transform.localPosition;
-        dir.Normalize();
         while (true)
         {
-            if (Vector2.SqrMagnitude((Vector2)movingObject.transform.localPosition - nextCell.cellcood) <= 0.02f) break;
-            movingObject.transform.localPosition = (Vector2)movingObject.transform.localPosition + dir * Time.deltaTime;
+            if (Vector2.SqrMagnitude((Vector2)movingObject.transform.localPosition - nextCell.cellcood) <= 0.01f) break;
+            Vector2 dir = nextCell.cellcood - (Vector2)movingObject.transform.localPosition;
+            dir.Normalize();
+            movingObject.transform.localPosition = (Vector2)movingObject.transform.localPosition + dir * Time.deltaTime * 3;
             yield return null;
         }
         movingObject.transform.localPosition = new Vector3(nextCell.cellcood.x, nextCell.cellcood.y, 0);
@@ -167,11 +172,13 @@ public class MovingEngine : MonoBehaviour
 
     private IEnumerator MoveCoroutine(List<BattleMapCell> path)
     {
+        movingObject.isAction = true;
         foreach (BattleMapCell cell in path)
         {
             yield return new WaitWhile(() => movingObject.isMoving);
             StartCoroutine(MoveCoroutine(cell));
             yield return null;
         }
+        movingObject.isAction = false;
     }
 }

@@ -53,12 +53,14 @@ public class Character : MonoBehaviour
     private void Die()
     {
         alive = false;
+        print($"{gameObject.name} is Die.");
         OnDie?.Invoke();
     }
 
     public float TakeHit(float damage)
     {
         print($"{gameObject.name} is Take Hit");
+        print($"damage = {damage}");
         float remainDamage = 0;
         if (damage > currentHP)
         {

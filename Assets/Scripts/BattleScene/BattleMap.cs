@@ -12,7 +12,7 @@ public class BattleMap : MonoBehaviour
     [SerializeField] private SpriteRenderer mapImage;
     [SerializeField] private List<BattleMapCell> cellList;
     public List<MovingObject> movingObjects;
-
+    public Transform areaParent;
     public Dictionary<Vector2Int, BattleMapCell> cellDictionary = new();
     public BattleMapCell this[Vector2Int cood] 
     {

@@ -88,7 +88,7 @@ public class BattleSceneCameraMove : MonoBehaviour
         if (isDragging)
         {
             deltaTime += Time.deltaTime;
-            if (deltaTime >= 0.1f) BattleManager.Instance.canSelect = false;
+            if (deltaTime >= 0.3f) BattleManager.Instance.canSelect = false;
             Vector3 curMousePos = camera.ScreenToWorldPoint(Input.mousePosition);
             Vector3 dir = clickPos - curMousePos;
             dir.z = 0;

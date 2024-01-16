@@ -25,4 +25,16 @@ public class AllyObject : MovingObject
         soldier.Alive = true;
         InitMovingObject();
     }
+
+    public void ReleaseGeneral()
+    {
+        if (this.general == null) return;
+        general.Alive = false;
+        soldier.Alive = false;
+        Release();
+        PlayerData.Instance.ReturnGeneral(this.general);
+        Destroy(soldier.gameObject);
+        this.general = null;
+        this.soldier = null;
+    }
 }

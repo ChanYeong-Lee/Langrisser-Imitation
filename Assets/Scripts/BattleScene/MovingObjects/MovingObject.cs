@@ -36,7 +36,7 @@ public class MovingObject : MonoBehaviour
     public List<BattleMapCell> attackableArea;
     private List<GameObject> activeArea = new List<GameObject>();
     public BattleMapCell currentCell;
-    public BattleMapCell CurrentCell { get { return currentCell; } set { if (currentCell != null) { currentCell.movingObject = null; } currentCell = value; currentCell.movingObject = this; } }
+    public BattleMapCell CurrentCell { get { return currentCell; } set { if (currentCell != null) { currentCell.movingObject = null; } currentCell = value; if(currentCell != null)currentCell.movingObject = this; } }
 
     public BattleMap currentMap;
     public MovingEngine engine;
@@ -50,6 +50,7 @@ public class MovingObject : MonoBehaviour
 
     public bool isMoving;
     public bool canAction;
+    public bool isAction;
 
     [HideInInspector] public Vector2Int[] directions = new Vector2Int[]
     {
@@ -109,6 +110,7 @@ public class MovingObject : MonoBehaviour
     }
     public void SetPos(BattleMapCell destination)
     {
+        engine.StopAllCoroutines();
         CurrentCell = destination;
         transform.localPosition = destination.transform.localPosition;
     }
@@ -139,7 +141,7 @@ public class MovingObject : MonoBehaviour
         foreach (BattleMapCell cell in movableArea)
         {
             GameObject area = Instantiate(movableAreaPrefab, cell.transform.position, Quaternion.identity);
-            area.transform.parent = areaParent;
+            area.transform.parent = currentMap.areaParent;
             activeArea.Add(area);
         }
     }
@@ -150,7 +152,7 @@ public class MovingObject : MonoBehaviour
             if (movableArea.Exists((a) => a.cellcood == cell.cellcood)) continue;
 
             GameObject area = Instantiate(attackableAreaPrefab, cell.transform.position, Quaternion.identity);
-            area.transform.parent = areaParent;
+            area.transform.parent = currentMap.areaParent;
             activeArea.Add(area);
         }
     }
@@ -185,6 +187,7 @@ public class MovingObject : MonoBehaviour
     {
         canAction = false;
     }
+
     public bool TryAttack(BattleMapCell destination)
     {
         if (engine.TryAttack(destination))

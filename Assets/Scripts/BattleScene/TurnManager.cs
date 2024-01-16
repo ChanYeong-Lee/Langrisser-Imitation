@@ -46,7 +46,6 @@ public class TurnManager : MonoBehaviour
             case State.CloseTurn:
                 EndTurn();
                 EndTurnEnd();
-                state = State.OpenTurn;
                 break;
         }
 
@@ -55,13 +54,14 @@ public class TurnManager : MonoBehaviour
     public void StartBattle()
     {
         TurnState = State.OpenTurn;
-        print("TurnStart");
+        print("StartBattle");
         currentTurn = 0;
         WakeUpObjects();
     }
 
     private void StartTurn()
     {
+        print("StartTurn");
         currentTurn++;
     }
     private void WakeUpObjects()
@@ -73,12 +73,14 @@ public class TurnManager : MonoBehaviour
             movingObject.OnDie.AddListener(ObjectDie);
         }
     }
+
     private void ObjectDie(MovingObject deadObject)
     {
         aliveObjects.Remove(deadObject);
         Destroy(deadObject.gameObject);
         CheckStates();
     }
+
     private void CheckStates()
     {
         if (BattleManager.Instance.CheckAllyDie())
@@ -97,6 +99,7 @@ public class TurnManager : MonoBehaviour
         EndTurn();
         EndBattle();
     }
+
     private void EnemyWin()
     {
         EndTurn();
@@ -140,7 +143,7 @@ public class TurnManager : MonoBehaviour
     public void EnemyTurnEnd()
     {
         state = State.CloseTurn;
-        print("TurnEnd");
+        print("EnemyTurnEnd");
     }
 
     private void EndTurn()
