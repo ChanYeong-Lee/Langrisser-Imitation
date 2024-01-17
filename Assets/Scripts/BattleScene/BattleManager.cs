@@ -284,8 +284,7 @@ public class BattleManager : MonoBehaviour
     IEnumerator FightCoroutine(MovingObject attacker, MovingObject target)
     {
         BattleUIManager.Instance.StartFight(attacker, target);
-        yield return new WaitForSeconds(4f); 
-        attacker.state = MovingObject.State.Wait;
+        yield return new WaitUntil(() => attacker.state == MovingObject.State.Wait); 
         BattleUIManager.Instance.EndFight();
     }
 

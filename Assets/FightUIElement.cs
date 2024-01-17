@@ -75,8 +75,10 @@ public class FightUIElement : MonoBehaviour
 
         while (true)
         {
-            float currentDamage = damage * Time.deltaTime / 3;
-            if (currentGeneralHP <= 0) continue;
+            float currentDamage = damage * Time.deltaTime / 2;
+            currentTime += Time.deltaTime;
+            if (currentTime >= 2f) break;
+            if (currentGeneralHP <= 0) break; ;
             if (currentSoldierHP - currentDamage > 0)
             {
                 currentSoldierHP -= currentDamage;
@@ -91,11 +93,11 @@ public class FightUIElement : MonoBehaviour
             soldierHPBar.fillAmount = currentSoldierHP / maxSoldierHP;
             generalHPText.text = $"{(int)currentGeneralHP}";
             soldierHPText.text = $"{(int)currentSoldierHP}";
-            currentTime += Time.deltaTime;
-            if (currentTime >= 3f) break;
+            
             yield return null;
         }
         print(currentTime);
         yield return new WaitForSeconds(1f);
+        if (fightType == FightType.Attacker) movingObject.state = MovingObject.State.Wait;
     }
 }

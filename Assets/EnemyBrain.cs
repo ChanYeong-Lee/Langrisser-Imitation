@@ -77,6 +77,7 @@ public class EnemyBrain : MonoBehaviour
         foreach (MovingObject movingObject in allyObjects)
         {
             currentObject = movingObject;
+            if (false == currentObject.Alive) continue;
             if (FindTarget())
             {
                 if (TryAttack())

@@ -24,7 +24,7 @@ public class TurnManager : MonoBehaviour
     {
         Instance = this;
     }
-
+    private bool battleEnd;
     private void Update()
     {
         switch (state)
@@ -86,28 +86,42 @@ public class TurnManager : MonoBehaviour
     {
         if (BattleManager.Instance.CheckAllyDie())
         {
-            StartCoroutine(AllyWin());
+            AllyWin();
         }
-
-        if (BattleManager.Instance.CheckEnemyDie())
+        else if (BattleManager.Instance.CheckEnemyDie())
         {
-            StartCoroutine(EnemyWin());
+            EnemyWin();
         }
     }
 
-    IEnumerator AllyWin()
+    IEnumerator EndBattle()
     {
-        EndTurn();
-        EndBattle();
-        yield return null;
+        TurnState = State.None;
+        foreach (MovingObject movingObject in aliveObjects)
+        {
+            while (true)
+            {
+                if (movingObject.state == MovingObject.State.None ||
+                    movingObject.state ==MovingObject.State.Wait)
+                {
+                    break;
+                }
+                yield return null;
+            }
+        }
+        SceneLoader.Instance.LoadScene("MapScene");
     }
 
-    IEnumerator EnemyWin()
+    public void AllyWin()
     {
-        EndTurn();
-        EndBattle();
-        yield return null;
+        StartCoroutine(EndBattle());
     }
+
+    public void EnemyWin()
+    {
+        StartCoroutine(EndBattle());
+    }
+
     private void ResetCosts()
     {
         foreach (MovingObject movingObject in aliveObjects)
@@ -159,11 +173,7 @@ public class TurnManager : MonoBehaviour
     }
     private void EndTurnEnd()
     {
-        TurnState = State.OpenTurn;
-    }
-    public void EndBattle()
-    {
-        TurnState = State.None;
-        SceneLoader.Instance.LoadScene("MapScene");
+        if (battleEnd) TurnState = State.None;
+        else TurnState = State.OpenTurn;
     }
 }
