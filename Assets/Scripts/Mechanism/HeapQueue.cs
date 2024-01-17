@@ -25,6 +25,13 @@ public class HeapQueue<TItem, TPriority>
         return nodes[0].item;
     }
 
+    public TItem Peek(out TPriority priority)
+    {
+        if (nodes.Count == 0) throw new InvalidOperationException();
+        priority = nodes[0].priority;
+        return nodes[0].item;
+    }
+
     public void Enqueue(TItem item, TPriority priority)
     {
         Node newNode = new Node(item, priority);
@@ -35,6 +42,13 @@ public class HeapQueue<TItem, TPriority>
     {
         if (nodes.Count == 0) throw new InvalidOperationException();
         return PopHeap().item;
+    }
+    public TItem Dequeue(out TPriority priority)
+    {
+        if (nodes.Count == 0) throw new InvalidOperationException();
+        Node node = PopHeap();
+        priority = node.priority;
+        return node.item;
     }
 
     private void PushHeap(Node node)

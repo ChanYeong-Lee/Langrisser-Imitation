@@ -81,7 +81,7 @@ public class MovingObject : MonoBehaviour
         general.OnDie.RemoveAllListeners();
         soldier.OnDie.RemoveAllListeners();
     }
-
+    
     private void SetStats()
     {
         int biggerRange = general.range >= soldier.range ? general.range : soldier.range;
@@ -215,6 +215,7 @@ public class MovingObject : MonoBehaviour
         float remainDamage = 0;
         if (attacker.soldier.Alive) damage += attacker.soldier.damage;
         if (soldier.Alive) remainDamage = soldier.TakeHit(damage);
+        else remainDamage = damage;
         general.TakeHit(remainDamage);
     }
 }

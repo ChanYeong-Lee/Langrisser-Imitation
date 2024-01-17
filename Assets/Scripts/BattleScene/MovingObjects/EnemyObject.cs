@@ -20,7 +20,6 @@ public class EnemyObject : MovingObject
         SetSoldier();
         InitMovingObject();
     }
-
     public void SetGeneral()
     {
         general = Instantiate(DataManager.Instance.GetGeneral(generalType));

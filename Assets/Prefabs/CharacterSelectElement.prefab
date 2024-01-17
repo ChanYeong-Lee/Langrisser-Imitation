@@ -66,17 +66,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 2
+  m_text: 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 28aa9a687968ff148b566c2165d4e93e, type: 2}
-  m_sharedMaterial: {fileID: -4108252501176368741, guid: 28aa9a687968ff148b566c2165d4e93e, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7ec951f8911c52b4b80f55124bee6728, type: 2}
+  m_sharedMaterial: {fileID: -6874455273352556120, guid: 7ec951f8911c52b4b80f55124bee6728, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -307,6 +307,8 @@ MonoBehaviour:
   characterIcon: {fileID: 5887635000963776580}
   classIcon: {fileID: 5887634999938262256}
   levelText: {fileID: 5887634999695645999}
+  prevPos: {x: 0, y: 0}
+  rectTransform: {fileID: 0}
 --- !u!114 &5887635000963776600
 MonoBehaviour:
   m_ObjectHideFlags: 0

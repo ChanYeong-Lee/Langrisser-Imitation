@@ -77,7 +77,8 @@ public class TurnManager : MonoBehaviour
     private void ObjectDie(MovingObject deadObject)
     {
         aliveObjects.Remove(deadObject);
-        Destroy(deadObject.gameObject);
+        deadObject.currentCell.movingObject = null;
+        deadObject.gameObject.SetActive(false);
         CheckStates();
     }
 
@@ -134,6 +135,7 @@ public class TurnManager : MonoBehaviour
     public void PlayerTurnEnd()
     {
         TurnState = State.EnemyTurn;
+        EnemyBrain.Instance.StartTurn();
         print("EnemyTurn");
     }
 

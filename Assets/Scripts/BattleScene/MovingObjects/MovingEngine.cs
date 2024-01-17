@@ -135,6 +135,7 @@ public class MovingEngine : MonoBehaviour
     {
         if (destination.movingObject == null) return false;
         BattleMap currentMap = movingObject.currentMap;
+        if (BattleMapAStartAlgorithm.Distance(movingObject.CurrentCell, destination) <= movingObject.range) return true;
         foreach (Vector2Int pos in CellArea(destination.cellcood, movingObject.range))
         {
             if (currentMap[pos] == null) continue;

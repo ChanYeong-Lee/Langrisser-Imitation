@@ -53,6 +53,7 @@ public class Character : MonoBehaviour
     private void Die()
     {
         alive = false;
+        gameObject.SetActive(false);
         print($"{gameObject.name} is Die.");
         OnDie?.Invoke();
     }

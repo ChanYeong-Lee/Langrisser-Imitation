@@ -46,6 +46,7 @@ public class BattleManager : MonoBehaviour
         BattleMapManager.Instance.LoadMap(GameManager.Instance.currentStageID);
         TurnManager.Instance.onTurnChange.AddListener(TurnChange);
         BattleUIManager.Instance.ReadyBattle();
+        EnemyBrain.Instance.Init();
         state = State.Ready;
         canSelect = true;
     }
