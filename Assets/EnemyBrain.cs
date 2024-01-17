@@ -87,9 +87,11 @@ public class EnemyBrain : MonoBehaviour
                 {
                     Move();
                 }
+                else Move();
             }
             else Move();
-            yield return new WaitWhile(() => currentObject.isAction);
+            yield return new WaitUntil(() => currentObject.state == MovingObject.State.Wait);
+            yield return new WaitForSeconds(1f);
         }
         EndTurn();
     }

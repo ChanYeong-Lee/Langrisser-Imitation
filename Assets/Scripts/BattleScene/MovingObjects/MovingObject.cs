@@ -21,12 +21,14 @@ public enum Direction
 
 public class MovingObject : MonoBehaviour
 {
-    
+    public enum State { None, Move, Attack, Wait }
+    public State state;
+
     [HideInInspector] public IdentityType identity;
     [HideInInspector] public UnityEvent<MovingObject> OnDie;
 
     [HideInInspector] public General general;
-    [HideInInspector] public Soldier soldier;
+     public Soldier soldier;
     [HideInInspector] public int range;
     [HideInInspector] public int moveCost;
     public int currentMoveCost;
@@ -46,7 +48,7 @@ public class MovingObject : MonoBehaviour
     public Transform soldierPos;
     public Transform areaParent;
     public SpriteRenderer spriteRenderer;
-    private MovingObject target;
+    public MovingObject target;
 
     public bool isMoving;
     public bool canAction;
@@ -101,6 +103,7 @@ public class MovingObject : MonoBehaviour
         currentMoveCost = moveCost;
         canAction = true;
         target = null;
+        state = State.None;
     }
 
     public void UpdateCurrentCell()
@@ -186,6 +189,7 @@ public class MovingObject : MonoBehaviour
     public void Move()
     {
         canAction = false;
+        state = State.Wait;
     }
 
     public bool TryAttack(BattleMapCell destination)
@@ -197,15 +201,25 @@ public class MovingObject : MonoBehaviour
         }
         else return false;
     }
+
     public void ReadyAttack(MovingObject target)
     {
         this.target = target;
     }
+
     public void Attack()
     {
-        if (target == null) return;
-        canAction = false;
-        BattleManager.Instance.StartFight(this, target);
+        StopAllCoroutines();
+        StartCoroutine(AttackCoroutine());
+    }
+    IEnumerator AttackCoroutine()
+    {
+        yield return new WaitUntil(() => state == State.None);
+        if (target != null)
+        {
+            canAction = false;
+            BattleManager.Instance.StartFight(this, target);
+        }
     }
 
     public void TakeHit(MovingObject attacker)

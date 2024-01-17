@@ -174,12 +174,13 @@ public class MovingEngine : MonoBehaviour
     private IEnumerator MoveCoroutine(List<BattleMapCell> path)
     {
         movingObject.isAction = true;
+        movingObject.state = MovingObject.State.Move;
         foreach (BattleMapCell cell in path)
         {
-            yield return new WaitWhile(() => movingObject.isMoving);
             StartCoroutine(MoveCoroutine(cell));
-            yield return null;
+            yield return new WaitWhile(() => movingObject.isMoving);
         }
         movingObject.isAction = false;
+        movingObject.state = MovingObject.State.None;
     }
 }

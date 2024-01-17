@@ -19,7 +19,7 @@ public class CharacterSelectUI : MonoBehaviour, IDragHandler, IBeginDragHandler,
         scrollRect = GetComponent<ScrollRect>();
     }
 
-    private void OnEnable()
+    public void Init()
     {
         foreach (General general in PlayerData.Instance.generals)
         {

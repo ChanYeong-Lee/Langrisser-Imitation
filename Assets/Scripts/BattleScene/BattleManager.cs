@@ -21,7 +21,8 @@ public class BattleManager : MonoBehaviour
     public GameObject selectCellArea;
 
     [SerializeField] private MovingObject currentObject;
-    public MovingObject CurrentObject { get { return currentObject; } set 
+    public MovingObject CurrentObject { get { return currentObject; }
+        set 
         { 
             currentObject = value;
             onObjectChange?.Invoke(); 
@@ -267,8 +268,10 @@ public class BattleManager : MonoBehaviour
 
     public void StartFight(MovingObject attacker, MovingObject target)
     {
+        attacker.state = MovingObject.State.Attack;
         int distance = BattleMapAStartAlgorithm.Distance(attacker.currentCell, target.currentCell);
-        print(distance);
+        StartCoroutine(FightCoroutine(attacker, target));
+        
         if (attacker.range >= distance)
         {
             target.TakeHit(attacker);
@@ -277,6 +280,13 @@ public class BattleManager : MonoBehaviour
         {
             attacker.TakeHit(target);
         }
+    }
+    IEnumerator FightCoroutine(MovingObject attacker, MovingObject target)
+    {
+        BattleUIManager.Instance.StartFight(attacker, target);
+        yield return new WaitForSeconds(4f); 
+        attacker.state = MovingObject.State.Wait;
+        BattleUIManager.Instance.EndFight();
     }
 
     public void SetBattleMap(BattleMap battleMap)

@@ -86,32 +86,33 @@ public class TurnManager : MonoBehaviour
     {
         if (BattleManager.Instance.CheckAllyDie())
         {
-            AllyWin();
+            StartCoroutine(AllyWin());
         }
 
         if (BattleManager.Instance.CheckEnemyDie())
         {
-            EnemyWin();
+            StartCoroutine(EnemyWin());
         }
     }
 
-    private void AllyWin()
+    IEnumerator AllyWin()
     {
         EndTurn();
         EndBattle();
+        yield return null;
     }
 
-    private void EnemyWin()
+    IEnumerator EnemyWin()
     {
         EndTurn();
         EndBattle();
+        yield return null;
     }
     private void ResetCosts()
     {
         foreach (MovingObject movingObject in aliveObjects)
         {
-            movingObject.currentMoveCost = movingObject.moveCost;
-            movingObject.canAction = true;
+            movingObject.RestoreCosts();
         }
     }
 
@@ -127,6 +128,7 @@ public class TurnManager : MonoBehaviour
     {
         print("PlayerTurn");
         TurnState = State.PlayerTurn;
+        BattleUIManager.Instance.PlayerTurn();
     }
 
     private void PlayerTurn()
@@ -134,11 +136,15 @@ public class TurnManager : MonoBehaviour
     }
     public void PlayerTurnEnd()
     {
+        BattleUIManager.Instance.PlayerTurnEnd();
+        StartCoroutine(EnemyTurnStart());
+    }
+    IEnumerator EnemyTurnStart()
+    {
+        yield return new WaitForSeconds(1f);
         TurnState = State.EnemyTurn;
         EnemyBrain.Instance.StartTurn();
-        print("EnemyTurn");
     }
-
     private void EnemyTurn()
     {
     }
