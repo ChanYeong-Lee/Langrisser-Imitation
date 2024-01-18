@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -67,12 +68,12 @@ public class FightUIElement : MonoBehaviour
 
     IEnumerator FightCoroutine(float damage)
     {
+
         float currentGeneralHP = movingObject.general.CurrentHP;
         float maxGeneralHP = movingObject.general.maxHP;
         float currentSoldierHP = movingObject.soldier.CurrentHP;
         float maxSoldierHP = movingObject.soldier.maxHP;
         float currentTime = 0;
-
         while (true)
         {
             float currentDamage = damage * Time.deltaTime / 2;
@@ -98,6 +99,6 @@ public class FightUIElement : MonoBehaviour
         }
         print(currentTime);
         yield return new WaitForSeconds(1f);
-        if (fightType == FightType.Attacker) movingObject.state = MovingObject.State.Wait;
+        if(fightType == FightType.Attacker) movingObject.state = MovingObject.State.Wait;
     }
 }

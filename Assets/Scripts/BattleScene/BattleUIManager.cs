@@ -15,6 +15,7 @@ public class BattleUIManager : MonoBehaviour
     public GameObject turnEndButton; 
     public TurnTransitionUI turnTransitionUI;
     public FightUI fightUI;
+    public GameOverUI gameOverUI;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class BattleUIManager : MonoBehaviour
         moveReadyUI.Init();
         attackReadyUI.Init();
         turnTransitionUI.Init();
+        gameOverUI.Init();
         battleReadyUI.gameObject.SetActive(true);
     }
 
@@ -60,6 +62,7 @@ public class BattleUIManager : MonoBehaviour
     IEnumerator ReadyAttackCoroutine()
     {
         yield return new WaitUntil(() => BattleManager.Instance.CurrentObject.state == MovingObject.State.None);
+        yield return new WaitForSeconds(0.1f);
         fieldInstruction.ReadyAttack();
         moveReadyUI.ReadyAttack();
         attackReadyUI.gameObject.SetActive(true);
@@ -81,5 +84,11 @@ public class BattleUIManager : MonoBehaviour
     public void EndFight()
     {
         fightUI.gameObject.SetActive(false);
+    }
+
+    public void GameOver(IdentityType winner)
+    {
+        gameOverUI.SetWord(winner);
+        gameOverUI.gameObject.SetActive(true);
     }
 }

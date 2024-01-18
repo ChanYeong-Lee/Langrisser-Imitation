@@ -10,6 +10,7 @@ public enum FightType
     Attacker,
     Target
 }
+
 public class FightUI : MonoBehaviour
 {
     private MovingObject ally;

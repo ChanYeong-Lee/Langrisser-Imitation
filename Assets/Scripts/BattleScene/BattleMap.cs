@@ -14,6 +14,7 @@ public class BattleMap : MonoBehaviour
     public List<MovingObject> movingObjects;
     public Transform areaParent;
     public Dictionary<Vector2Int, BattleMapCell> cellDictionary = new();
+    public int dropExp;
     public BattleMapCell this[Vector2Int cood] 
     {
         get 
@@ -28,7 +29,6 @@ public class BattleMap : MonoBehaviour
             }
         }
     }
-
 
     public void InitBattleMap()
     {

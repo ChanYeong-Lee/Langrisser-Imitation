@@ -47,6 +47,7 @@ public class General : Character
         Level++;
         StatUp();
         CurrentHP = maxHP;
+        maxExp = Level * 100;
     }
 
     private void StatUp()
@@ -54,5 +55,10 @@ public class General : Character
         maxHP += 50;
         damage += 10;
         defense += 5;
+    }
+
+    public void GainExp(int amount)
+    {
+        CurrentExp += amount;
     }
 }

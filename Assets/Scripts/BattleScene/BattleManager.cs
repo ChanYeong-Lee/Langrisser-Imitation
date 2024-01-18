@@ -19,7 +19,6 @@ public class BattleManager : MonoBehaviour
     public List<MovingObject> enemyObjects;
 
     public GameObject selectCellArea;
-
     [SerializeField] private MovingObject currentObject;
     public MovingObject CurrentObject { get { return currentObject; }
         set 
@@ -269,6 +268,7 @@ public class BattleManager : MonoBehaviour
     public void StartFight(MovingObject attacker, MovingObject target)
     {
         attacker.state = MovingObject.State.Attack;
+
         int distance = BattleMapAStartAlgorithm.Distance(attacker.currentCell, target.currentCell);
         StartCoroutine(FightCoroutine(attacker, target));
         
@@ -327,5 +327,44 @@ public class BattleManager : MonoBehaviour
             else continue;
         }
         return true;
+    }
+    public void CheckStates()
+    {
+        if (CheckEnemyDie())
+        {
+            AllyWin();
+        }
+        else if (CheckAllyDie())
+        {
+            EnemyWin();
+        }
+    }
+
+    public void AllyWin()
+    {
+        GameManager.Instance.stageClear = true;
+        GameManager.Instance.StageClear();
+        foreach (MovingObject allyObject in allyObjects)
+        {
+            if (allyObject.general != null)
+            {
+                allyObject.general.GainExp(currentBattleMap.dropExp);
+            }
+        }
+        TurnManager.Instance.AllyWin();
+    }
+
+    public void EnemyWin()
+    {
+        GameManager.Instance.stageClear = false;
+        TurnManager.Instance.EnemyWin();
+    }
+
+    public void ReturnGenerals()
+    {
+        foreach (AllyObject ally in allyObjects)
+        {
+            ally.ReleaseGeneral();
+        }
     }
 }

@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3564f7cd6c677a44ab4a155b5c1d7f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
   identity: 0
   OnDie:
     m_PersistentCalls:
@@ -60,7 +61,6 @@ MonoBehaviour:
   currentMoveCost: 0
   movableArea: []
   attackableArea: []
-  prevCell: {fileID: 0}
   currentCell: {fileID: 0}
   currentMap: {fileID: 0}
   engine: {fileID: 0}
@@ -68,10 +68,11 @@ MonoBehaviour:
   attackableAreaPrefab: {fileID: 5881619331755718649, guid: acc9046bc8ea885488a166adbd288f34, type: 3}
   generalPos: {fileID: 8920190582967317321}
   soldierPos: {fileID: 2300297504003675376}
-  areaParent: {fileID: 6234104769496647272}
-  spriteRenderer: {fileID: 5030366628483997215}
+  iconSpriteRenderer: {fileID: 5030366628483997215}
+  target: {fileID: 0}
   isMoving: 0
-  canMove: 0
+  isAction: 0
+  canAction: 0
   directions:
   - {x: 0, y: 1}
   - {x: 0, y: -1}

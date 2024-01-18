@@ -14,11 +14,30 @@ using UnityEngine;
 public class WorldMapData : MonoBehaviour
 {
     public WorldMapNode[] nodes;
-    public WorldMapPlayer player;
+    public NodeEvent[] nodeEvents;
+    public WorldMapNode playerNode;
 
-    private void Start()
+    public void Init()
     {
-        player = FindObjectOfType<WorldMapPlayer>();
+        foreach (WorldMapNode node in nodes)
+        {
+            node.Init();
+            if (GameManager.Instance.currentNodeID == node.nodeID)
+            {
+                playerNode = node;
+            }
+        }
+        foreach (NodeEvent nodeEvent in nodeEvents)
+        {
+            nodeEvent.Init();
+            if (GameManager.Instance.currentEventID == nodeEvent.eventID)
+            {
+                if (GameManager.Instance.stageClear)
+                {
+                    nodeEvent.ReplaceNode();
+                }
+            }
+        }
     }
 }
 

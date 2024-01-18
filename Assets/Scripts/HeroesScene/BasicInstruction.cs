@@ -43,7 +43,7 @@ public class BasicInstruction : MonoBehaviour
         
         occupationFlag.sprite = classResource.classFlag;
         
-        expBar.fillAmount = general.CurrentExp / general.MaxExp;
+        expBar.fillAmount = (float) general.CurrentExp / general.MaxExp;
         levelText.text = $"{general.Level:D2}";
         expText.text = $"{general.CurrentExp}/{general.MaxExp}";
 

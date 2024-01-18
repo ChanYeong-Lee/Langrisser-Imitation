@@ -23,15 +23,17 @@ public class EnemyObject : MovingObject
     public void SetGeneral()
     {
         general = Instantiate(DataManager.Instance.GetGeneral(generalType));
-        while (general.Level == level)
+        while (general.Level < level)
         {
             general.LevelUp();
         }
+        general.Alive = true;
     }
 
     public void SetSoldier()
     {
         soldier = Instantiate(DataManager.Instance.GetSoldier(soldierType));
+        soldier.Alive = true;
     }
 
 

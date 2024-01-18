@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class MovingEngine : MonoBehaviour
 {
-    public MovingObject movingObject;
+    [HideInInspector] public MovingObject movingObject;
+
     private void Awake()
     {
         movingObject = GetComponent<MovingObject>();

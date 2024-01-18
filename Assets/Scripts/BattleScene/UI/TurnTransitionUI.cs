@@ -9,12 +9,16 @@ public class TurnTransitionUI : MonoBehaviour
 {
     public Image background;
     public TextMeshProUGUI turnName;
-    public GameObject PlayerTurn;
-    public GameObject EnemyTurn;
+    public GameObject playerTurn;
+    public GameObject enemyTurn;
+    private GameObject currentTurn;
     private Color originColor;
     public void Init()
     {
-        originColor = background.color; 
+        originColor = background.color;
+        playerTurn.SetActive(false);
+        enemyTurn.SetActive(false);
+        currentTurn = null;
     }
 
     public void SetTransitionUI(TurnManager.State turn)
@@ -23,15 +27,16 @@ public class TurnTransitionUI : MonoBehaviour
         {
             case TurnManager.State.PlayerTurn:
                 turnName.text = "플레이어 턴";
-                PlayerTurn.SetActive(true);
+                currentTurn = playerTurn;
                 break;
             case TurnManager.State.EnemyTurn:
                 turnName.text = "적군 턴";
-                EnemyTurn.SetActive(true);
+                currentTurn = enemyTurn;
                 break;
             default:
                 break;
         }
+        currentTurn.SetActive(true);
     }
 
     private void OnEnable()
@@ -41,8 +46,10 @@ public class TurnTransitionUI : MonoBehaviour
 
     private void OnDisable()
     {
-        PlayerTurn.SetActive(false);
-        EnemyTurn.SetActive(false);
+        playerTurn.SetActive(false);
+        enemyTurn.SetActive(false);
+        currentTurn.GetComponent<RectTransform>().localScale = Vector3.one;
+        currentTurn = null;
         background.color = originColor;
     }
 
@@ -52,11 +59,13 @@ public class TurnTransitionUI : MonoBehaviour
         while(true)
         {
             count += Time.deltaTime;
-            Color color = background.color;
-            color.a = Mathf.Lerp(color.a, 0, Time.deltaTime);
-            background.color = color;
-            yield return null;
             if (count >= 1) break;
+            Color color = new Color(0, 0, 0, 0);
+            color.a = Time.deltaTime / 2;
+            background.color += color;
+            Vector3 scale = new Vector3(Time.deltaTime / 2, Time.deltaTime / 2, 0);
+            currentTurn.GetComponent<RectTransform>().localScale += scale;
+            yield return null;
         }
         gameObject.SetActive(false);
     }

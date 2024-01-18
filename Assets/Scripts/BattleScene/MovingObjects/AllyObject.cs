@@ -8,6 +8,7 @@ public class AllyObject : MovingObject
     {
         base.Awake();
         identity = IdentityType.Ally;
+        iconSpriteRenderer.gameObject.SetActive(true);
     }
 
     public void SetGeneral(General general)
@@ -24,6 +25,7 @@ public class AllyObject : MovingObject
         general.Alive = true;
         soldier.Alive = true;
         InitMovingObject();
+        iconSpriteRenderer.gameObject.SetActive(false);
     }
 
     public void ReleaseGeneral()
@@ -36,5 +38,6 @@ public class AllyObject : MovingObject
         Destroy(soldier.gameObject);
         this.general = null;
         this.soldier = null;
+        iconSpriteRenderer.gameObject.SetActive(true);
     }
 }

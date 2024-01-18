@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 688a8a0af73090846a7c6cf22687f4cd, type: 3}
     - target: {fileID: 4372001362077439977, guid: 242a764376e51b44a890c44e24489232, type: 3}
       propertyPath: maxHP
-      value: 160
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4372001362077439977, guid: 242a764376e51b44a890c44e24489232, type: 3}
       propertyPath: range

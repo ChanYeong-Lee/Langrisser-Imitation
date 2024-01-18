@@ -80,6 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f68248db77118ab4d9dbd62be8ea9543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
   identity: 0
   OnDie:
     m_PersistentCalls:
@@ -91,7 +92,6 @@ MonoBehaviour:
   currentMoveCost: 0
   movableArea: []
   attackableArea: []
-  prevCell: {fileID: 0}
   currentCell: {fileID: 0}
   currentMap: {fileID: 0}
   engine: {fileID: 0}
@@ -99,10 +99,11 @@ MonoBehaviour:
   attackableAreaPrefab: {fileID: 5881619331755718649, guid: acc9046bc8ea885488a166adbd288f34, type: 3}
   generalPos: {fileID: 7621857854944818977}
   soldierPos: {fileID: 1000055443975295128}
-  areaParent: {fileID: 4940264102538117632}
-  spriteRenderer: {fileID: 6324134212144732791}
+  iconSpriteRenderer: {fileID: 6324134212144732791}
+  target: {fileID: 0}
   isMoving: 0
-  canMove: 0
+  isAction: 0
+  canAction: 0
   directions:
   - {x: 0, y: 1}
   - {x: 0, y: -1}
@@ -111,11 +112,6 @@ MonoBehaviour:
   level: 0
   generalType: 0
   soldierType: 0
---- !u!4 &4940264102538117632 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6234104769496647272, guid: 0130e6cd36a3c5f40b42d44ca2651298, type: 3}
-  m_PrefabInstance: {fileID: 1300596107202298984}
-  m_PrefabAsset: {fileID: 0}
 --- !u!212 &6324134212144732791 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 5030366628483997215, guid: 0130e6cd36a3c5f40b42d44ca2651298, type: 3}

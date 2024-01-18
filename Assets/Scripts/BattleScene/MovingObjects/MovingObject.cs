@@ -22,37 +22,37 @@ public enum Direction
 public class MovingObject : MonoBehaviour
 {
     public enum State { None, Move, Attack, Wait }
-    public State state;
+    [HideInInspector] public State state;
 
     [HideInInspector] public IdentityType identity;
     [HideInInspector] public UnityEvent<MovingObject> OnDie;
 
     [HideInInspector] public General general;
-     public Soldier soldier;
+    [HideInInspector] public Soldier soldier;
     [HideInInspector] public int range;
     [HideInInspector] public int moveCost;
-    public int currentMoveCost;
-    private bool alive;
-    [HideInInspector] public bool Alive { get { return alive; } set { alive = value; if (alive) { general.Alive = true; soldier.Alive = true; } } }
-    public List<BattleMapCell> movableArea;
-    public List<BattleMapCell> attackableArea;
-    private List<GameObject> activeArea = new List<GameObject>();
-    public BattleMapCell currentCell;
+    [HideInInspector] public int currentMoveCost;
+
+    [SerializeField] private bool alive;
+    public bool Alive { get { return alive; } set { alive = value; if (alive) { general.Alive = true; soldier.Alive = true; } } }
+    [HideInInspector] public List<BattleMapCell> movableArea;
+    [HideInInspector] public List<BattleMapCell> attackableArea;
+    [HideInInspector] private List<GameObject> activeArea = new List<GameObject>();
+    [HideInInspector] public BattleMapCell currentCell;
     public BattleMapCell CurrentCell { get { return currentCell; } set { if (currentCell != null) { currentCell.movingObject = null; } currentCell = value; if(currentCell != null)currentCell.movingObject = this; } }
 
-    public BattleMap currentMap;
-    public MovingEngine engine;
+    [HideInInspector] public BattleMap currentMap;
+    [HideInInspector] public MovingEngine engine;
     public GameObject movableAreaPrefab;
     public GameObject attackableAreaPrefab;
-    public Transform generalPos;
-    public Transform soldierPos;
-    public Transform areaParent;
-    public SpriteRenderer spriteRenderer;
-    public MovingObject target;
+    [SerializeField] private Transform generalPos;
+    [SerializeField] private Transform soldierPos;
+    public SpriteRenderer iconSpriteRenderer;
+    [HideInInspector] public MovingObject target;
 
-    public bool isMoving;
-    public bool canAction;
-    public bool isAction;
+    [HideInInspector] public bool isMoving;
+    [HideInInspector] public bool isAction;
+    [HideInInspector] public bool canAction;
 
     [HideInInspector] public Vector2Int[] directions = new Vector2Int[]
     {
@@ -65,7 +65,7 @@ public class MovingObject : MonoBehaviour
     protected virtual void Awake()
     {
         engine = GetComponent<MovingEngine>();
-        spriteRenderer.gameObject.SetActive(false);
+        iconSpriteRenderer.gameObject.SetActive(false);
     }
 
     protected void InitMovingObject()

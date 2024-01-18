@@ -17,24 +17,23 @@ public class WorldMapController : MonoBehaviour
     private bool following = false;
     Vector3 initPos;
     Quaternion initRot;
-    private void Awake()
-    {
-        initPos = new Vector3(2, 2.5f, -1);
-        initRot = Quaternion.Euler(50, 0, 0);
-        ResetPosition();
-    }
 
+    public void SetPlayer(WorldMapPlayer player)
+    {
+        this.player = player;
+    }
+    public void Init()
+    {
+        //initPos = new Vector3(2, 2.5f, -1);
+        //initRot = Quaternion.Euler(50, 0, 0);
+        //ResetPosition();
+        player.OnMove.AddListener(FollowPlayer);
+        Follow(player.transform.position);
+    }
     public void ResetPosition()
     {
         transform.position = initPos;
         transform.rotation = initRot;
-    }
-
-    private void Start()
-    {
-        player = FindObjectOfType<WorldMapPlayer>();
-        player.OnMove.AddListener(FollowPlayer);
-        Follow(player.transform.position);
     }
     void Update()
     {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyBrain : MonoBehaviour
@@ -82,6 +83,8 @@ public class EnemyBrain : MonoBehaviour
             {
                 if (TryAttack())
                 {
+                    yield return new WaitUntil(() => currentObject.state == MovingObject.State.None);
+                    yield return new WaitForSeconds(0.5f);
                     Attack();
                 }
                 else if (TryMove())

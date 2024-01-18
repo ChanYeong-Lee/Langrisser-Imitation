@@ -8,16 +8,27 @@ public class WorldMapPlayer : MonoBehaviour
     [HideInInspector] public WorldMapNode currentNode;
     [HideInInspector] public bool isMoving = false;
     [HideInInspector] public UnityEvent OnMove;
+
+    public void UpdateNode(WorldMapNode node)
+    {
+        currentNode = node;
+    }
+    public void Init()
+    {
+        transform.position = currentNode.transform.position; 
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<WorldMapNode>(out WorldMapNode node))
+        if (other.TryGetComponent(out WorldMapNode node))
         {
             currentNode = node;
             print("You Reach New Node");
         }
-        if (other.TryGetComponent<INodeEvent>(out INodeEvent INodeEvent))
+        if (other.TryGetComponent(out NodeEvent nodeEvent))
         {
-            INodeEvent.Execute();
+            nodeEvent.Execute();
+            currentNode = nodeEvent.node;
         }
     }
 

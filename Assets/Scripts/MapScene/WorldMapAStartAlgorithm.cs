@@ -59,6 +59,7 @@ public class WorldMapAStartAlgorithm
             {
                 foreach (WorldMapNode node in currentNode.node.adjNodes)
                 {
+                    if (false == node.gameObject.activeSelf) continue;
                     float g = currentNode.g + Distance(currentNode.node, node);
                     float h = Distance(node, end);
                     ASNode newNode = new ASNode(node, currentNode, false, g, h);

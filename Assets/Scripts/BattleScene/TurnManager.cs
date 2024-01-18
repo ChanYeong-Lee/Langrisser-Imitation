@@ -79,22 +79,11 @@ public class TurnManager : MonoBehaviour
         aliveObjects.Remove(deadObject);
         deadObject.currentCell.movingObject = null;
         deadObject.gameObject.SetActive(false);
-        CheckStates();
+        BattleManager.Instance.CheckStates();
     }
 
-    private void CheckStates()
-    {
-        if (BattleManager.Instance.CheckAllyDie())
-        {
-            AllyWin();
-        }
-        else if (BattleManager.Instance.CheckEnemyDie())
-        {
-            EnemyWin();
-        }
-    }
-
-    IEnumerator EndBattle()
+   
+    IEnumerator EndBattle(IdentityType winner)
     {
         TurnState = State.None;
         foreach (MovingObject movingObject in aliveObjects)
@@ -109,17 +98,22 @@ public class TurnManager : MonoBehaviour
                 yield return null;
             }
         }
-        SceneLoader.Instance.LoadScene("MapScene");
+        BattleUIManager.Instance.GameOver(winner);
     }
 
+    public void ExitBattle()
+    {
+        BattleManager.Instance.ReturnGenerals();
+        SceneLoader.Instance.LoadScene("MapScene");
+    }
     public void AllyWin()
     {
-        StartCoroutine(EndBattle());
+        StartCoroutine(EndBattle(IdentityType.Ally));
     }
 
     public void EnemyWin()
     {
-        StartCoroutine(EndBattle());
+        StartCoroutine(EndBattle(IdentityType.Enemy));
     }
 
     private void ResetCosts()
@@ -164,6 +158,7 @@ public class TurnManager : MonoBehaviour
     }
     public void EnemyTurnEnd()
     {
+        if (TurnState == State.None) return;
         state = State.CloseTurn;
         print("EnemyTurnEnd");
     }

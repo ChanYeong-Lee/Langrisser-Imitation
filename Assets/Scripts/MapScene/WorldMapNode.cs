@@ -9,11 +9,17 @@ public class WorldMapNode : MonoBehaviour
         Road,
         Object
     }
+    public void Init()
+    {
+        gameObject.SetActive(false);
+        if (stageID <= GameManager.Instance.stageID)
+            gameObject.SetActive(true);
+    }
 
     public NodeType type;
-    public bool somethingHere = false;
-
-    public INodeEvent nodeEvent = null;
+    public int nodeID;
+    public int stageID;
+    public NodeEvent nodeEvent = null;
 
     public List<WorldMapNode> adjNodes;
 }

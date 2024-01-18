@@ -340,6 +340,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2519513222667969473, guid: 60f133839814e68428f9e8546ecb228e, type: 3}
+      propertyPath: dropExp
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 2519513222667969473, guid: 60f133839814e68428f9e8546ecb228e, type: 3}
       propertyPath: cellList.Array.size
       value: 135
       objectReference: {fileID: 0}

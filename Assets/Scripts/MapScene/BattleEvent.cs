@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleEvent : MonoBehaviour, INodeEvent
+public class BattleEvent : NodeEvent
 {
-    [SerializeField] private int stageID;
-
-    public void Execute()
+    public override void Execute()
     {
-        GameManager.Instance.EnterBattle(stageID);
+        GameManager.Instance.EnterBattle(this);
     }
 }

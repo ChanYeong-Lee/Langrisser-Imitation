@@ -30,5 +30,4 @@ public class BattleReadyUI : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
-
 }

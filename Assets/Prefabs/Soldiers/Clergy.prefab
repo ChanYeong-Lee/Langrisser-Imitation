@@ -73,7 +73,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7664810001468023511, guid: fc4b515ba752af54b90be82e690840c9, type: 3}
       propertyPath: maxHP
-      value: 70
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7664810001468023511, guid: fc4b515ba752af54b90be82e690840c9, type: 3}
       propertyPath: range
