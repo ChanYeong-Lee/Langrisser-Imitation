@@ -17915,6 +17915,7 @@ GameObject:
   - component: {fileID: 1158481949}
   - component: {fileID: 1158481948}
   - component: {fileID: 1158481950}
+  - component: {fileID: 1158481951}
   m_Layer: 5
   m_Name: CancelButton
   m_TagString: Untagged
@@ -18037,6 +18038,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1158481951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1158481946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28b069deab16dc344a552dd57006da1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1159451925
 GameObject:
   m_ObjectHideFlags: 0
@@ -21600,10 +21613,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SelectCellArea
       objectReference: {fileID: 0}
-    - target: {fileID: 6779150347452169334, guid: f7805b542be83b7479cc97ad992c8ed5, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7805b542be83b7479cc97ad992c8ed5, type: 3}
 --- !u!1 &1459053604
@@ -24303,6 +24312,7 @@ GameObject:
   - component: {fileID: 1662316370}
   - component: {fileID: 1662316369}
   - component: {fileID: 1662316371}
+  - component: {fileID: 1662316372}
   m_Layer: 5
   m_Name: AttackButton
   m_TagString: Untagged
@@ -24426,6 +24436,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1662316372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662316367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28b069deab16dc344a552dd57006da1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1667983138
 GameObject:
   m_ObjectHideFlags: 0
@@ -29961,6 +29983,7 @@ GameObject:
   - component: {fileID: 1979843617}
   - component: {fileID: 1979843616}
   - component: {fileID: 1979843618}
+  - component: {fileID: 1979843619}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -30083,6 +30106,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1979843619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979843614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28b069deab16dc344a552dd57006da1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1992225091
 GameObject:
   m_ObjectHideFlags: 0

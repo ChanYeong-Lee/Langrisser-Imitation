@@ -17,7 +17,7 @@ public class WorldMapController : MonoBehaviour
     private bool following = false;
     Vector3 initPos;
     Quaternion initRot;
-
+    
     public void SetPlayer(WorldMapPlayer player)
     {
         this.player = player;

@@ -55,6 +55,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5030366628483997215, guid: 0130e6cd36a3c5f40b42d44ca2651298, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4c54d853e8f1bad4cac85fa6786f690d, type: 3}
+    - target: {fileID: 5030366628483997215, guid: 0130e6cd36a3c5f40b42d44ca2651298, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5994267100009419797, guid: 0130e6cd36a3c5f40b42d44ca2651298, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0130e6cd36a3c5f40b42d44ca2651298, type: 3}
@@ -95,6 +103,7 @@ MonoBehaviour:
   range: 0
   moveCost: 0
   currentMoveCost: 0
+  alive: 0
   movableArea: []
   attackableArea: []
   currentCell: {fileID: 0}

@@ -80,6 +80,7 @@ public class BattleManager : MonoBehaviour
                             UnDrawAreas();
                             UpdateCell();
                             UpdateCharacter();
+                            DrawCell();
                             DrawAreas();
                             break;
                         case MoveState.Move:
@@ -144,14 +145,16 @@ public class BattleManager : MonoBehaviour
 
     private void DrawCell()
     {
-        if (selectCellArea.activeInHierarchy == false) { selectCellArea.SetActive(true); }
-        selectCellArea.transform.position = currentCell.transform.position;
+        if (selectCellArea.activeSelf == false) { selectCellArea.SetActive(true); }
+        if (currentCell == null) { selectCellArea.SetActive(false); }
+        else { selectCellArea.transform.position = currentCell.transform.position; }
     }
 
     private void UnDrawCell()
     {
         selectCellArea.SetActive(false);
     }
+
     private bool CheckCharacter()
     {
         if (nextCell != null && nextCell.movingObject != null && nextCell.movingObject.general != null)
@@ -230,6 +233,7 @@ public class BattleManager : MonoBehaviour
     {
         CurrentObject.Move();
         UnDrawAreas();
+        nextCell = null;
         CurrentObject = null;
         moveState = MoveState.Ready;
     }
@@ -238,6 +242,7 @@ public class BattleManager : MonoBehaviour
     {
         CurrentObject.Attack();
         UnDrawAreas();
+        nextCell = null;
         CurrentObject = null;
         moveState = MoveState.Ready;
         BattleUIManager.Instance.CancelAttack();

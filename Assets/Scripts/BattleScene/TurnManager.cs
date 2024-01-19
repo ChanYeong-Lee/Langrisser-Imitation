@@ -86,7 +86,7 @@ public class TurnManager : MonoBehaviour
     IEnumerator EndBattle(IdentityType winner)
     {
         TurnState = State.None;
-        foreach (MovingObject movingObject in aliveObjects)
+        foreach (MovingObject movingObject in BattleManager.Instance.movingObjects)
         {
             while (true)
             {

@@ -9,12 +9,12 @@ public class BattleSceneCameraMove : MonoBehaviour
     private float zoomSpeed = 1;
     private float moveSpeed = 3;
     private BattleMap currentBattleMap;
-    private new Camera camera;
+    private Camera theCamera;
     private bool prepared = false;
     public bool canMove = true;
     private void Awake()
     {
-        camera = GetComponent<Camera>();
+        theCamera = GetComponent<Camera>();
     }
 
     private void Update()
@@ -31,7 +31,7 @@ public class BattleSceneCameraMove : MonoBehaviour
     private void Zoom()
     {
         float scroll = Input.GetAxis("Mouse ScrollWheel");
-        camera.orthographicSize = camera.orthographicSize - scroll * zoomSpeed;
+        theCamera.orthographicSize = theCamera.orthographicSize - scroll * zoomSpeed;
     }
     private void KeyboardMove()
     {
@@ -44,11 +44,11 @@ public class BattleSceneCameraMove : MonoBehaviour
 
     private void Limit()
     {
-        float cameraSize = Mathf.Clamp(camera.orthographicSize, 3f, 5f);
-        camera.orthographicSize = cameraSize; 
+        float cameraSize = Mathf.Clamp(theCamera.orthographicSize, 3f, 5f);
+        theCamera.orthographicSize = cameraSize; 
 
-        float boundX = camera.orthographicSize * camera.aspect;
-        float boundY = camera.orthographicSize;
+        float boundX = theCamera.orthographicSize * theCamera.aspect;
+        float boundY = theCamera.orthographicSize;
         float camX = Mathf.Clamp(transform.position.x, currentBattleMap.mapMinBounds.x + boundX, currentBattleMap.mapMaxBounds.x - boundX); 
         float camY = Mathf.Clamp(transform.position.y, currentBattleMap.mapMinBounds.y + boundY, currentBattleMap.mapMaxBounds.y - boundY);
         Vector3 camPos = new Vector3(camX, camY, transform.position.z);
@@ -76,7 +76,7 @@ public class BattleSceneCameraMove : MonoBehaviour
             else
             {
                 isDragging = true;
-                clickPos = camera.ScreenToWorldPoint(Input.mousePosition);
+                clickPos = theCamera.ScreenToWorldPoint(Input.mousePosition);
             }
         }
         if (Input.GetMouseButtonUp(0))
@@ -89,7 +89,7 @@ public class BattleSceneCameraMove : MonoBehaviour
         {
             deltaTime += Time.deltaTime;
             if (deltaTime >= 0.3f) BattleManager.Instance.canSelect = false;
-            Vector3 curMousePos = camera.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 curMousePos = theCamera.ScreenToWorldPoint(Input.mousePosition);
             Vector3 dir = clickPos - curMousePos;
             dir.z = 0;
             transform.Translate(dir);

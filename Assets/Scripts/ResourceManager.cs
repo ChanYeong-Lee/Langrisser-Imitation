@@ -71,8 +71,8 @@ public class ResourceManager : MonoBehaviour
 
     public List<GeneralResource> generalResources;
     public List<SoldierResource> soldierResources;
-    public List<ClassResource> classIconSprites;
-    public List<RairityResource> rairityIconSprites;
+    public List<ClassResource> classResources;
+    public List<RairityResource> rairityResources;
     public GeneralResource GetGeneralResource(GeneralType generalType)
     {
         GeneralResource generalResource = generalResources.Find((a) => a.generalType == generalType);
@@ -85,10 +85,10 @@ public class ResourceManager : MonoBehaviour
     }
     public ClassResource GetClassResource(ClassType classType)
     {
-        return classIconSprites.Find((a) => a.classType == classType);
+        return classResources.Find((a) => a.classType == classType);
     }
     public RairityResource GetRairityResource(RairityType rairityType)
     {
-        return rairityIconSprites.Find((a) => a.rairityType == rairityType);
+        return rairityResources.Find((a) => a.rairityType == rairityType);
     }
 }

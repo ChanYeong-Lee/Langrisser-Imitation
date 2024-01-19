@@ -22,7 +22,7 @@ public enum Direction
 public class MovingObject : MonoBehaviour
 {
     public enum State { None, Move, Attack, Wait }
-    [HideInInspector] public State state;
+    public State state;
 
     [HideInInspector] public IdentityType identity;
     [HideInInspector] public UnityEvent<MovingObject> OnDie;

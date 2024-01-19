@@ -14,6 +14,11 @@ public class BattleScenePointerHandler : MonoBehaviour, IPointerDownHandler, IPo
     public void OnPointerUp(PointerEventData eventData)
     {
         Camera.main.GetComponent<BattleSceneCameraMove>().canMove = true;
+        StartCoroutine(PointerUpCoroutine());
+    }
+    IEnumerator PointerUpCoroutine()
+    {
+        yield return null;
         BattleManager.Instance.canSelect = true;
     }
 }
