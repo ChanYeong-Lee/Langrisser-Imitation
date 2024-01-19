@@ -2244,17 +2244,16 @@ MonoBehaviour:
     soldierName: "\uC2B9\uB824"
     soldierDescription: "\uC2B9\uB824 \uC124\uBA85"
     soldierSD: {fileID: 21300000, guid: 07aa06b763af931409d83db3efe3b392, type: 3}
-  classIconSprites:
+  classResources:
   - className: "\uC5C6\uC74C"
     classDescription: 
     classType: -1
     classIcon: {fileID: 0}
     classFlag: {fileID: 0}
-    advantage: -1
-    weakness: -1
-  - className: "\uC18C\uB4DC\uB9E8"
-    classDescription: "\uAC08\uACE0 \uB2E6\uC740 \uAC80\uC220\uB85C \uB9E4\uC11C\uC6B4
-      \uACF5\uC138\uB97C \uD37C\uBD80\uC5B4 \uC801\uC758 \uBC29\uC5B4\uB97C \uBB34\uB108\uB728\uB9B0\uB2E4."
+    advantage: 0
+    weakness: 0
+  - className: "\uBCF4\uBCD1"
+    classDescription: "\uBCF4\uBCD1 \uC124\uBA85"
     classType: 0
     classIcon: {fileID: 21300000, guid: c791db278c0b56140ba06ca74fb0aa1d, type: 3}
     classFlag: {fileID: 21300000, guid: b89288cb723cf3d4cbb4ed77adaebdd5, type: 3}
@@ -2281,7 +2280,7 @@ MonoBehaviour:
     classFlag: {fileID: 21300000, guid: 8775e4c289fdfdb49b259035bde25573, type: 3}
     advantage: -1
     weakness: -1
-  rairityIconSprites:
+  rairityResources:
   - rairityType: 0
     rairityIcon: {fileID: 21300000, guid: 9e13ff9b5ff82e74e990ff4f7bc11477, type: 3}
     rairityCard: {fileID: 21300000, guid: 29ab6c8c8a018e4409c4e88d53c3dd8a, type: 3}

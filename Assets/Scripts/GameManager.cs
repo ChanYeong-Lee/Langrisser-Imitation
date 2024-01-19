@@ -24,6 +24,10 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    private void Start()
+    {
+        //Screen.SetResolution(1600, 900, true);
+    }
     public void EnterBattle(NodeEvent nodeEvent)
     {
         if (false == eventDictionary.ContainsKey(nodeEvent.eventID))

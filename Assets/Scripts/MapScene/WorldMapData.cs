@@ -29,7 +29,7 @@ public class WorldMapData : MonoBehaviour
             nodeEvent.Init();
             if (GameManager.Instance.currentEventID == nodeEvent.eventID)
             {
-                if (GameManager.Instance.stageClear)
+                if (false == GameManager.Instance.stageClear)
                 {
                     nodeEvent.ReplaceNode();
                 }

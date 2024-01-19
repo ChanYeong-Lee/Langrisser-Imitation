@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -59,9 +60,11 @@ public class CharacterSelectUI : MonoBehaviour, IDragHandler, IBeginDragHandler,
 
     public void OnDrag(PointerEventData eventData)
     {
+        float different = (float)1600 / Screen.currentResolution.width;
+        Debug.Log(different);
         if (onMoveElement && currentElement != null)
         {
-            currentElement.rectTransform.anchoredPosition += eventData.delta;
+            currentElement.rectTransform.anchoredPosition += eventData.delta * different;
         }
     }
 
